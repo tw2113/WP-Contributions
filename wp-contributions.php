@@ -113,10 +113,9 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 * @since  1.0.0
 		 */
 		public function enqueue() {
-			$min = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+			$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	
-			wp_enqueue_style( 'wds-wp-contributions', $this-> directory_url . "/assets/css/style$min.css", array(), '150505' );
-			wp_enqueue_style( 'wds-wp-contributions-dashicons', get_stylesheet_uri(), array( 'dashicons' ), '150505' );
+			wp_enqueue_style( 'wds-wp-contributions', $this-> directory_url . "/assets/css/style$min.css", array( 'dashicons' ), '150505' );
 			//wp_enqueue_script( 'wds-wp-contributions', $this-> directory_url . "/assets/js/scripts$min.js", array(), '150505', true );
 		}
 
