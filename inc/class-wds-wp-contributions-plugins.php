@@ -155,7 +155,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 			$slug        = $plugin_data->slug;
 			$link        = 'https://wordpress.org/plugins/' . esc_attr( $slug );
 			$description = isset( $plugin_data->short_description ) ? esc_html( strip_tags( $plugin_data->short_description ) ) : '';
-			$more = '<a href="' . esc_url( $link ) . '">' . esc_html__( ' [Read More...]', 'wp-contributions' ) . '</a>';
+			$more        = '&hellip;';
 			$description = wp_trim_words( $description, 30, $more );
 			$version     = $plugin_data->version;
 			$rating      = $plugin_data->rating;

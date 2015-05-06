@@ -149,7 +149,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			$slug        = $theme_data->slug;
 			$link        = 'https://wordpress.org/themes/' . esc_attr( $slug );
 			$description = isset( $theme_data->description ) ? esc_html( strip_tags( $theme_data->description ) ) : '';
-			$more = '<a href="' . esc_url( $link ) . '">' . esc_html__( ' [Read More...]', 'wp-contributions' ) . '</a>';
+			$more        = '&hellip;';
 			$description = wp_trim_words( $description, 30, $more );
 			$version     = $theme_data->version;
 			$rating      = $theme_data->rating;
