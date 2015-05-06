@@ -1,0 +1,235 @@
+# Copyright (C) 2015 WebDevStudios
+# This file is distributed under the GPLv2.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Contributions 1.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/WP-Contributions\n"
+"POT-Creation-Date: 2015-05-06 19:43:42+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.5.2\n"
+
+#: inc/class-wds-wp-contributions-codex-widget.php:40
+msgid "WP Contributions Codex Widget"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-codex-widget.php:41
+msgid "My Codex Contributions"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-codex-widget.php:47
+msgid "Add a list of your contributions to the WordPress Codex as a sidebar widget."
+msgstr ""
+
+#: inc/class-wds-wp-contributions-codex-widget.php:62
+msgid "WP Codex Contributions"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-codex-widget.php:68
+msgid "Codex Username"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-codex-widget.php:78
+#: inc/class-wds-wp-contributions-core-widget.php:78
+#: inc/class-wds-wp-contributions-plugin-widget.php:144
+#: inc/class-wds-wp-contributions-theme-widget.php:144
+msgid "Title:"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-codex-widget.php:81
+msgid "Codex Username:"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-codex-widget.php:84
+msgid "Display How Many Changes?"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-core-widget.php:40
+msgid "WP Contributions Core Widget"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-core-widget.php:41
+msgid "My Core Contributions"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-core-widget.php:47
+msgid ""
+"Add a list of your accepted contributions to WordPress Core as a sidebar "
+"widget."
+msgstr ""
+
+#: inc/class-wds-wp-contributions-core-widget.php:62
+msgid "WP Core Contributions"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-core-widget.php:68
+msgid "Trac Username"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-core-widget.php:81
+msgid "Trac Username:"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-core-widget.php:84
+msgid "Display How Many Tickets?"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-plugin-widget.php:38
+msgid "WP Contributions Plugin Widget"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-plugin-widget.php:39
+msgid "My Plugin Info"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-plugin-widget.php:45
+msgid "Display information about a plugin hosted on WordPress.org."
+msgstr ""
+
+#: inc/class-wds-wp-contributions-plugin-widget.php:147
+msgid "Plugin Slug:"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-plugins.php:61
+#: inc/class-wds-wp-contributions-plugins.php:66
+#: inc/class-wds-wp-contributions-plugins.php:70
+#: inc/class-wds-wp-contributions-themes.php:61
+#: inc/class-wds-wp-contributions-themes.php:66
+#: inc/class-wds-wp-contributions-themes.php:70
+msgid ""
+"An unexpected error occurred. Something may be wrong with WordPress.org or "
+"this server&#8217;s configuration. If you continue to have problems, please "
+"try the <a href=\"https://wordpress.org/support/\">support forums</a>."
+msgstr ""
+
+#: inc/class-wds-wp-contributions-plugins.php:61
+#: inc/class-wds-wp-contributions-themes.php:61
+msgid ""
+"(WordPress could not establish a secure connection to WordPress.org. Please "
+"contact your server administrator.)"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-theme-widget.php:38
+msgid "WP Contributions Theme Widget"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-theme-widget.php:39
+msgid "My Theme Info"
+msgstr ""
+
+#: inc/class-wds-wp-contributions-theme-widget.php:45
+msgid "Display information about a theme hosted on WordPress.org."
+msgstr ""
+
+#: inc/class-wds-wp-contributions-theme-widget.php:147
+msgid "Theme Slug:"
+msgstr ""
+
+#: inc/helper-functions.php:50 inc/helper-functions.php:75
+#: inc/helper-functions.php:100 inc/helper-functions.php:123
+msgid "Please enter a WordPress.org Username."
+msgstr ""
+
+#: inc/helper-functions.php:179
+#. translators: 1: The rating, 2: The number of ratings
+msgid "%1$s rating based on %2$s rating"
+msgid_plural "%1$s rating based on %2$s ratings"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/helper-functions.php:183
+#. translators: 1: The rating
+msgid "%s rating"
+msgstr ""
+
+#: templates/wp-contributions-codex-widget-template.php:17
+msgid "Function: %1$s"
+msgstr ""
+
+#: templates/wp-contributions-codex-widget-template.php:21
+msgid "For %1$s"
+msgstr ""
+
+#: templates/wp-contributions-codex-widget-template.php:31
+msgid "View both changes in the Codex."
+msgstr ""
+
+#: templates/wp-contributions-codex-widget-template.php:33
+msgid "View the change in the Codex."
+msgid_plural "View all %d changes in the Codex."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/wp-contributions-core-widget-template.php:15
+msgid "[%1$s] for %2$s"
+msgstr ""
+
+#: templates/wp-contributions-core-widget-template.php:20
+msgid "[%1$s]"
+msgstr ""
+
+#: templates/wp-contributions-core-widget-template.php:32
+msgid "View both tickets on Trac."
+msgstr ""
+
+#: templates/wp-contributions-core-widget-template.php:34
+msgid "View the ticket on Trac."
+msgid_plural "View all %d tickets on Trac."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/wp-contributions-plugin-card-template.php:25
+#: templates/wp-contributions-theme-card-template.php:39
+msgid "Author: "
+msgstr ""
+
+#: templates/wp-contributions-plugin-card-template.php:29
+#: templates/wp-contributions-theme-card-template.php:43
+msgid "Version: "
+msgstr ""
+
+#: templates/wp-contributions-plugin-card-template.php:51
+#: templates/wp-contributions-theme-card-template.php:47
+msgid " Downloads:"
+msgstr ""
+
+#: templates/wp-contributions-plugin-card-template.php:55
+#: templates/wp-contributions-theme-card-template.php:51
+msgid "Last Updated: "
+msgstr ""
+
+#: wp-contributions.php:137
+msgid "No Slug Entered"
+msgstr ""
+
+#: wp-contributions.php:152
+msgid ""
+"Plugin API failed. The plugin slug could be incorrect or there could be an "
+"error with the WP Plugin API."
+msgstr ""
+
+#: wp-contributions.php:161
+msgid ""
+"Theme API failed. The theme slug could be incorrect or there could be an "
+"error with the WP Theme API."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WP Contributions"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://webdevstudios.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Show off your WordPress plugins, themes, and contributions."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WebDevStudios"
+msgstr ""
