@@ -152,7 +152,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			$link        = 'https://wordpress.org/themes/' . esc_attr( $slug );
 			$description = isset( $theme_data->description ) ? esc_html( strip_tags( $theme_data->description ) ) : '';
 			$more        = '&hellip;';
-			$description = wp_trim_words( $description, 30, $more );
+			$description = wp_trim_words( $description, apply_filters( 'wp_contributions_desc_length', 30 ), $more );
 			$version     = $theme_data->version;
 			$rating      = $theme_data->rating;
 			$num_ratings = $theme_data->num_ratings;
