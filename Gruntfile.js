@@ -20,6 +20,22 @@ module.exports = function( grunt ) {
 	grunt.initConfig( {
 
 		pkg: pkg,
+		
+		sass: {
+			dist: {
+				files: {
+					'assets/css/style.css' : 'assets/css/sass/style.scss'
+				}
+			}
+		},
+
+		cssmin: {
+			dist: {
+				files: {
+					'assets/css/style.min.css': 'assets/css/style.css'
+				}
+			}
+		},
 
 		jshint: {
 			files: ['assets/**/*.js', '!assets/**/*.min.js']
@@ -90,7 +106,7 @@ module.exports = function( grunt ) {
 
 	// Default task.
 	grunt.registerTask( 'scripts', ['jshint','uglify'] );
-	grunt.registerTask( 'styles', [] );
+	grunt.registerTask( 'styles', ['sass', 'cssmin'] );
 	grunt.registerTask( 'php', [ 'addtextdomain', 'makepot' ] );
 	grunt.registerTask( 'default', ['styles', 'scripts', 'php'] );
 
