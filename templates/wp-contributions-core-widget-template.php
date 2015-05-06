@@ -2,7 +2,7 @@
 /**
  * Widget Template.
  *
- * @since     0.2
+ * @since 1.0.0
  */
 ?>
 
