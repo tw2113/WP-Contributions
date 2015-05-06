@@ -1,0 +1,36 @@
+// 5-star rating icons similar to WP.org's
+.card-rating {
+	
+	.star {
+		color: #e6b800;
+		display: inline-block;
+		
+		&:before {
+			content: '\f154';
+			display: inline-block;
+			font-family: 'dashicons';
+			font-size: 1em;
+			font-weight: normal;
+			line-height: 1;
+			margin-right: 2px;
+			vertical-align: baseline;
+			
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+	}
+	
+	.star-full {
+		
+		&:before {
+			content: '\f155';
+		}
+	}
+	
+	.star-half {
+		
+		&:before {
+			content: '\f459';
+		}
+	}
+}

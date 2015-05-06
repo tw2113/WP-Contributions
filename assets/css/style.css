@@ -1,3 +1,22 @@
+.card-rating .star {
+  color: #e6b800;
+  display: inline-block; }
+  .card-rating .star:before {
+    content: '\f154';
+    display: inline-block;
+    font-family: 'dashicons';
+    font-size: 1em;
+    font-weight: normal;
+    line-height: 1;
+    margin-right: 2px;
+    vertical-align: baseline;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+.card-rating .star-full:before {
+  content: '\f155'; }
+.card-rating .star-half:before {
+  content: '\f459'; }
+
 .wp-contributions-core-widget ul {
   list-style: none;
   margin: 0; }
