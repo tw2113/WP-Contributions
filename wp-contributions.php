@@ -121,45 +121,48 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 * @param array  $args Arguments to pass to the card display.
 		 * @return string The HTML output for the card view.
 		 */
-		public function display_card( $slug, $type, $args = array() ) {
+		public function display_card( $args = array() ) {
 
-			if ( ! $slug ) {
+			if ( ! isset( $args['slug'] ) ) {
 				return '<p>' . esc_html__( 'No Slug Entered', 'wp-contributions' );
 			}
-			
+
+			$args = apply_filters( 'wp_contributions_display_card_args', $args );
+
 			$card = '';
 
-			if ( 'plugin' === $type ) {
+			if ( 'plugin' === $args['type'] ) {
 				// Get the plugin using the WP.org API
 				$plugin_api  = new WDS_WP_Contributions_Plugins();
-				$plugin_data = $plugin_api->get_plugin( $slug );
+				$plugin_data = $plugin_api->get_plugin( $args['slug'] );
 
 				if ( ! is_wp_error( $plugin_data ) ) {
 					$card .= $plugin_api->display( $plugin_data );
 				} else {
 					$card .= '<p>' . esc_html__( 'Plugin API failed. The plugin slug could be incorrect or there could be an error with the WP Plugin API.', 'wp-contributions' );
 				}
-			} elseif ( 'theme' === $type ) {
+			} elseif ( 'theme' === $args['type'] ) {
 				// Get the theme using the WP.org API
 				$theme_api  = new WDS_WP_Contributions_Themes();
-				$theme_data = $theme_api->get_theme( $slug );
+				$theme_data = $theme_api->get_theme( $args['slug'] );
 				if ( ! is_wp_error( $theme_data ) ) {
 					$card .= $theme_api->display( $theme_data );
 				} else {
 					$card .= '<p>' . esc_html__( 'Theme API failed. The theme slug could be incorrect or there could be an error with the WP Theme API.', 'wp-contributions' );
 				}
-			} elseif ( 'core' === $type ) {
+			} elseif ( 'core' === $args['type'] ) {
 				$count = isset( $args['count'] ) ? $args['count'] : 5;
 				$core = new WDS_WP_Contributions_Core();
-				$core->display( $slug, $count );
-			} elseif ( 'codex' === $type ) {
+				$core->display( $args['slug'], $count );
+			} elseif ( 'codex' === $args['type'] ) {
 				$count = isset( $args['count'] ) ? $args['count'] : 5;
 				$core = new WDS_WP_Contributions_Codex();
-				$core->display( $slug, $count );
+				$core->display( $args['slug'], $count );
 			} else {
 
 			}
 
+			$card = apply_filters( 'wp_contributions_display_card', $card, $args );
 			return $card;
 
 		}

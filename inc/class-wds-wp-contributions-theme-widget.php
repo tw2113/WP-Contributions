@@ -95,7 +95,11 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 
 		$theme_slug = isset( $atts['theme_slug'] ) ? $atts['theme_slug'] : '';
 
-		$wp_contributions->display_card( $theme_slug, 'theme' );
+		$args = array(
+			'slug' => $theme_slug,
+			'type' => 'theme',
+		);
+		$wp_contributions->display_card( $args );
 
 		// After widget hook
 		echo $atts['after_widget'];

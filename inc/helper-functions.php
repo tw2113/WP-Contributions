@@ -14,7 +14,11 @@ function wp_contributions_plugin_card( $plugin_slug ) {
 
 	global $wp_contributions;
 
-	$wp_contributions->display_card( $plugin_slug, 'plugin' );
+	$args = array(
+		'slug' => $plugin_slug,
+		'type' => 'plugin',
+	);
+	$wp_contributions->display_card( $args );
 
 }
 
@@ -27,7 +31,11 @@ function wp_contributions_theme_card( $theme_slug ) {
 
 	global $wp_contributions;
 
-	$wp_contributions->display_card( $theme_slug, 'theme' );
+	$args = array(
+		'slug' => $theme_slug,
+		'type' => 'theme',
+	);
+	$wp_contributions->display_card( $args );
 
 }
 
@@ -47,7 +55,11 @@ function wp_contributions_author_plugin_cards( $username ) {
 	$author = $plugins->get_author_plugins( $username );
 
 	foreach( $author->plugins as $plugin ) {
-		$wp_contributions->display_card( $plugin->slug, 'plugin' );
+		$args = array(
+			'slug' => $plugin->slug,
+			'type' => 'plugin',
+		);
+		$wp_contributions->display_card( $args );
 	}
 
 }
@@ -68,7 +80,11 @@ function wp_contributions_author_theme_cards( $username ) {
 	$author = $themes->get_author_themes( $username );
 
 	foreach( $author->themes as $theme ) {
-		$wp_contributions->display_card( $theme->slug, 'theme' );
+		$args = array(
+			'slug' => $theme->slug,
+			'type' => 'theme',
+		);
+		$wp_contributions->display_card( $args );
 	}
 
 }
@@ -87,7 +103,12 @@ function wp_contributions_core_contributions_card( $username ) {
 
 	global $wp_contributions;
 
-	$wp_contributions->display_card( $username, 'core' );
+
+	$args = array(
+		'slug' => $username,
+		'type' => 'core',
+	);
+	$wp_contributions->display_card( $args );
 
 }
 
@@ -105,7 +126,11 @@ function wp_contributions_codex_contributions_card( $username ) {
 
 	global $wp_contributions;
 
-	$wp_contributions->display_card( $username, 'codex' );
+	$args = array(
+		'slug' => $username,
+		'type' => 'codex',
+	);
+	$wp_contributions->display_card( $args );
 
 }
 

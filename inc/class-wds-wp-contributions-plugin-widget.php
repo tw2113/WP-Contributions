@@ -95,7 +95,11 @@ class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 
 		$plugin_slug = isset( $atts['plugin_slug'] ) ? $atts['plugin_slug'] : '';
 
-		$wp_contributions->display_card( $plugin_slug, 'plugin' );
+		$args = array(
+			'slug' => $plugin_slug,
+			'type' => 'plugin',
+		);
+		$wp_contributions->display_card( $args );
 
 		// After widget hook
 		echo $atts['after_widget'];

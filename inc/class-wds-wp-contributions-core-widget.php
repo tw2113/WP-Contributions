@@ -101,7 +101,6 @@ if ( ! class_exists('WDS_WP_Contributions_Core_Widget') ) :
 			extract( $args );
 			$title = apply_filters( 'widget_title', $instance['title'] );
 			$user = $instance['trac-user'];
-			$args['count'] = isset( $instance['display-count'] ) ? $instance['display-count'] : 5;
 
 			echo $before_widget;
 
@@ -109,7 +108,13 @@ if ( ! class_exists('WDS_WP_Contributions_Core_Widget') ) :
 				echo $before_title . $title . $after_title;
 			}
 
-			$wp_contributions->display_card( $user, 'core', $args );
+
+			$args = array(
+				'slug'  => $user,
+				'type'  => 'core',
+				'count' => isset( $instance['display-count'] ) ? $instance['display-count'] : 5,
+			);
+			$wp_contributions->display_card( $args );
 
 			echo $after_widget;
 		}
