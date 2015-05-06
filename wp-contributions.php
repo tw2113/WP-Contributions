@@ -32,8 +32,8 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 		/**
 		 * Creates or returns an instance of this class.
-		 * @since  0.1.0
-		 * @return WDS_MCF_Testimonials A single instance of this class.
+		 * @since 1.0.0
+		 * @return WDS_WP_Contributions A single instance of this class.
 		 */
 		public function init() {
 		static $instance = null;
@@ -47,7 +47,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 		/**
 		 * Add hooks and filters
-		 * @since 0.1.0
+		 * @since 1.0.0
 		 */
 		public function hooks() {
 			// Load Textdomain
