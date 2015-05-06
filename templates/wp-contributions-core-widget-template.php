@@ -7,7 +7,6 @@
 ?>
 
 <?php if ( isset( $items ) ) : ?>
-	<div class="wp-contributions-core core-card card <?php echo esc_attr( $user ); ?>">
 		<ul>
 		<?php foreach ( (array) $items as $item ) : ?>
 			<?php if ( $item['ticket'] ) { ?>
@@ -35,5 +34,4 @@
 			</a>
 		</p>
 		
-	</div><!-- .wp-contributions-core .core-card .card -->
 <?php endif; ?>
