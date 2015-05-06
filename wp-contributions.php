@@ -184,8 +184,8 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 	}
 
 	/**
-	 * Grab the WDS_MCF_Testimonials object and return it.
-	 * Wrapper for WDS_MCF_Testimonials::get_instance()
+	 * Grab the WDS_WP_Contributions object and return it.
+	 * Wrapper for WDS_WP_Contributions::get_instance()
 	 */
 	function load_wp_contributions() {
 		global $wp_contributions;
