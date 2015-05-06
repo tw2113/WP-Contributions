@@ -126,8 +126,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			if ( ! $slug ) {
 				return '<p>' . esc_html__( 'No Slug Entered', 'wp-contributions' );
 			}
-
-			global $wp_contributions;
+			
 			$card = '';
 
 			if ( 'plugin' === $type ) {
