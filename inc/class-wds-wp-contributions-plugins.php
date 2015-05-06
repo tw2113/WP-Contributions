@@ -141,6 +141,8 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 
 			global $wp_contributions;
 
+			$plugin_data = apply_filters( 'wp_contributions_display_plugin_data', $plugin_data );
+
 			// Set up variables to use.
 			if ( !empty( $plugin_data->icons['svg'] ) ) {
 				$icon = $plugin_data->icons['svg'];
