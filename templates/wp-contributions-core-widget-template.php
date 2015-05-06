@@ -7,10 +7,7 @@
 ?>
 
 <?php if ( isset( $items ) ) : ?>
-	<aside class="wp-contributions-plugin core-contributions-list">
-		
-		<h3 class="widget-title"><?php _e('My Core Contributions', 'wp-contributions'); ?></h3>
-		
+	<div class="wp-contributions-core core-card card <?php echo esc_attr( $user ); ?>">
 		<ul>
 		<?php foreach ( (array) $items as $item ) : ?>
 			<?php if ( $item['ticket'] ) { ?>
@@ -38,5 +35,5 @@
 			</a>
 		</p>
 		
-	</aside><!-- .wp-contributions-plugin .core-contributions-list -->
+	</div><!-- .wp-contributions-core .core-card .card -->
 <?php endif; ?>

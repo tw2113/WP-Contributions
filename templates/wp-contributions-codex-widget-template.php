@@ -7,9 +7,7 @@
 ?>
 
 <?php if ( isset( $items ) ) : ?>
-	<aside class="wp-contributions-plugin codex-contributions-list">
-		<h3 class="widget-title"><?php _e('My Codex Contributions', 'wp-contributions'); ?></h3>
-		
+	<div class="wp-contributions-codex codex-card card <?php echo esc_attr( $user ); ?>">
 		<ul>
 		<?php foreach ( (array) $items as $item ) :
 			$link = 'http://codex.wordpress.org/index.php?title=' . $item['title'] . '&oldid=' . $item['revision'];
@@ -37,5 +35,5 @@
 				?>
 			</a>
 		</p>
-	</aside><!-- .wp-contributions-plugin .codex-contributions-list -->
+	</div><!-- .wp-contributions-codex .codex-card .card -->
 <?php endif; ?>
