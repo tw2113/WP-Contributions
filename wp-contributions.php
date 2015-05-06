@@ -67,6 +67,9 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 			// Register Widgets
 			add_action( 'widgets_init', array( $this, 'register_widgets' ) );
+			
+			// Enqueue necessary styles
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue') );
 		}
 
 
@@ -111,6 +114,17 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			register_widget( 'WDS_WP_Contributions_Core_Widget' );
 			register_widget( 'WDS_WP_Contributions_Codex_Widget' );
 
+		}
+		
+		/**
+		 * Enqueue script
+		 * @since  1.0.0
+		 */
+		public function enqueue() {
+			$min = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+	
+			wp_enqueue_style( 'wds-wp-contributions', $this-> directory_url . "/assets/css/style$min.css", array(), '150505' );
+			//wp_enqueue_script( 'wds-wp-contributions', $this-> directory_url . "/assets/js/scripts$min.js", array(), '150505', true );
 		}
 
 		/**
