@@ -8,14 +8,16 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-short
+Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions. 
 
 == Description ==
-long
+Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions. 
+
+You can use separate widgets: Themes, Plugins, Core, Codex, or template tags.
 
 == Installation ==
-1. Installation instructions here
-2. Install
+1. Upload the wp-contributions folder to the /wp-content/plugins/ directory
+2. Activate the WP Contributions plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
 FAQ
