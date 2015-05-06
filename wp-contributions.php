@@ -28,10 +28,28 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			$this->directory_url  = plugins_url( dirname( $this->basename ) );
 			$this->is_query       = 'false';
 			$this->query          = new stdClass();
+		}
 
-			// Include any required files
-			$this->includes();
+		/**
+		 * Creates or returns an instance of this class.
+		 * @since  0.1.0
+		 * @return WDS_MCF_Testimonials A single instance of this class.
+		 */
+		public function init() {
+		static $instance = null;
+		if ( null === $instance ) {
+			$instance = new self();
+		}
+			$instance->includes();
+			$instance->hooks();
+			return $instance;
+		}
 
+		/**
+		 * Add hooks and filters
+		 * @since 0.1.0
+		 */
+		public function hooks() {
 			// Load Textdomain
 			load_plugin_textdomain( 'wp-contributions', false, dirname( $this->basename ) . '/languages' );
 
@@ -49,8 +67,8 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 			// Register Widgets
 			add_action( 'widgets_init', array( $this, 'register_widgets' ) );
-
 		}
+
 
 		/**
 		 * Include our plugin dependencies.
@@ -212,7 +230,16 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 	}
 
-	global $wp_contributions;
-	$wp_contributions = new WDS_WP_Contributions();
+	/**
+	 * Grab the WDS_MCF_Testimonials object and return it.
+	 * Wrapper for WDS_MCF_Testimonials::get_instance()
+	 */
+	function load_wp_contributions() {
+		global $wp_contributions;
+		$wp_contributions = new WDS_WP_Contributions();
+		$wp_contributions->init();
+		return $wp_contributions;
+	}
+	add_action( 'plugins_loaded', 'load_wp_contributions' );
 
 }
