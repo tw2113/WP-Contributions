@@ -57,14 +57,6 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			register_activation_hook( __FILE__, array( $this, 'activate' ) );
 			register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 
-			// Add settings to User Profile Pages.
-			add_action( 'show_user_profile', array( $this, 'user_profile' ) );
-			add_action( 'edit_user_profile', array( $this, 'user_profile' ) );
-
-			// Save User Profile Settings
-			add_action( 'personal_options_update', array( $this, 'update_user' ) );
-			add_action( 'edit_user_profile_update', array( $this, 'update_user' ) );
-
 			// Register Widgets
 			add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 			
