@@ -170,8 +170,8 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 				$core->display( $args['slug'], $count );
 			} elseif ( 'codex' === $args['type'] ) {
 				$count = isset( $args['count'] ) ? $args['count'] : 5;
-				$core = new WDS_WP_Contributions_Codex();
-				$core->display( $args['slug'], $count );
+				$codex = new WDS_WP_Contributions_Codex();
+				$codex->display( $args['slug'], $count );
 			} else {
 
 			}
