@@ -139,6 +139,8 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 
 			global $wp_contributions;
 
+			$theme_data = apply_filters( 'wp_contributions_display_theme_data', $theme_data );
+
 			// Set up variables to use.
 			if ( !empty( $theme_data->screenshot_url ) ) {
 				$icon = $theme_data->screenshot_url;
