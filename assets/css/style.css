@@ -1,3 +1,33 @@
+.card-header {
+  margin-bottom: 1em; }
+
+.card-info {
+  font-size: 0.87em;
+  margin-left: 39%; }
+  .card-info > div {
+    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+    line-height: 2; }
+  .card-info span {
+    font-weight: bold; }
+
+.card-description {
+  clear: both; }
+  .widget .card-description p {
+    margin-bottom: 0.8em; }
+
+.card-footer:before, .card-footer:after {
+  content: "";
+  display: table;
+  clear: both; }
+.card-footer .card-rating,
+.card-footer .card-meta > div {
+  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+  line-height: 2; }
+.card-footer span {
+  font-weight: bold; }
+
 .card-rating .star {
   color: #e6b800;
   display: inline-block; }
@@ -5,10 +35,10 @@
     content: '\f154';
     display: inline-block;
     font-family: 'dashicons';
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: normal;
     line-height: 1;
-    margin-right: 2px;
+    margin-right: 1px;
     vertical-align: baseline;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; }
@@ -17,6 +47,9 @@
 .card-rating .star-half:before {
   content: '\f459'; }
 
+.card-meta {
+  font-size: 0.87em; }
+
 .wp-contributions-core-widget ul {
   list-style: none;
   margin: 0; }
@@ -24,6 +57,7 @@
 .plugin-card-image {
   float: left;
   line-height: 1;
+  margin-bottom: 4%;
   margin-right: 6%;
   width: 33%; }
 
@@ -31,7 +65,11 @@
   clear: none;
   float: left;
   line-height: 1.4;
+  margin-bottom: 0.5em;
   text-decoration: none;
   width: 61%; }
+
+.theme-card-image {
+  margin-bottom: 1em; }
 
 /*# sourceMappingURL=style.css.map */
