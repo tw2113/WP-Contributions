@@ -1,4 +1,4 @@
-=== WP Contributions ===
+# WP Contributions
 Contributors: webdevstudios, dustyf, colorful-tones
 Tags: contributions, core, plugins, themes, codex, widget
 Donate link: http://webdevstudios.com
@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions with handy widgets and template tags.
 
-== Description ==
+## Description
 
 Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions with handy widgets and template tags.
 
@@ -20,22 +20,22 @@ There are four handy widgets available for you that are easily configured and ad
 
 We want to give a big thanks to the great plugin, [Core Contributions Widget](https://wordpress.org/plugins/wp-core-contributions-widget/) by Eric Mann, Michael Fields, John P. Bloch, Mike Bijon, and Konstantin Obenland. We forked part of this plugin to include Core and Codex Contributions. If you would just like widgets to display Core and Codex Contributions, we recommend downloading their plugin.
 
-== Installation ==
+## Installation
 
 1. Upload the `wp-contributions` folder to the `/wp-content/plugins/` directory.
 2. Activate the WP Contributions plugin through the 'Plugins' menu in WordPress.
 3. Add widgets to your sidebars or place template tags in your templates.
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions
 
-= How do I add a widget? =
+### How do I add a widget?
 
 1. Visit Appearance -> Widgets in your WordPress Admin.
 2. Drag any of the WP Contributions widgets to the sidebar where you want them to appear.
 3. For the plugin and them widgets, enter a widget title and enter the slug of the plugin you would like to display. The slug of a plugin can be found by looking at the URL of the plugin page.  For instance, Jetpack is found at `https://wordpress.org/plugins/jetpack/` which makes the plugin slug `jetpack`.
 4. For Core and Codex contributions, enter a title, your WordPress.org username, and the number of contributions you would like to display. It will display the most recent contributions. There will be a link to display more contributions so people can view any after the number you input.
 
-= What template tags are available? =
+### What template tags are available?
 
 `<?php wp_contributions_plugin_card( $plugin_slug ); ?>`
 
@@ -61,10 +61,10 @@ Displays Core contributions for a WordPress.org user.  Just pass the WordPress.o
 
 Displays Codex contributions for a WordPress.org user.  Just pass the WordPress.org username as `$username` to display the contributions for that user. Optionally, you can also pass in `$count` to control the number of contributions to display. Default count is set at 5. This function will echo your results to your template.
 
-== Changelog ==
+## Changelog
 
 1.0.0 Initial Release
 
-== Upgrade Notice ==
+## Upgrade Notice
 
 No upgrades yet.
