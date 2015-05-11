@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Contributions
  * Plugin URI: http://webdevstudios.com
- * Description: Show off your WordPress plugins, themes, and contributions.
+ * Description: Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions with handy widgets and template tags.
  * Author: WebDevStudios
  * Author URI: http://webdevstudios.com
  * Version: 1.0.0
