@@ -93,8 +93,9 @@ function wp_contributions_author_theme_cards( $username ) {
  * Displays a list of a WP.org user's core contributions.
  *
  * @param string $username The WP.org username.
+ * @param int    $count    The number of contributions to display.
  */
-function wp_contributions_core_contributions_card( $username ) {
+function wp_contributions_core_contributions_card( $username, $count = 5 ) {
 
 	if ( ! $username ) {
 		echo __( 'Please enter a WordPress.org Username.', 'wp-contributions' );
@@ -105,8 +106,9 @@ function wp_contributions_core_contributions_card( $username ) {
 
 
 	$args = array(
-		'slug' => $username,
-		'type' => 'core',
+		'slug'  => $username,
+		'type'  => 'core',
+		'count' => intval( $count ),
 	);
 	$wp_contributions->display_card( $args );
 
@@ -116,8 +118,9 @@ function wp_contributions_core_contributions_card( $username ) {
  * Displays a list of a WP.org user's codex contributions.
  *
  * @param string $username The WP.org username.
+ * @param int    $count    The number of contributions to display.
  */
-function wp_contributions_codex_contributions_card( $username ) {
+function wp_contributions_codex_contributions_card( $username, $count = 5 ) {
 
 	if ( ! $username ) {
 		echo __( 'Please enter a WordPress.org Username.', 'wp-contributions' );
@@ -127,8 +130,9 @@ function wp_contributions_codex_contributions_card( $username ) {
 	global $wp_contributions;
 
 	$args = array(
-		'slug' => $username,
-		'type' => 'codex',
+		'slug'  => $username,
+		'type'  => 'codex',
+		'count' => intval( $count ),
 	);
 	$wp_contributions->display_card( $args );
 
