@@ -1,12 +1,12 @@
 # WP Contributions
-Contributors: webdevstudios, dustyf, colorful-tones
-Tags: contributions, core, plugins, themes, codex, widget
-Donate link: http://webdevstudios.com
-Requires at least: 3.8.0
-Tested up to: 4.2.1
-Stable tag: trunk
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+- **Contributors**: webdevstudios, dustyf, colorful-tones
+- **Tags**: contributions, core, plugins, themes, codex, widget
+- **Donate link**: http://webdevstudios.com
+- **Requires at least**: 3.8.0
+- **Tested up to**: 4.2.1
+- **Stable tag**: trunk
+- **License**: GPLv2 or later
+- **License URI**: http://www.gnu.org/licenses/gpl-2.0.html
 
 Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions with handy widgets and template tags.
 
