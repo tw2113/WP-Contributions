@@ -1,0 +1,191 @@
+.user-badges {
+	display: inline-block;
+	text-align: center;
+	
+	li {
+		display: inline-block;
+		margin: 0 10px 20px 0;
+	}
+	
+	.badge {
+		border: 2px solid white;
+		border-radius: 50%;
+		height: 55px;
+		width: 55px;
+	}
+	
+	.badge-themes {
+		background: white;
+		box-shadow: 0 0 0 4px #4e3288;
+	}
+	.badge-themes:before {
+		color: #4e3288;
+	}
+	
+	.badge-themes-reviewer {
+		background: #d2cbe1;
+		box-shadow: 0 0 0 4px #4e3288;
+	}
+	.badge-themes-reviewer:before {
+		color: #4e3288;
+	}
+	
+	.badge-plugins {
+		background: white;
+		box-shadow: 0 0 0 4px #F06723;
+	}
+	.badge-plugins:before {
+		color: #F06723;
+	}
+	
+	.badge-plugins-reviewer {
+		background: #fbd9c8;
+		box-shadow: 0 0 0 4px #F06723;
+	}
+	.badge-plugins-reviewer:before {
+		color: #F06723;
+	}
+	
+	.badge-community {
+		background: white;
+		box-shadow: 0 0 0 4px #11799d;
+	}
+	.badge-community:before {
+		color: #11799d;
+	}
+	
+	.badge-meta {
+		background: white;
+		box-shadow: 0 0 0 4px #aeadad;
+	}
+	.badge-meta:before {
+		color: #aeadad;
+	}
+	
+	.badge-code {
+		background: #f2bfbf;
+		box-shadow: 0 0 0 4px #33b4ce;
+	}
+	.badge-code:before {
+		color: #33b4ce;
+	}
+	
+	.badge-code-committer {
+		background: white;
+		box-shadow: 0 0 0 4px #cd0000;
+	}
+	.badge-code-committer:before {
+		color: #cd0000;
+	}
+	
+	.badge-support {
+		background: white;
+		box-shadow: 0 0 0 4px #33B4CE;
+	}
+	.badge-support:before {
+		color: #33B4CE;
+	}
+	
+	.badge-wctv {
+		background: white;
+		box-shadow: 0 0 0 4px #f06723;
+	}
+	.badge-wctv:before {
+		color: #f06723;
+	}
+	
+	.badge-props {
+		background: white;
+		box-shadow: 0 0 0 4px #f4c542;
+	}
+	.badge-props:before {
+		color: #f4c542;
+	}
+	
+	.badge-organizer {
+		background: white;
+		box-shadow: 0 0 0 4px #11799d;
+	}
+	.badge-organizer:before {
+		color: #11799d;
+	}
+	
+	.badge-speaker {
+		background: white;
+		box-shadow: 0 0 0 4px #F7AD43;
+	}
+	.badge-speaker:before {
+		color: #F7AD43;
+	}
+	
+	.badge-networking:before {
+		top: 11px;
+		left: 0;
+	}
+	
+	.badge-accessibility {
+		background: white;
+		box-shadow: 0 0 0 4px #11799D;
+	}
+	.badge-accessibility:before {
+		color: #11799D;
+	}
+	
+	.badge-documentation {
+		background: white;
+		box-shadow: 0 0 0 4px #3B7236;
+	}
+	.badge-documentation:before {
+		color: #3B7236;
+	}
+	
+	.badge-mobile {
+		background: white;
+		box-shadow: 0 0 0 4px #FBA16C;
+	}
+	.badge-mobile:before {
+		color: #FBA16C;
+	}
+	
+	.badge-training {
+		background: white;
+		box-shadow: 0 0 0 4px #E9C02D;
+	}
+	.badge-training:before {
+		color: #E9C02D;
+	}
+	
+	.badge-training-team {
+		background: #F9EFCA;
+		box-shadow: 0 0 0 4px #E9C02D;
+	}
+	.badge-training-team:before {
+		color: #E9C02D;
+	}
+	
+	.badge-translation-contributor {
+		background: white;
+		box-shadow: 0 0 0 4px #C32283;
+	}
+	.badge-translation-contributor:before {
+		color: #C32283;
+	}
+	
+	.badge-translation-editor {
+		background: #F0C7E0;
+		box-shadow: 0 0 0 4px #C32283;
+	}
+	.badge-translation-editor:before {
+		color: #C32283;
+	}
+	
+	.dashicons {
+		text-align: center;
+		
+		&:before {
+			font-size: 40px;
+			font-size: 4rem;
+			line-height: 55px;
+		}
+	}
+}

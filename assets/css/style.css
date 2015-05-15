@@ -1,3 +1,18 @@
+* {
+  box-sizing: border-box; }
+
+.item-list,
+.item-list ul,
+.item-list ol {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .item-list li,
+  .item-list ul li,
+  .item-list ol li {
+    margin: 0;
+    padding: 0; }
+
 .card-header {
   margin-bottom: 1em; }
 
@@ -71,5 +86,126 @@
 
 .theme-card-image {
   margin-bottom: 1em; }
+
+.user-badges {
+  display: inline-block;
+  text-align: center; }
+  .user-badges li {
+    display: inline-block;
+    margin: 0 10px 20px 0; }
+  .user-badges .badge {
+    border: 2px solid white;
+    border-radius: 50%;
+    height: 55px;
+    width: 55px; }
+  .user-badges .badge-themes {
+    background: white;
+    box-shadow: 0 0 0 4px #4e3288; }
+  .user-badges .badge-themes:before {
+    color: #4e3288; }
+  .user-badges .badge-themes-reviewer {
+    background: #d2cbe1;
+    box-shadow: 0 0 0 4px #4e3288; }
+  .user-badges .badge-themes-reviewer:before {
+    color: #4e3288; }
+  .user-badges .badge-plugins {
+    background: white;
+    box-shadow: 0 0 0 4px #F06723; }
+  .user-badges .badge-plugins:before {
+    color: #F06723; }
+  .user-badges .badge-plugins-reviewer {
+    background: #fbd9c8;
+    box-shadow: 0 0 0 4px #F06723; }
+  .user-badges .badge-plugins-reviewer:before {
+    color: #F06723; }
+  .user-badges .badge-community {
+    background: white;
+    box-shadow: 0 0 0 4px #11799d; }
+  .user-badges .badge-community:before {
+    color: #11799d; }
+  .user-badges .badge-meta {
+    background: white;
+    box-shadow: 0 0 0 4px #aeadad; }
+  .user-badges .badge-meta:before {
+    color: #aeadad; }
+  .user-badges .badge-code {
+    background: #f2bfbf;
+    box-shadow: 0 0 0 4px #33b4ce; }
+  .user-badges .badge-code:before {
+    color: #33b4ce; }
+  .user-badges .badge-code-committer {
+    background: white;
+    box-shadow: 0 0 0 4px #cd0000; }
+  .user-badges .badge-code-committer:before {
+    color: #cd0000; }
+  .user-badges .badge-support {
+    background: white;
+    box-shadow: 0 0 0 4px #33B4CE; }
+  .user-badges .badge-support:before {
+    color: #33B4CE; }
+  .user-badges .badge-wctv {
+    background: white;
+    box-shadow: 0 0 0 4px #f06723; }
+  .user-badges .badge-wctv:before {
+    color: #f06723; }
+  .user-badges .badge-props {
+    background: white;
+    box-shadow: 0 0 0 4px #f4c542; }
+  .user-badges .badge-props:before {
+    color: #f4c542; }
+  .user-badges .badge-organizer {
+    background: white;
+    box-shadow: 0 0 0 4px #11799d; }
+  .user-badges .badge-organizer:before {
+    color: #11799d; }
+  .user-badges .badge-speaker {
+    background: white;
+    box-shadow: 0 0 0 4px #F7AD43; }
+  .user-badges .badge-speaker:before {
+    color: #F7AD43; }
+  .user-badges .badge-networking:before {
+    top: 11px;
+    left: 0; }
+  .user-badges .badge-accessibility {
+    background: white;
+    box-shadow: 0 0 0 4px #11799D; }
+  .user-badges .badge-accessibility:before {
+    color: #11799D; }
+  .user-badges .badge-documentation {
+    background: white;
+    box-shadow: 0 0 0 4px #3B7236; }
+  .user-badges .badge-documentation:before {
+    color: #3B7236; }
+  .user-badges .badge-mobile {
+    background: white;
+    box-shadow: 0 0 0 4px #FBA16C; }
+  .user-badges .badge-mobile:before {
+    color: #FBA16C; }
+  .user-badges .badge-training {
+    background: white;
+    box-shadow: 0 0 0 4px #E9C02D; }
+  .user-badges .badge-training:before {
+    color: #E9C02D; }
+  .user-badges .badge-training-team {
+    background: #F9EFCA;
+    box-shadow: 0 0 0 4px #E9C02D; }
+  .user-badges .badge-training-team:before {
+    color: #E9C02D; }
+  .user-badges .badge-translation-contributor {
+    background: white;
+    box-shadow: 0 0 0 4px #C32283; }
+  .user-badges .badge-translation-contributor:before {
+    color: #C32283; }
+  .user-badges .badge-translation-editor {
+    background: #F0C7E0;
+    box-shadow: 0 0 0 4px #C32283; }
+  .user-badges .badge-translation-editor:before {
+    color: #C32283; }
+  .user-badges .dashicons {
+    text-align: center; }
+    .user-badges .dashicons:before {
+      font-size: 40px;
+      font-size: 4rem;
+      line-height: 55px; }
 
 /*# sourceMappingURL=style.css.map */
