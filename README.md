@@ -40,10 +40,10 @@ We want to give a big thanks to the great plugin, [Core Contributions Widget](ht
 * Option 1: [Copy over template files and modify](#template-files)
 * Option 2: [Utilize the available template tags](#template-tags)
 
-#### <a name="template-files"></a>Copy over template files and modify
+#### <a name="template-files"></a>Option 1: Copy over template files and modify
 Copy either the individual template file: e.g. `/wp-content/wp-contributions-theme-card-template.php`, or the plugin's entire template folder into your theme's folder (`/wp-content/plugins/wp-contributions/templates/`), and override anything you desire.
 
-#### <a name="template-tags"></a>Utilize the available template tags
+#### <a name="template-tags"></a>Option 2: Utilize the available template tags
 
 `<?php wp_contributions_plugin_card( $plugin_slug ); ?>`
 
