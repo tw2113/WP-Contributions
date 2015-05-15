@@ -35,7 +35,15 @@ We want to give a big thanks to the great plugin, [Core Contributions Widget](ht
 3. For the plugin and them widgets, enter a widget title and enter the slug of the plugin you would like to display. The slug of a plugin can be found by looking at the URL of the plugin page.  For instance, Jetpack is found at `https://wordpress.org/plugins/jetpack/` which makes the plugin slug `jetpack`.
 4. For Core and Codex contributions, enter a title, your WordPress.org username, and the number of contributions you would like to display. It will display the most recent contributions. There will be a link to display more contributions so people can view any after the number you input.
 
-### What template tags are available?
+### How do I integrate directly in a theme?
+
+* Option 1: [Copy over template files and modify](#template-files)
+* Option 2: [Utilize the available template tags](#template-tags)
+
+#### <a name="template-files"></a>Copy over template files and modify
+Copy either the individual template file: e.g. `/wp-content/wp-contributions-theme-card-template.php`, or the plugin's entire template folder into your theme's folder (`/wp-content/plugins/wp-contributions/templates/`), and override anything you desire.
+
+#### <a name="template-tags"></a>Utilize the available template tags
 
 `<?php wp_contributions_plugin_card( $plugin_slug ); ?>`
 
