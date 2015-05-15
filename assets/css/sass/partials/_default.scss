@@ -1,6 +1,21 @@
 * {
 	box-sizing: border-box;
 }
+
+// <ul> or <ol> that are menus, or menu-like
+.item-list,
+.item-list ul,
+.item-list ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	
+	li {
+		margin: 0;
+		padding: 0;
+	}
+}
+
 // Card header 
 .card-header {
 	margin-bottom: 1em;
