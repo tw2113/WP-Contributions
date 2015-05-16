@@ -54,6 +54,8 @@ function wp_contributions_author_plugin_cards( $username ) {
 	$plugins = new WDS_WP_Contributions_Plugins();
 	$author = $plugins->get_author_plugins( $username );
 
+	$author = apply_filters( 'wp_contributions_author_plugins', $author, $username );
+
 	foreach( $author->plugins as $plugin ) {
 		$args = array(
 			'slug' => $plugin->slug,
@@ -78,6 +80,8 @@ function wp_contributions_author_theme_cards( $username ) {
 	global $wp_contributions;
 	$themes = new WDS_WP_Contributions_Themes();
 	$author = $themes->get_author_themes( $username );
+
+	$author = apply_filters( 'wp_contributions_author_themes', $author, $username );
 
 	foreach( $author->themes as $theme ) {
 		$args = array(
