@@ -1,5 +1,5 @@
 === WP Contributions ===
-Contributors: webdevstudios, dustyf, colorful-tones
+Contributors: webdevstudios, dustyf, colorful tones
 Tags: contributions, core, plugins, themes, codex, widget
 Donate link: http://webdevstudios.com
 Requires at least: 3.8.0
