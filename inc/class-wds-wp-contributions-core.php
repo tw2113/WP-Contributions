@@ -70,7 +70,7 @@ if ( ! class_exists('WDS_WP_Contributions_Core') ) {
 
 				preg_match( $pattern, $results, $matches );
 
-				$count = intval( $matches[1] );
+				$count = ( isset( $matches[1] ) ) ? intval( $matches[1] ) : '';
 
 				set_transient( 'wp-contributions-core-count-' . $username, $count, 60 * 60 * 12 );
 			}
