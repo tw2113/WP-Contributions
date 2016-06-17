@@ -1,5 +1,5 @@
 <?php
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -46,14 +46,15 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			}
 
 			$url = $http_url = 'http://api.wordpress.org/themes/info/1.0/';
-			if ( $ssl = wp_http_supports( array( 'ssl' ) ) )
+			if ( $ssl = wp_http_supports( array( 'ssl' ) ) ) {
 				$url = set_url_scheme( $url, 'https' );
+			}
 
 			$args = array(
 				'body' => array(
 					'action' => $action,
-					'request' => serialize( $args )
-				)
+					'request' => serialize( $args ),
+				),
 			);
 			$request = wp_remote_post( $url, $args );
 
@@ -62,12 +63,13 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 				$request = wp_remote_post( $http_url, $args );
 			}
 
-			if ( is_wp_error($request) ) {
-				$res = new WP_Error('themes_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), $request->get_error_message() );
+			if ( is_wp_error( $request ) ) {
+				$res = new WP_Error( 'themes_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), $request->get_error_message() );
 			} else {
 				$res = maybe_unserialize( wp_remote_retrieve_body( $request ) );
-				if ( ! is_object( $res ) && ! is_array( $res ) )
-					$res = new WP_Error('themes_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), wp_remote_retrieve_body( $request ) );
+				if ( ! is_object( $res ) && ! is_array( $res ) ) {
+					$res = new WP_Error( 'themes_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), wp_remote_retrieve_body( $request ) );
+				}
 			}
 
 			return $res;
@@ -76,7 +78,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 		/**
 		 * Get the theme object from the WP.org API
 		 *
-		 * @param $theme_slug The slug of the theme hosted on WP.org.
+		 * @param string $theme_slug The slug of the theme hosted on WP.org.
 		 * @return object An object of the theme data returned from the WP.org Theme API.
 		 */
 		public function get_theme( $theme_slug ) {
@@ -107,7 +109,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 		/**
 		 * Get all themes from WP.org by a certain Author.
 		 *
-		 * @param $author_name The username of the author you are querying for themes.
+		 * @param string $author_name The username of the author you are querying for themes.
 		 * @return object An object of the theme data returned from the WP.org theme API.
 		 */
 		public function get_author_themes( $author_name ) {
@@ -133,7 +135,6 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 		 * Output the HTML for displaying a theme card.
 		 *
 		 * @param object $theme_data The theme data returned from the WP.org API.
-		 * @return string HTML output of the theme display.
 		 */
 		public function display( $theme_data ) {
 
@@ -141,12 +142,13 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 
 			$theme_data = apply_filters( 'wp_contributions_display_theme_data', $theme_data );
 
+			$icon = $this->directory_url . '/assets/images/theme-screenshot.png';
+
 			// Set up variables to use.
-			if ( !empty( $theme_data->screenshot_url ) ) {
+			if ( ! empty( $theme_data->screenshot_url ) ) {
 				$icon = $theme_data->screenshot_url;
-			} else {
-				$icon = $this->directory_url . '/assets/images/theme-screenshot.png';
 			}
+
 			$name        = $theme_data->name;
 			$slug        = $theme_data->slug;
 			$link        = 'https://wordpress.org/themes/' . esc_attr( $slug );
@@ -169,7 +171,5 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			include( $path );
 
 		}
-
 	}
-
 }

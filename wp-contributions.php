@@ -9,7 +9,7 @@
  * License: GPLv2
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -22,7 +22,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 * Construct function to get things started.
 		 */
 		public function __construct() {
-			// Setup some base variables for the plugin
+			// Setup some base variables for the plugin.
 			$this->basename       = plugin_basename( __FILE__ );
 			$this->directory_path = plugin_dir_path( __FILE__ );
 			$this->directory_url  = plugins_url( dirname( $this->basename ) );
@@ -32,36 +32,40 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 		/**
 		 * Creates or returns an instance of this class.
+		 *
 		 * @since 1.0.0
+		 *
 		 * @return WDS_WP_Contributions A single instance of this class.
 		 */
 		public function init() {
-		static $instance = null;
-		if ( null === $instance ) {
-			$instance = new self();
-		}
+			static $instance = null;
+			if ( null === $instance ) {
+				$instance = new self();
+			}
 			$instance->includes();
 			$instance->hooks();
 			return $instance;
 		}
 
 		/**
-		 * Add hooks and filters
+		 * Add hooks and filters.
+		 *
 		 * @since 1.0.0
 		 */
 		public function hooks() {
-			// Load Textdomain
+
+			// Load Textdomain.
 			load_plugin_textdomain( 'wp-contributions', false, dirname( $this->basename ) . '/languages' );
 
-			// Activation/Deactivation Hooks
+			// Activation/Deactivation Hooks.
 			register_activation_hook( __FILE__, array( $this, 'activate' ) );
 			register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 
-			// Register Widgets
+			// Register Widgets.
 			add_action( 'widgets_init', array( $this, 'register_widgets' ) );
-			
-			// Enqueue necessary styles
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue') );
+
+			// Enqueue necessary styles.
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 		}
 
 
@@ -107,14 +111,15 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			register_widget( 'WDS_WP_Contributions_Codex_Widget' );
 
 		}
-		
+
 		/**
-		 * Enqueue script
-		 * @since  1.0.0
+		 * Enqueue script.
+		 *
+		 * @since 1.0.0
 		 */
 		public function enqueue() {
 			$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-	
+
 			wp_enqueue_style( 'wds-wp-contributions', $this-> directory_url . "/assets/css/style$min.css", array( 'dashicons' ), '150505' );
 			//wp_enqueue_script( 'wds-wp-contributions', $this-> directory_url . "/assets/js/scripts$min.js", array(), '150505', true );
 		}
@@ -122,9 +127,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		/**
 		 * Handles the display of the card view to display contribution data.
 		 *
-		 * @param string $slug The slug of the plugin or theme or the username for codex or core.
-		 * @param string $type What type of card is this? 'theme', 'plugin', 'core', 'codex'.
-		 * @param array  $args Arguments to pass to the card display.
+		 * @param array $args Arguments to pass to the card display.
 		 * @return string The HTML output for the card view.
 		 */
 		public function display_card( $args = array() ) {
@@ -138,7 +141,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			$card = '';
 
 			if ( 'plugin' === $args['type'] ) {
-				// Get the plugin using the WP.org API
+				// Get the plugin using the WP.org API.
 				$plugin_api  = new WDS_WP_Contributions_Plugins();
 				$plugin_data = $plugin_api->get_plugin( $args['slug'] );
 
@@ -148,7 +151,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 					$card .= '<p>' . esc_html__( 'Plugin API failed. The plugin slug could be incorrect or there could be an error with the WP Plugin API.', 'wp-contributions' );
 				}
 			} elseif ( 'theme' === $args['type'] ) {
-				// Get the theme using the WP.org API
+				// Get the theme using the WP.org API.
 				$theme_api  = new WDS_WP_Contributions_Themes();
 				$theme_data = $theme_api->get_theme( $args['slug'] );
 				if ( ! is_wp_error( $theme_data ) ) {
@@ -164,15 +167,12 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 				$count = isset( $args['count'] ) ? $args['count'] : 5;
 				$codex = new WDS_WP_Contributions_Codex();
 				$codex->display( $args['slug'], $count );
-			} else {
-
 			}
 
 			$card = apply_filters( 'wp_contributions_display_card', $card, $args );
 			return $card;
 
 		}
-
 	}
 
 	/**

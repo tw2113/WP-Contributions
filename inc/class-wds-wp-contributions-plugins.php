@@ -45,15 +45,16 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 			}
 
 			$url = $http_url = 'http://api.wordpress.org/plugins/info/1.0/';
-			if ( $ssl = wp_http_supports( array( 'ssl' ) ) )
+			if ( $ssl = wp_http_supports( array( 'ssl' ) ) ) {
 				$url = set_url_scheme( $url, 'https' );
+			}
 
 			$args = array(
 				'timeout' => 15,
 				'body' => array(
 					'action'  => $action,
-					'request' => serialize( $args )
-				)
+					'request' => serialize( $args ),
+				),
 			);
 			$request = wp_remote_post( $url, $args );
 
@@ -62,12 +63,13 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 				$request = wp_remote_post( $http_url, $args );
 			}
 
-			if ( is_wp_error($request) ) {
-				$res = new WP_Error('plugins_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), $request->get_error_message() );
+			if ( is_wp_error( $request ) ) {
+				$res = new WP_Error( 'plugins_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), $request->get_error_message() );
 			} else {
 				$res = maybe_unserialize( wp_remote_retrieve_body( $request ) );
-				if ( ! is_object( $res ) && ! is_array( $res ) )
-					$res = new WP_Error('plugins_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), wp_remote_retrieve_body( $request ) );
+				if ( ! is_object( $res ) && ! is_array( $res ) ) {
+					$res = new WP_Error( 'plugins_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), wp_remote_retrieve_body( $request ) );
+				}
 			}
 
 			return $res;
@@ -76,7 +78,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 		/**
 		 * Get the plugin object from the WP.org API
 		 *
-		 * @param $plugin_slug The slug of the plugin hosted on WP.org.
+		 * @param string $plugin_slug The slug of the plugin hosted on WP.org.
 		 * @return object An object of the plugin data returned from the WP.org Plugin API.
 		 */
 		public function get_plugin( $plugin_slug ) {
@@ -109,7 +111,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 		/**
 		 * Get all plugins from WP.org by a certain Author.
 		 *
-		 * @param $author_name The username of the author you are querying for plugins.
+		 * @param string $author_name The username of the author you are querying for plugins.
 		 * @return object An object of the plugin data returned from the WP.org Plugin API.
 		 */
 		public function get_author_plugins( $author_name ) {
@@ -135,7 +137,6 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 		 * Output the HTML for displaying a theme card.
 		 *
 		 * @param object $plugin_data The plugin data returned from the WP.org API.
-		 * @return string HTML output of the theme display.
 		 */
 		public function display( $plugin_data ) {
 
@@ -143,16 +144,17 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 
 			$plugin_data = apply_filters( 'wp_contributions_display_plugin_data', $plugin_data );
 
+			$icon = $wp_contributions->directory_url . '/assets/images/plugin-icon.png';
+
 			// Set up variables to use.
-			if ( !empty( $plugin_data->icons['svg'] ) ) {
+			if ( ! empty( $plugin_data->icons['svg'] ) ) {
 				$icon = $plugin_data->icons['svg'];
-			} elseif ( !empty( $plugin_data->icons['2x'] ) ) {
+			} elseif ( ! empty( $plugin_data->icons['2x'] ) ) {
 				$icon = $plugin_data->icons['2x'];
-			} elseif ( !empty( $plugin_data->icons['1x'] ) ) {
+			} elseif ( ! empty( $plugin_data->icons['1x'] ) ) {
 				$icon = $plugin_data->icons['1x'];
-			} else {
-				$icon = $wp_contributions->directory_url . '/assets/images/plugin-icon.png';
 			}
+
 			$name        = $plugin_data->name;
 			$slug        = $plugin_data->slug;
 			$link        = 'https://wordpress.org/plugins/' . esc_attr( $slug );
@@ -175,7 +177,5 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 			include( $path );
 
 		}
-
 	}
-
 }
