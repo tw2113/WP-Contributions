@@ -142,25 +142,28 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 
 			$theme_data = apply_filters( 'wp_contributions_display_theme_data', $theme_data );
 
-			$icon = $this->directory_url . '/assets/images/theme-screenshot.png';
+			$icon = '';
+			if ( ! empty( $this->directory_url ) ) {
+				$icon = $this->directory_url . '/assets/images/theme-screenshot.png';
+			}
 
 			// Set up variables to use.
 			if ( ! empty( $theme_data->screenshot_url ) ) {
 				$icon = $theme_data->screenshot_url;
 			}
 
-			$name        = $theme_data->name;
-			$slug        = $theme_data->slug;
+			$name        = ( isset( $theme_data->name ) ) ? $theme_data->name : '';
+			$slug        = ( isset( $theme_data->slug ) ) ? $theme_data->slug : '';
 			$link        = 'https://wordpress.org/themes/' . esc_attr( $slug );
 			$description = isset( $theme_data->description ) ? esc_html( strip_tags( $theme_data->description ) ) : '';
 			$more        = apply_filters( 'wp_contributions_display_more_text', '&hellip;' );
 			$description = wp_trim_words( $description, apply_filters( 'wp_contributions_desc_length', 30 ), $more );
-			$version     = $theme_data->version;
-			$rating      = $theme_data->rating;
-			$num_ratings = $theme_data->num_ratings;
-			$downloaded  = $theme_data->downloaded;
-			$author      = strip_tags( $theme_data->author );
-			$last_update = date( 'M j, Y', strtotime( $theme_data->last_updated ) );
+			$version     = ( isset( $theme_data->version ) ) ? $theme_data->version : '';
+			$rating      = ( isset( $theme_data->rating ) ) ? $theme_data->rating : '';
+			$num_ratings = ( isset( $theme_data->num_ratings ) ) ? $theme_data->num_ratings : '';
+			$downloaded  = ( isset( $theme_data->downloaded ) )  ? $theme_data->downloaded : '';
+			$author      = ( isset( $theme_data->author ) ) ? strip_tags( $theme_data->author ) : '';
+			$last_update = ( isset( $theme_data->last_updated ) ) ? date( 'M j, Y', strtotime( $theme_data->last_updated ) ) : '';
 
 			// Include template - can be overriden by a theme!
 			$template_name = 'wp-contributions-theme-card-template.php';
