@@ -6,6 +6,10 @@
     "name": "WebDevStudios",
     "url": "http://webdevstudios.com"
   },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/WebDevStudios/WP-Contributions/"
+	},
   "license": "GPLv2",
   "devDependencies": {
     "grunt": "^1.0.1",
