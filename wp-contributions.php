@@ -83,6 +83,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-core-widget.php' );
 			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-codex-widget.php' );
 			require_once( $this-> directory_path . 'inc/helper-functions.php' );
+			require_once( $this-> directory_path . 'inc/shortcodes.php' );
 
 		}
 
