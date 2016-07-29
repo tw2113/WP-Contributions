@@ -61,7 +61,9 @@ Displays Core contributions for a WordPress.org user.  Just pass the WordPress.o
 
 Displays Codex contributions for a WordPress.org user.  Just pass the WordPress.org username as `$username` to display the contributions for that user. Optionally, you can also pass in `$count` to control the number of contributions to display. Default count is set at 5. This function will echo your results to your template.
 
+= How do I integrate directly in a theme? =
 
+Copy either the individual template file: e.g. `/wp-content/wp-contributions-theme-card-template.php`, or the plugin's entire template folder into your theme's folder (`/wp-content/plugins/wp-contributions/templates/`), and override anything you desire.
 
 == Screenshots ==
 
