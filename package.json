@@ -1,6 +1,6 @@
 {
   "name": "wp-contributions",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Add your WordPress contributions to your website in a widget or using a template tag.  You can feature your plugin, theme, core contributions, or codex contributions.",
   "author": {
     "name": "WebDevStudios",
