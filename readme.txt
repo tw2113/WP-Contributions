@@ -75,6 +75,7 @@ Copy either the individual template file: e.g. `/wp-content/wp-contributions-the
 
 == Changelog ==
 
+1.0.1 - minor edits and updates to Grunt build
 1.0.0 Initial Release
 
 == Upgrade Notice ==
