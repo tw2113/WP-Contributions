@@ -134,7 +134,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 		}
 
 		/**
-		 * Output the HTML for displaying a theme card.
+		 * Output the HTML for displaying a plugin card.
 		 *
 		 * @param object $plugin_data The plugin data returned from the WP.org API.
 		 */
