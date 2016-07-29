@@ -22,6 +22,9 @@ module.exports = function( grunt ) {
 		pkg: pkg,
 		
 		sass: {
+			options: {
+				sourceMap: true
+			},
 			dist: {
 				files: {
 					'assets/css/style.css' : 'assets/css/sass/style.scss'
