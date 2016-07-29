@@ -24,6 +24,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="card-author plugin-card-author">
 				<span><?php echo esc_html__( 'Author: ', 'wp-contributions' ); ?></span> <?php echo esc_html( $author ); ?>
 			</div>
+			
+			<div class="card-contributors plugin-card-contributors">
+				<span><?php echo esc_html__( 'Contributors: ', 'wp-contributions' ); ?></span> <?php echo esc_html( $contributors ); ?>
+			</div>
 		
 			<div class="card-version plugin-card-version">
 				<span><?php echo esc_html__( 'Version: ', 'wp-contributions' ); ?></span> <?php echo esc_html( $version ); ?>

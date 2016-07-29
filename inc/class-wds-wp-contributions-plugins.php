@@ -155,17 +155,18 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 				$icon = $plugin_data->icons['1x'];
 			}
 
-			$name        = $plugin_data->name;
-			$slug        = $plugin_data->slug;
-			$link        = 'https://wordpress.org/plugins/' . esc_attr( $slug );
-			$description = isset( $plugin_data->short_description ) ? esc_html( strip_tags( $plugin_data->short_description ) ) : '';
-			$more        = apply_filters( 'wp_contributions_display_more_text', '&hellip;' );
-			$description = wp_trim_words( $description, apply_Filters( 'wp_contributions_desc_length', 30 ), $more );
-			$version     = $plugin_data->version;
-			$rating      = $plugin_data->rating;
-			$num_ratings = $plugin_data->num_ratings;
-			$downloaded  = $plugin_data->downloaded;
-			$author      = strip_tags( $plugin_data->author );
+			$name         = $plugin_data->name;
+			$slug         = $plugin_data->slug;
+			$link         = 'https://wordpress.org/plugins/' . esc_attr( $slug );
+			$description  = isset( $plugin_data->short_description ) ? esc_html( strip_tags( $plugin_data->short_description ) ) : '';
+			$more         = apply_filters( 'wp_contributions_display_more_text', '&hellip;' );
+			$description  = wp_trim_words( $description, apply_Filters( 'wp_contributions_desc_length', 30 ), $more );
+			$version      = $plugin_data->version;
+			$rating       = $plugin_data->rating;
+			$num_ratings  = $plugin_data->num_ratings;
+			$downloaded   = $plugin_data->downloaded;
+			$author       = strip_tags( $plugin_data->author );
+			$contributors = implode( ', ', array_keys( $plugin_data->contributors ) );
 			$last_update = date( 'M j, Y', strtotime( $plugin_data->last_updated ) );
 
 			// Include template - can be overriden by a theme!
