@@ -28,6 +28,10 @@ We want to give a big thanks to the great plugin, [Core Contributions Widget](ht
 
 ## Frequently Asked Questions
 
+### How do I [shortcode](https://codex.wordpress.org/Shortcode)?
+* Show your plugin with: `[wp_contributions_plugin_card slug="your-plugin-slug"]`
+* Show your theme with: `[wp_contributions_theme_card slug="your-theme-slug"]`
+
 ### How do I add a widget?
 
 1. Visit Appearance -> Widgets in your WordPress Admin.
@@ -71,8 +75,9 @@ Displays Codex contributions for a WordPress.org user.  Just pass the WordPress.
 
 ## Changelog
 
-1.0.1 - minor edits and updates to Grunt build
-1.0.0 Initial Release
+1.0.1 - minor edits, updates to Grunt build, and some shortcodes
+
+1.0.0 - Initial Release
 
 ## Upgrade Notice
 
