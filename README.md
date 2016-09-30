@@ -85,25 +85,25 @@ Displays Codex contributions for a WordPress.org user.  Just pass the WordPress.
 
 ## Screenshots
 
-1. Plugin Card View (Shown in Twenty Fourteen Theme)
-
 ![screenshot of WP Contribution's Plugin Card View widget as output in Twenty Fourteen theme](/assets/screenshot-1.png?raw=true "Plugin Card view")
 
-2. Theme Card View (Shown in in Twenty Fourteen Theme)
+Plugin Card View (Shown in Twenty Fourteen Theme)
 
 ![screenshot of WP Contribution's Theme Card View widget as output in Twenty Fourteen theme](/assets/screenshot-2.png?raw=true "Theme Card view")
 
-3. Codex Contributions Card View (Shown in Twenty Fourteen Theme)
+Theme Card View (Shown in in Twenty Fourteen Theme)
 
 ![screenshot of WP Contribution's Codex Contributions Card View widget as output in Twenty Fourteen theme](/assets/screenshot-3.png?raw=true "Codex Contributions Card view")
 
-4. Core Contributions Card View (Shown in Twenty Fourteen Theme)
+Codex Contributions Card View (Shown in Twenty Fourteen Theme)
 
 ![screenshot of WP Contribution's Core Contributions Card View widget as output in Twenty Fourteen theme](/assets/screenshot-4.png?raw=true "Core Contributions Card view")
 
-5. Widget Management
+Core Contributions Card View (Shown in Twenty Fourteen Theme)
 
 ![screenshot of WP Contributions' widgets settings](/assets/screenshot-5.png?raw=true "Widget settings")
+
+Widget Management
 
 ## Changelog
 
