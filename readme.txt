@@ -16,7 +16,9 @@ Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets
 
 WordPress wouldn't be as amazing as it is without all of the contributors to the project. The community is proud of each and every contributor. Display some of your contributions to the project using handy widgets or template tags in your custom theme.  Currently, you can display your contributions to WordPress core, the WordPress Codex, your WordPress Plugins, or your WordPress themes.
 
-There are four handy widgets available for you that are easily configured and added to your sidebar.  You just need to add your theme or plugin slug to display a theme or plugin or enter your WordPress.org username to display core or codex contributions.  You can also display these in a more custom fashion in your custom theme using template tags.  More info on template tags is available under the FAQ.
+There are four handy widgets available for you that are easily configured and added to your sidebar.  You just need to add your theme or plugin slug to display a theme or plugin or enter your WordPress.org username to display core or codex contributions.  
+
+There are two shortcodes available, and some handy template tags if you desire to add them in your custom theme.  More info on shortcodes and template tags are available under the [FAQ](https://wordpress.org/plugins/wp-contributions/faq/).
 
 We want to give a big thanks to the great plugin, [Core Contributions Widget](https://wordpress.org/plugins/wp-core-contributions-widget/) by Eric Mann, Michael Fields, John P. Bloch, Mike Bijon, and Konstantin Obenland. We forked part of this plugin to include Core and Codex Contributions. If you would just like widgets to display Core and Codex Contributions, we recommend downloading their plugin.
 
@@ -28,9 +30,17 @@ We want to give a big thanks to the great plugin, [Core Contributions Widget](ht
 
 == Frequently Asked Questions ==
 
-= How do I [shortcode](https://codex.wordpress.org/Shortcode)? =
-* Show your plugin with: `[wp_contributions_plugin_card slug="your-plugin-slug"]`
-* Show your theme with: `[wp_contributions_theme_card slug="your-theme-slug"]`
+=== Available shortcodes ===
+
+==== Show a Plugin Card ====
+
+`[wp_contributions_plugin_card slug="your-plugin-slug"]`
+
+==== Show a Theme Card ====
+
+`[wp_contributions_theme_card slug="your-theme-slug"]`
+
+Not sure what shortcodes are? [Learn more here](https://codex.wordpress.org/Shortcode).
 
 = How do I add a widget? =
 
@@ -79,9 +89,22 @@ Copy either the individual template file: e.g. `/wp-content/wp-contributions-the
 
 == Changelog ==
 
-1.0.1 - minor edits and updates to Grunt build
-1.0.0 Initial Release
+= 1.1.0 =
+* Shortcodes for:
+ * Plugin Card `[wp_contributions_plugin_card slug="your-plugin-slug"]`, and
+ * Theme Card `[wp_contributions_theme_card slug="your-theme-slug"]`
+* Add descriptions to Core widget
+
+= 1.0.1 =
+* minor edits and updates to Grunt build
+
+= 1.0.0 =
+* Initial Release
 
 == Upgrade Notice ==
 
-No upgrades yet.
+= 1.1.0 =
+* Shortcodes for:
+ * Plugin Card `[wp_contributions_plugin_card slug="your-plugin-slug"]`, and
+ * Theme Card `[wp_contributions_theme_card slug="your-theme-slug"]`
+* Add descriptions to Core widget
