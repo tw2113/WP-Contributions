@@ -30,9 +30,17 @@ We want to give a big thanks to the great plugin, [Core Contributions Widget](ht
 
 ## Frequently Asked Questions
 
-### How do I [shortcode](https://codex.wordpress.org/Shortcode)?
-* Show your plugin with: `[wp_contributions_plugin_card slug="your-plugin-slug"]`
-* Show your theme with: `[wp_contributions_theme_card slug="your-theme-slug"]`
+### Available shortcodes
+
+Show a Plugin Card:
+
+`[wp_contributions_plugin_card slug="your-plugin-slug"]`
+
+Show a Theme Card:
+
+`[wp_contributions_theme_card slug="your-theme-slug"]`
+
+Not sure what shortcodes are? [Learn more here](https://codex.wordpress.org/Shortcode).
 
 ### How do I add a widget?
 
@@ -78,14 +86,23 @@ Displays Codex contributions for a WordPress.org user.  Just pass the WordPress.
 ## Screenshots
 
 1. Plugin Card View (Shown in Twenty Fourteen Theme)
+
 ![screenshot of WP Contribution's Plugin Card View widget as output in Twenty Fourteen theme](/assets/screenshot-1.png?raw=true "Plugin Card view")
+
 2. Theme Card View (Shown in in Twenty Fourteen Theme)
+
 ![screenshot of WP Contribution's Theme Card View widget as output in Twenty Fourteen theme](/assets/screenshot-2.png?raw=true "Theme Card view")
+
 3. Codex Contributions Card View (Shown in Twenty Fourteen Theme)
+
 ![screenshot of WP Contribution's Codex Contributions Card View widget as output in Twenty Fourteen theme](/assets/screenshot-3.png?raw=true "Codex Contributions Card view")
+
 4. Core Contributions Card View (Shown in Twenty Fourteen Theme)
+
 ![screenshot of WP Contribution's Core Contributions Card View widget as output in Twenty Fourteen theme](/assets/screenshot-4.png?raw=true "Core Contributions Card view")
+
 5. Widget Management
+
 ![screenshot of WP Contributions' widgets settings](/assets/screenshot-5.png?raw=true "Widget settings")
 
 ## Changelog
