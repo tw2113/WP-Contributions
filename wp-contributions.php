@@ -7,6 +7,8 @@
  * Author URI: http://webdevstudios.com
  * Version: 1.0.0
  * License: GPLv2
+ *
+ * @package WP Contributions
  */
 
 // Exit if accessed directly.

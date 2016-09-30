@@ -1,12 +1,14 @@
+
+<?php if ( isset( $items ) ) : ?>
 <?php
 /**
  * Codex Widget Template.
  *
- * @since     1.2
+ * @package WP Contributions
+ * @since 1.1.0
  */
-?>
 
-<?php if ( isset( $items ) ) : ?>
+?>
 	<div class="wp-contributions-codex codex-card card <?php echo esc_attr( $user ); ?>">
 		<ul>
 		<?php foreach ( (array) $items as $item ) :

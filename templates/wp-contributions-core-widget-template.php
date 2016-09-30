@@ -2,7 +2,8 @@
 /**
  * Widget Template.
  *
- * @since 1.0.0
+ * @package WP Contributions
+ * @since 1.1.0
  */
 ?>
 

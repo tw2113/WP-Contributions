@@ -1,6 +1,9 @@
 <?php
 /**
  * Theme Card Template
+ *
+ * @package WP Contributions
+ * @since 1.1.0
  */
 
 // Exit if accessed directly
