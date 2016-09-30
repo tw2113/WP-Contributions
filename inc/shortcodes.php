@@ -18,14 +18,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 function wp_contributions_plugin_card_shortcode( $atts ) {
 
 	if ( ! $atts ) {
-		echo '<p class="wp-contributions-message alert">' . esc_html__( 'Please enter a plugin slug to display this shortcode, e.g. [wp_contributions_plugin_card slug="your-slug"]', 'wp-contributions' ) . '</p>';
+		echo '<p class="wp-contributions-message alert">' . esc_html__( 'Please enter a plugin slug to display this shortcode, e.g. [wp_contributions_plugin_card slug="your-plugin-slug"]', 'wp-contributions' ) . '</p>';
 		return;
 	}
 
 	$args = shortcode_atts( array(
 		'slug' => $atts,
 		'type' => 'plugin',
-	), $atts ); // $atts['slug'] aka [wp_contributions_plugin_card type="plugin"]
+	), $atts ); // $atts['slug'] aka [wp_contributions_plugin_card slug="your-plugin-slug"]
 
 	wp_contributions_plugin_card( $args['slug'] );
 
@@ -40,14 +40,14 @@ add_shortcode( 'wp_contributions_plugin_card', 'wp_contributions_plugin_card_sho
 function wp_contributions_theme_card_shortcode( $atts ) {
 
 	if ( ! $atts ) {
-		echo '<p class="wp-contributions-message alert">' . esc_html__( 'Please enter a theme slug to display this shortcode, e.g. [wp_contributions_theme_card slug="your-slug"]', 'wp-contributions' ) . '</p>';
+		echo '<p class="wp-contributions-message alert">' . esc_html__( 'Please enter a theme slug to display this shortcode, e.g. [wp_contributions_theme_card slug="your-theme-slug"]', 'wp-contributions' ) . '</p>';
 		return;
 	}
 
 	$args = shortcode_atts( array(
 		'slug' => $atts,
 		'type' => 'plugin',
-	), $atts ); // $atts['slug'] aka [wp_contributions_plugin_card type="plugin"]
+	), $atts ); // $atts['slug'] aka [wp_contributions_theme_card slug="your-theme-slug"]
 
 	wp_contributions_theme_card( $args['slug'] );
 
