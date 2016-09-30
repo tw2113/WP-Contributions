@@ -5,7 +5,7 @@
  * Description: Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions with handy widgets and template tags.
  * Author: WebDevStudios
  * Author URI: http://webdevstudios.com
- * Version: 1.0.0
+ * Version: 1.1.0
  * License: GPLv2
  *
  * @package WP Contributions
@@ -35,7 +35,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		/**
 		 * Creates or returns an instance of this class.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 *
 		 * @return WDS_WP_Contributions A single instance of this class.
 		 */
@@ -52,7 +52,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		/**
 		 * Add hooks and filters.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 */
 		public function hooks() {
 
@@ -118,7 +118,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		/**
 		 * Enqueue script.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 */
 		public function enqueue() {
 			$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
