@@ -90,10 +90,22 @@ Displays Codex contributions for a WordPress.org user.  Just pass the WordPress.
 
 ## Changelog
 
-1.0.1 - minor edits, updates to Grunt build, and some shortcodes
+### 1.1.0
+* Shortcodes for:
+ * Plugin Card `[wp_contributions_plugin_card slug="your-plugin-slug"]`, and
+ * Theme Card `[wp_contributions_theme_card slug="your-theme-slug"]`
+* Add descriptions to Core widget
 
-1.0.0 - Initial Release
+### 1.0.1
+* minor edits and updates to Grunt build
+
+### 1.0.0
+* Initial Release
 
 ## Upgrade Notice
 
-No upgrades yet.
+### 1.1.0
+* Shortcodes for:
+ * Plugin Card `[wp_contributions_plugin_card slug="your-plugin-slug"]`, and
+ * Theme Card `[wp_contributions_theme_card slug="your-theme-slug"]`
+* Add descriptions to Core widget
