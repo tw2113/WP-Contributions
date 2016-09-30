@@ -75,6 +75,19 @@ Displays Core contributions for a WordPress.org user.  Just pass the WordPress.o
 
 Displays Codex contributions for a WordPress.org user.  Just pass the WordPress.org username as `$username` to display the contributions for that user. Optionally, you can also pass in `$count` to control the number of contributions to display. Default count is set at 5. This function will echo your results to your template.
 
+## Screenshots
+
+1. Plugin Card View (Shown in Twenty Fourteen Theme)
+![screenshot of WP Contribution's Plugin Card View widget as output in Twenty Fourteen theme](/assets/screenshot-1.png?raw=true "Plugin Card view")
+2. Theme Card View (Shown in in Twenty Fourteen Theme)
+![screenshot of WP Contribution's Theme Card View widget as output in Twenty Fourteen theme](/assets/screenshot-2.png?raw=true "Theme Card view")
+3. Codex Contributions Card View (Shown in Twenty Fourteen Theme)
+![screenshot of WP Contribution's Codex Contributions Card View widget as output in Twenty Fourteen theme](/assets/screenshot-3.png?raw=true "Codex Contributions Card view")
+4. Core Contributions Card View (Shown in Twenty Fourteen Theme)
+![screenshot of WP Contribution's Core Contributions Card View widget as output in Twenty Fourteen theme](/assets/screenshot-4.png?raw=true "Core Contributions Card view")
+5. Widget Management
+![screenshot of WP Contributions' widgets settings](/assets/screenshot-5.png?raw=true "Widget settings")
+
 ## Changelog
 
 1.0.1 - minor edits, updates to Grunt build, and some shortcodes
