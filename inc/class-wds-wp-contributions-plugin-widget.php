@@ -1,10 +1,19 @@
 <?php
+/**
+ * WDS WP Contributions Plugin Widget
+ *
+ * @version 1.1.0
+ * @package WDS Contributions
+ */
 
 // Exit if accessed directly.
-if ( ! defined ( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * WDS WP Contributions Plugin Widget
+ */
 class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 
 	/**
@@ -69,12 +78,12 @@ class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 		echo self::get_widget( array(
-			'before_widget' => $args['before_widget'],
-			'after_widget'  => $args['after_widget'],
-			'before_title'  => $args['before_title'],
-			'after_title'   => $args['after_title'],
-			'title'         => isset( $instance['title'] ) ? $instance['title'] : '',
-			'plugin_slug'   => isset( $instance['plugin_slug'] ) ? $instance['plugin_slug'] : '',
+			'before_widget' => esc_html( $args['before_widget'] ),
+			'after_widget'  => esc_html( $args['after_widget'] ),
+			'before_title'  => esc_html( $args['before_title'] ),
+			'after_title'   => esc_html( $args['after_title'] ),
+			'title'         => esc_html( isset( $instance['title'] ) ? $instance['title'] : '' ),
+			'plugin_slug'   => esc_html( isset( $instance['plugin_slug'] ) ? $instance['plugin_slug'] : '' ),
 		) );
 	}
 
@@ -88,10 +97,10 @@ class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 		global $wp_contributions;
 
 		// Before widget hook.
-		echo $atts['before_widget'];
+		echo esc_html( $atts['before_widget'] );
 
 		// Title.
-		echo ( $atts['title'] ) ? $atts['before_title'] . esc_html( $atts['title'] ) . $atts['after_title'] : '';
+		echo ( $atts['title'] ) ? esc_html( $atts['before_title'] ) . esc_html( $atts['title'] ) . esc_html( $atts['after_title'] ) : '';
 
 		$plugin_slug = isset( $atts['plugin_slug'] ) ? $atts['plugin_slug'] : '';
 
@@ -102,7 +111,7 @@ class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 		$wp_contributions->display_card( $args );
 
 		// After widget hook.
-		echo $atts['after_widget'];
+		echo esc_html( $atts['after_widget'] );
 
 	}
 
