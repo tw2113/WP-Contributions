@@ -1,4 +1,11 @@
 <?php
+/**
+ * WDS WP Contributions Themes
+ *
+ * @version 1.1.0
+ * @package WDS Contributions
+ */
+
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -6,8 +13,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 
+	/**
+	 * WDS WP Contributions Themes
+	 */
 	class WDS_WP_Contributions_Themes {
 
+		/**
+		 * Constructor
+		 *
+		 * @return  void
+		 */
 		function __construct() {
 
 			global $wp_contributions;
