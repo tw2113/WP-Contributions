@@ -1,6 +1,12 @@
 <?php
+/**
+ * WDS WP Contributions - helper functions
+ *
+ * @version 1.1.0
+ * @package WDS Contributions
+ */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -47,7 +53,7 @@ function wp_contributions_theme_card( $theme_slug ) {
 function wp_contributions_author_plugin_cards( $username ) {
 
 	if ( ! $username ) {
-		echo __( 'Please enter a WordPress.org Username.', 'wp-contributions' );
+		echo esc_html__( 'Please enter a WordPress.org Username.', 'wp-contributions' );
 		return;
 	}
 	global $wp_contributions;
@@ -56,7 +62,7 @@ function wp_contributions_author_plugin_cards( $username ) {
 
 	$author = apply_filters( 'wp_contributions_author_plugins', $author, $username );
 
-	foreach( $author->plugins as $plugin ) {
+	foreach ( $author->plugins as $plugin ) {
 		$args = array(
 			'slug' => $plugin->slug,
 			'type' => 'plugin',
@@ -74,7 +80,7 @@ function wp_contributions_author_plugin_cards( $username ) {
 function wp_contributions_author_theme_cards( $username ) {
 
 	if ( ! $username ) {
-		echo __( 'Please enter a WordPress.org Username.', 'wp-contributions' );
+		echo esc_html__( 'Please enter a WordPress.org Username.', 'wp-contributions' );
 		return;
 	}
 	global $wp_contributions;
@@ -83,7 +89,7 @@ function wp_contributions_author_theme_cards( $username ) {
 
 	$author = apply_filters( 'wp_contributions_author_themes', $author, $username );
 
-	foreach( $author->themes as $theme ) {
+	foreach ( $author->themes as $theme ) {
 		$args = array(
 			'slug' => $theme->slug,
 			'type' => 'theme',
@@ -102,12 +108,11 @@ function wp_contributions_author_theme_cards( $username ) {
 function wp_contributions_core_contributions_card( $username, $count = 5 ) {
 
 	if ( ! $username ) {
-		echo __( 'Please enter a WordPress.org Username.', 'wp-contributions' );
+		echo esc_html__( 'Please enter a WordPress.org Username.', 'wp-contributions' );
 		return;
 	}
 
 	global $wp_contributions;
-
 
 	$args = array(
 		'slug'  => $username,
@@ -127,7 +132,7 @@ function wp_contributions_core_contributions_card( $username, $count = 5 ) {
 function wp_contributions_codex_contributions_card( $username, $count = 5 ) {
 
 	if ( ! $username ) {
-		echo __( 'Please enter a WordPress.org Username.', 'wp-contributions' );
+		echo esc_html__( 'Please enter a WordPress.org Username.', 'wp-contributions' );
 		return;
 	}
 
@@ -169,15 +174,15 @@ function wp_contributions_star_rating( $args = array() ) {
 	);
 	$r = wp_parse_args( $args, $defaults );
 
-	// Non-english decimal places when the $rating is coming from a string
+	// Non-english decimal places when the $rating is coming from a string.
 	$rating = str_replace( ',', '.', $r['rating'] );
 
-	// Convert Percentage to star rating, 0..5 in .5 increments
+	// Convert Percentage to star rating, 0.5 in .5 increments.
 	if ( 'percent' == $r['type'] ) {
 		$rating = round( $rating / 10, 0 ) / 2;
 	}
 
-	// Calculate the number of each type of star needed
+	// Calculate the number of each type of star needed.
 	$full_stars = floor( $rating );
 	$half_stars = ceil( $rating - $full_stars );
 	$empty_stars = 5 - $full_stars - $half_stars;
@@ -195,7 +200,7 @@ function wp_contributions_star_rating( $args = array() ) {
 	$html .= '<span class="screen-reader-text">' . esc_html( $title ) . '</span>';
 	$html .= str_repeat( '<div class="star star-full"></div>', $full_stars );
 	$html .= str_repeat( '<div class="star star-half"></div>', $half_stars );
-	$html .= str_repeat( '<div class="star star-empty"></div>', $empty_stars);
+	$html .= str_repeat( '<div class="star star-empty"></div>', $empty_stars );
 	$html .= '</div>';
 
 	return $html;
