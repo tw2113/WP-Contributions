@@ -2,10 +2,11 @@
 /**
  * Register WP Contributions shortcodes
  *
+ * @version 1.1.0
  * @package WP Contributions
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
