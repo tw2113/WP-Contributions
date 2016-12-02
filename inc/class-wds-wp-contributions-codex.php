@@ -1,14 +1,28 @@
 <?php
+/**
+ * WDS WP Contributions Codex
+ *
+ * @version 1.1.0
+ * @package WDS Contributions
+ */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists('WDS_WP_Contributions_Codex') ) {
+if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 
+	/**
+	 * WDS WP Contributions Codex
+	 */
 	class WDS_WP_Contributions_Codex {
 
+		/**
+		 * Constructor
+		 *
+		 * @return  void
+		 */
 		function __construct() {
 
 			global $wp_contributions;
@@ -92,7 +106,7 @@ if ( ! class_exists('WDS_WP_Contributions_Codex') ) {
 					'usprop'  => 'editcount',
 					'format'  => 'xml',
 				), 'http://codex.wordpress.org/api.php' );
-				$results = wp_remote_retrieve_body( wp_remote_get( $results_url, array('sslverify'=>false) ) );
+				$results = wp_remote_retrieve_body( wp_remote_get( $results_url, array( 'sslverify' => false ) ) );
 
 				/*
 				 * Expected XML format is as follows:
@@ -125,7 +139,7 @@ if ( ! class_exists('WDS_WP_Contributions_Codex') ) {
 
 			global $wp_contributions;
 
-			// Widget content
+			// Widget content.
 			$items = array_slice( WDS_WP_Contributions_Codex::get_codex_items( $user, $count ), 0, $count );
 			$total = WDS_WP_Contributions_Codex::get_codex_count( $user );
 
