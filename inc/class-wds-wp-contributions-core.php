@@ -1,14 +1,28 @@
 <?php
+/**
+ * WDS WP Contributions Core
+ *
+ * @version 1.1.0
+ * @package WDS Contributions
+ */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists('WDS_WP_Contributions_Core') ) {
+if ( ! class_exists( 'WDS_WP_Contributions_Core' ) ) {
 
+	/**
+	 * WDS WP Contributions Core
+	 */
 	class WDS_WP_Contributions_Core {
 
+		/**
+		 * Constructor
+		 *
+		 * @return  void
+		 */
 		function __construct() {
 
 			global $wp_contributions;
