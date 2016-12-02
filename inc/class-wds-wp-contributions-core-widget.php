@@ -1,12 +1,21 @@
 <?php
+/**
+ * WDS WP Contributions Core Widget
+ *
+ * @version 1.1.0
+ * @package WDS Contributions
+ */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists('WDS_WP_Contributions_Core_Widget') ) :
+if ( ! class_exists( 'WDS_WP_Contributions_Core_Widget' ) ) :
 
+	/**
+	 * WDS WP Contributions Core Widget
+	 */
 	class WDS_WP_Contributions_Core_Widget extends WP_Widget {
 
 		/**
@@ -53,6 +62,12 @@ if ( ! class_exists('WDS_WP_Contributions_Core_Widget') ) :
 			add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
 		}
 
+		/**
+		 * Back-end widget form with defaults.
+		 *
+		 * @param  array $instance  Current settings.
+		 * @return  void
+		 */
 		function form( $instance ) {
 			// Gracefully upgrade if the display count isn't already set.
 			if ( ! isset( $instance['display-count'] ) ) {
@@ -90,6 +105,13 @@ if ( ! class_exists('WDS_WP_Contributions_Core_Widget') ) :
 		<?php
 		}
 
+		/**
+		 * Update form values as they are saved.
+		 *
+		 * @param  array $new_instance  New settings for this instance as input by the user.
+		 * @param  array $old_instance  Old settings for this instance.
+		 * @return array  Settings to save or bool false to cancel saving.
+		 */
 		function update( $new_instance, $old_instance ) {
 			$instance                  = $old_instance;
 			$instance['title']         = strip_tags( $new_instance['title'] );
@@ -99,16 +121,22 @@ if ( ! class_exists('WDS_WP_Contributions_Core_Widget') ) :
 			return $instance;
 		}
 
-		function widget( $args, $instance ){
+		/**
+		 * Front-end display of widget.
+		 *
+		 * @param  array $args      The widget arguments set up when a sidebar is registered.
+		 * @param  array $instance  The widget settings as set by user.
+		 */
+		function widget( $args, $instance ) {
 			global $wp_contributions;
 
 			$title = apply_filters( 'widget_title', $instance['title'] );
 			$user = $instance['trac-user'];
 
-			echo $args['before_widget'];
+			echo esc_html( $args['before_widget'] );
 
 			if ( $title ) {
-				echo $args['before_title'] . $title . $args['after_title'];
+				echo esc_html( $args['before_title'] ) . esc_html( $title ) . esc_html( $args['after_title'] );
 			}
 
 			$card_args = array(
@@ -118,7 +146,7 @@ if ( ! class_exists('WDS_WP_Contributions_Core_Widget') ) :
 			);
 			$wp_contributions->display_card( $card_args );
 
-			echo $args['after_widget'];
+			echo esc_html( $args['after_widget'] );
 		}
 
 		/**
