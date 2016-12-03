@@ -134,10 +134,10 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex_Widget' ) ) :
 			// Mediawiki usernames uppercase on 1st letter & case-specific.
 			$user = $instance['codex-user'];
 
-			echo esc_html( $args['before_widget'] );
+			echo $args['before_widget'];
 
 			if ( $title ) {
-				echo esc_html( $args['before_title'] ) . esc_html( $title ) . esc_html( $args['after_title'] );
+				echo $args['before_title'] . esc_html( $title ) . $args['after_title'];
 			}
 
 			$card_args = array(
@@ -147,7 +147,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex_Widget' ) ) :
 			);
 			$wp_contributions->display_card( $card_args );
 
-			echo esc_html( $args['after_widget'] );
+			echo $args['after_widget'];
 		}
 
 		/**

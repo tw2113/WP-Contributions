@@ -78,12 +78,12 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 		echo self::get_widget( array(
-			'before_widget' => esc_html( $args['before_widget'] ),
-			'after_widget'  => esc_html( $args['after_widget'] ),
-			'before_title'  => esc_html( $args['before_title'] ),
-			'after_title'   => esc_html( $args['after_title'] ),
-			'title'         => esc_html( isset( $instance['title'] ) ? $instance['title'] : '' ),
-			'theme_slug'    => esc_html( isset( $instance['theme_slug'] ) ? $instance['theme_slug'] : '' ),
+			'before_widget' => $args['before_widget'],
+			'after_widget'  => $args['after_widget'],
+			'before_title'  => $args['before_title'],
+			'after_title'   => $args['after_title'],
+			'title'         => isset( $instance['title'] ) ? $instance['title'] : '',
+			'theme_slug'    => isset( $instance['theme_slug'] ) ? $instance['theme_slug'] : '',
 		) );
 	}
 
@@ -97,10 +97,10 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 		global $wp_contributions;
 
 		// Before widget hook.
-		echo esc_html( $atts['before_widget'] );
+		echo $atts['before_widget'];
 
 		// Title.
-		echo ( $atts['title'] ) ? esc_html( $atts['before_title'] ) . esc_html( $atts['title'] ) . esc_html( $atts['after_title'] ) : '';
+		echo ( $atts['title'] ) ? $atts['before_title'] . esc_html( $atts['title'] ) . $atts['after_title'] : '';
 
 		$theme_slug = isset( $atts['theme_slug'] ) ? $atts['theme_slug'] : '';
 
@@ -111,7 +111,7 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 		$wp_contributions->display_card( $args );
 
 		// After widget hook.
-		echo esc_html( $atts['after_widget'] );
+		echo $atts['after_widget'];
 
 	}
 
