@@ -139,7 +139,7 @@ class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 	 * Back-end widget form with defaults.
 	 *
 	 * @param array $instance Current settings.
-	 * @return mixed
+	 * @return void
 	 */
 	public function form( $instance ) {
 		// If there are no settings, set up defaults.
