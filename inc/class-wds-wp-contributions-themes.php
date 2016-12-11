@@ -20,8 +20,6 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 
 		/**
 		 * Constructor
-		 *
-		 * @return  void
 		 */
 		function __construct() {
 
