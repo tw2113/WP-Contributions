@@ -20,8 +20,6 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 
 		/**
 		 * Constructor
-		 *
-		 * @return  void
 		 */
 		function __construct() {
 
@@ -32,11 +30,11 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 		}
 
 		public static function get_codex_items( $username, $limit = 10 ) {
-			if ( null == $username ) {
+			if ( null === $username ) {
 				return array();
 			}
 
-			if ( true || false == ( $formatted = get_transient( 'wp-contributions-codex-' . $username ) ) ) {
+			if ( true || false === ( $formatted = get_transient( 'wp-contributions-codex-' . $username ) ) ) {
 
 				$results_url = add_query_arg( array(
 					'action'  => 'query',
@@ -93,11 +91,11 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 		}
 
 		public static function get_codex_count( $username ) {
-			if ( null == $username ) {
+			if ( null === $username ) {
 				return array();
 			}
 
-			if ( false == ( $count = get_transient( 'wp-contributions-codex-count-' . $username ) ) ) {
+			if ( false === ( $count = get_transient( 'wp-contributions-codex-count-' . $username ) ) ) {
 
 				$results_url = add_query_arg( array(
 					'action'  => 'query',
