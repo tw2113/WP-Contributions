@@ -178,7 +178,7 @@ function wp_contributions_star_rating( $args = array() ) {
 	$rating = str_replace( ',', '.', $r['rating'] );
 
 	// Convert Percentage to star rating, 0.5 in .5 increments.
-	if ( 'percent' == $r['type'] ) {
+	if ( 'percent' === $r['type'] ) {
 		$rating = round( $rating / 10, 0 ) / 2;
 	}
 
