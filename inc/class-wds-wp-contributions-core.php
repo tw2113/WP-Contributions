@@ -20,8 +20,6 @@ if ( ! class_exists( 'WDS_WP_Contributions_Core' ) ) {
 
 		/**
 		 * Constructor
-		 *
-		 * @return  void
 		 */
 		function __construct() {
 
@@ -32,7 +30,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Core' ) ) {
 		}
 
 		public static function get_items( $username ) {
-			if ( null == $username ) {
+			if ( null === $username ) {
 				return array();
 			}
 
@@ -68,11 +66,11 @@ if ( ! class_exists( 'WDS_WP_Contributions_Core' ) ) {
 		}
 
 		public static function get_changeset_count( $username ) {
-			if ( null == $username ) {
+			if ( null === $username ) {
 				return array();
 			}
 
-			if ( false == ( $count = get_transient( 'wp-contributions-core-count-' . $username ) ) ) {
+			if ( false === ( $count = get_transient( 'wp-contributions-core-count-' . $username ) ) ) {
 				$results_url = add_query_arg( array(
 					'q'           => 'props+' . $username,
 					'noquickjump' => '1',
