@@ -118,10 +118,12 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 				 * </api>
 				 **/
 
-				$raw = new SimpleXMLElement( $results );
-				$count = (int) $raw->query->users->user['editcount'];
+				if ( ! empty( $results ) ) {
+					$raw = new SimpleXMLElement( $results );
+					$count = (int) $raw->query->users->user['editcount'];
 
-				set_transient( 'wp-contributions-codex-count-' . $username, $count, 60 * 60 * 12 );
+					set_transient( 'wp-contributions-codex-count-' . $username, $count, 60 * 60 * 12 );
+				}
 			}
 
 			return $count;
