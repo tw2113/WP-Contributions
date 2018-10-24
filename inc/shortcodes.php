@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param string $atts The slug of the plugin on WordPress.org.
  */
 function wp_contributions_plugin_card_shortcode( $atts ) {
-
+	ob_start();
 	if ( ! $atts ) {
 		echo '<p class="wp-contributions-message alert">' . esc_html__( 'Please enter a plugin slug to display this shortcode, e.g. [wp_contributions_plugin_card slug="your-plugin-slug"]', 'wp-contributions' ) . '</p>';
 		return;
@@ -29,7 +29,8 @@ function wp_contributions_plugin_card_shortcode( $atts ) {
 	), $atts ); // $atts['slug'] aka [wp_contributions_plugin_card slug="your-plugin-slug"]
 
 	wp_contributions_plugin_card( $args['slug'] );
-
+	
+	return ob_get_clean();
 }
 add_shortcode( 'wp_contributions_plugin_card', 'wp_contributions_plugin_card_shortcode' );
 
@@ -39,7 +40,7 @@ add_shortcode( 'wp_contributions_plugin_card', 'wp_contributions_plugin_card_sho
  * @param string $atts The slug of the theme on WordPress.org.
  */
 function wp_contributions_theme_card_shortcode( $atts ) {
-
+	ob_start();
 	if ( ! $atts ) {
 		echo '<p class="wp-contributions-message alert">' . esc_html__( 'Please enter a theme slug to display this shortcode, e.g. [wp_contributions_theme_card slug="your-theme-slug"]', 'wp-contributions' ) . '</p>';
 		return;
@@ -51,6 +52,7 @@ function wp_contributions_theme_card_shortcode( $atts ) {
 	), $atts ); // $atts['slug'] aka [wp_contributions_theme_card slug="your-theme-slug"]
 
 	wp_contributions_theme_card( $args['slug'] );
-
+	
+	return ob_get_clean();
 }
 add_shortcode( 'wp_contributions_theme_card', 'wp_contributions_theme_card_shortcode' );
