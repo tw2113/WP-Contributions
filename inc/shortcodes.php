@@ -29,9 +29,8 @@ function wp_contributions_plugin_card_shortcode( $atts ) {
 	), $atts ); // $atts['slug'] aka [wp_contributions_plugin_card slug="your-plugin-slug"]
 
 	wp_contributions_plugin_card( $args['slug'] );
-	$out = ob_get_clean();
-
-	return $out;
+	
+	return ob_get_clean();
 }
 add_shortcode( 'wp_contributions_plugin_card', 'wp_contributions_plugin_card_shortcode' );
 
@@ -53,8 +52,7 @@ function wp_contributions_theme_card_shortcode( $atts ) {
 	), $atts ); // $atts['slug'] aka [wp_contributions_theme_card slug="your-theme-slug"]
 
 	wp_contributions_theme_card( $args['slug'] );
-	$out = ob_get_clean();
-
-	return $out;
+	
+	return ob_get_clean();
 }
 add_shortcode( 'wp_contributions_theme_card', 'wp_contributions_theme_card_shortcode' );
