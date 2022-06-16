@@ -3,7 +3,7 @@
 - **Tags**: contributions, core, plugins, themes, codex, widget
 - **Donate link**: http://webdevstudios.com
 - **Requires at least**: 3.8.0
-- **Tested up to**: 4.7
+- **Tested up to**: 6.0
 - **Stable tag**: 1.1.0
 - **License**: GPLv2 or later
 - **License URI**: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,7 +16,7 @@ Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets
 
 WordPress wouldn't be as amazing as it is without all of the contributors to the project. The community is proud of each and every contributor. Display some of your contributions to the project using handy widgets or template tags in your custom theme.  Currently, you can display your contributions to WordPress core, the WordPress Codex, your WordPress Plugins, or your WordPress themes.
 
-There are four handy widgets available for you that are easily configured and added to your sidebar.  You just need to add your theme or plugin slug to display a theme or plugin or enter your WordPress.org username to display core or codex contributions.  
+There are four handy widgets available for you that are easily configured and added to your sidebar.  You just need to add your theme or plugin slug to display a theme or plugin or enter your WordPress.org username to display core or codex contributions.
 
 There are two shortcodes available, and some handy template tags if you desire to add them in your custom theme.  More info on shortcodes and template tags are available under the [FAQ](#frequently-asked-questions).
 
