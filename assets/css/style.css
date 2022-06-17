@@ -2,7 +2,7 @@
   margin-bottom: 1em; }
 
 .card-info {
-  font-size: 0.87em;
+  font-size: 0.77em;
   margin-left: 39%; }
   .card-info > div {
     border-bottom: 1px solid #eaeaea;
@@ -14,6 +14,7 @@
 .card-description {
   clear: both; }
   .widget .card-description p {
+    font-size: 0.70em;
     margin-bottom: 0.8em; }
 
 .card-footer:before, .card-footer:after {
@@ -48,7 +49,8 @@
   content: '\f459'; }
 
 .card-meta {
-  font-size: 0.87em; }
+  font-size: 0.70em;
+}
 
 .wp-contributions-core-widget ul {
   list-style: none;
@@ -60,6 +62,11 @@
   margin-bottom: 4%;
   margin-right: 6%;
   width: 33%; }
+
+.contrib-display-card {
+  padding-top: 10px;
+  width: 100%;
+}
 
 .plugin-card-name {
   clear: none;
