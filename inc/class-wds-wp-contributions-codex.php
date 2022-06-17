@@ -70,9 +70,9 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 				 **/
 
 				$formatted = array();
-				if (is_array($raw) && array_key_exists('query', $raw)){
+				if ( is_array( $raw ) && array_key_exists( 'query', $raw ) ) {
 					foreach ( $raw['query']['usercontribs'] as $item ) {
-						$count = 0;
+						$count       = 0;
 						$clean_title = preg_replace( '/^Function Reference\//', '', (string) $item['title'], 1, $count );
 
 						$new_item = array(
