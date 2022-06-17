@@ -130,9 +130,12 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex_Widget' ) ) :
 		function widget( $args, $instance ) {
 			global $wp_contributions;
 
+			$user = '';
 			$title = apply_filters( 'widget_title', $instance['title'] );
 			// Mediawiki usernames uppercase on 1st letter & case-specific.
-			$user = $instance['codex-user'];
+			if(is_array($instance) && array_key_exists('codex-user', $instance)){
+				$user = $instance['codex-user'];
+			}
 
 			echo $args['before_widget'];
 
