@@ -107,8 +107,10 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 				$results = wp_remote_retrieve_body( wp_remote_get( $results_url, array( 'sslverify' => false ) ) );
 
 				if ( ! empty( $results ) ) {
-					$raw = json_decode($results, true);
-					$count = (array_key_exists('query', $raw)) ? (int) $raw['query']['users'][0]['editcount'] : 0;
+					$raw   = json_decode( $results, true );
+					$count = ( array_key_exists( 'query', $raw ) ) ?
+						(int) $raw['query']['users'][0]['editcount'] :
+						0;
 
 					set_transient( 'wp-contributions-codex-count-' . $username, $count, 60 * 60 * 12 );
 				}
