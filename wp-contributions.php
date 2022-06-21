@@ -69,13 +69,13 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			// Enqueue necessary styles.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 
-			// Hook scripts function into block editor hook
+			// Hook scripts function into block editor
 			add_action( 'init', array( $this, 'wp_contributions_block_scripts') );
 
-			// Loads the plugin block
+			// Load the plugin block
 			add_action( 'plugins_loaded', array( $this, 'wp_contributions_initializer') );
 
-			// Callback for rendering in the front
+			// Callback for rendering
 			add_shortcode( 'wp_contributions_my_plugin', array( $this, 'wp_contributions_shortcode_callback') );
 		}
 
