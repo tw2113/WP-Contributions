@@ -80,6 +80,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			add_action( 'plugins_loaded', array( $this, 'wp_contributions_initializer') );
 
 			/* Callback for rendering in the front */
+
 			add_shortcode( 'wp_contributions_my_plugin', array( $this, 'wp_contributions_shortcode_callback') );
 		}
 
