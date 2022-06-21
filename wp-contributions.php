@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: WP Contributions
  * Plugin URI: http://webdevstudios.com
@@ -18,6 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
+	/**
+	 * WDS_WP_Contributions plugin class
+	 */
 	class WDS_WP_Contributions {
 
 		/**
@@ -56,26 +60,26 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 */
 		public function hooks() {
 
-			// Load Textdomain.
+			/* Load Textdomain. */
 			load_plugin_textdomain( 'wp-contributions', false, dirname( $this->basename ) . '/languages' );
 
-			// Activation/Deactivation Hooks.
+			/* Activation/Deactivation Hooks. */
 			register_activation_hook( __FILE__, array( $this, 'activate' ) );
 			register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 
-			// Register Widgets.
+			/* Register Widgets. */
 			add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 
-			// Enqueue necessary styles.
+			/* Enqueue necessary styles. */
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 
-			// Hook scripts function into block editor hook
+			/* Hook scripts function into block editor */
 			add_action( 'init', array( $this, 'wp_contributions_block_scripts') );
 
-			// Loads the plugin block
+			/* Loads the plugin block */
 			add_action( 'plugins_loaded', array( $this, 'wp_contributions_initializer') );
 
-			// Callback for rendering in the front
+			/* Callback for rendering in the front */
 			add_shortcode( 'wp_contributions_my_plugin', array( $this, 'wp_contributions_shortcode_callback') );
 		}
 
@@ -95,6 +99,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-codex-widget.php' );
 			require_once( $this-> directory_path . 'inc/helper-functions.php' );
 			require_once( $this-> directory_path . 'inc/shortcodes.php' );
+			//require_once( $this-> directory_path . 'inc/sidebar.php' );
 
 		}
 
@@ -115,7 +120,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		/**
 		 * Register our widgets to display plugins, author, themes, and more.
 		 */
-		function register_widgets() {
+		public function register_widgets() {
 
 			register_widget( 'WDS_WP_Contributions_Plugin_Widget' );
 			register_widget( 'WDS_WP_Contributions_Theme_Widget' );
@@ -133,7 +138,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 			wp_enqueue_style( 'wds-wp-contributions', $this-> directory_url . "/assets/css/style$min.css", array( 'dashicons' ), '150505' );
-			//wp_enqueue_script( 'wds-wp-contributions', $this-> directory_url . "/assets/js/scripts$min.js", array(), '150505', true );
+			// wp_enqueue_script( 'wds-wp-contributions', $this-> directory_url . "/assets/js/scripts$min.js", array(), '150505', true );
 		}
 
 		/**
@@ -189,41 +194,85 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		/**
 		 * Enqueue front end and editor JavaScript and CSS
 		 */
-		function wp_contributions_block_scripts() {
-			$blockPath = '/assets/block/dist/block.js';
-			$stylePath = '/assets/block/dist/block.css';
+		public function wp_contributions_block_scripts() {
+			$block_path = '/assets/block/dist/block.js';
+			$style_path = '/assets/block/dist/block.css';
 
 			wp_enqueue_script(
 				'wp-contributions-block-js',
-				plugins_url( $blockPath, __FILE__ ),
-				[ 'wp-i18n', 'wp-blocks', 'wp-edit-post', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-plugins', 'wp-edit-post', 'wp-api' ],
-				filemtime( plugin_dir_path(__FILE__) . $blockPath )
+				plugins_url( $block_path, __FILE__ ),
+				array( 'wp-i18n', 'wp-blocks', 'wp-edit-post', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-plugins', 'wp-edit-post', 'wp-api' ),
+				filemtime( plugin_dir_path( __FILE__ ) . $block_path )
 			);
 			wp_enqueue_style(
 				'wp-contributions-block-css',
-				plugins_url( $stylePath, __FILE__ ),
+				plugins_url( $style_path, __FILE__ ),
 				'',
-				filemtime( plugin_dir_path(__FILE__) . $stylePath )
+				filemtime( plugin_dir_path( __FILE__ ) . $style_path )
 			);
 		}
 
 		/**
 		 * Shortcode Initializer.
+		 * @param string
 		 */
-		function wp_contributions_shortcode_callback( $attr ) {
+		public function wp_contributions_shortcode_callback( $attr ) {
 			error_log('abc');
 			extract( $attr );
 			if ( isset( $plugin_slug ) ) {
-				$output =
-					'<div class="' . ( ! empty( $theme ) ? $theme : 'click-to-send' ) . '">
-						<div class="text">' . $plugin_slug . '</div>
-						<p><a href="#user-custom-page" class="btn" target="_blank">' . $preferred_username . '</a></p>
-					</div>';
-				// Get and return card
-				error_log($output);
-				return $output;
+				$args = array(
+					'slug' => $plugin_slug,
+					'type' => 'plugin',
+				);
+				$card = display_card($args);
+				error_log($card);
+				return $card;
 			}
 		}
+
+		/**
+		 * Block Initializer.
+		 */
+		public function wp_contributions_initializer() {
+			if ( function_exists( 'register_block_type' ) ) {
+				error_log('enters here');
+				// Hook server side rendering into render callback
+				register_block_type(
+					'wp-contributions/my-plugin', array(
+						'render_callback' => 'wp_contributions_block_callback',
+						'attributes'	  => array(
+							'plugin_slug' => array(
+								'type' => 'string',
+							),
+							'preferred_username' => array(
+								'type'	  => 'string',
+								'default' => 'My Preferred_handle',
+							),
+							'theme'	 => array(
+								'type'	  => 'boolean',
+								'default' => false,
+							),
+						),
+					)
+				);
+			}
+		}
+
+		/**
+		 * Block Output.
+		 *
+		 * @param string
+		 * @return string
+		 */
+		public function wp_contributions_block_callback( $attr ) {
+			extract( $attr );
+			if ( isset( $plugin_slug ) ) {
+				$shortcode_string = '[wp_contributions_my_plugin slug="%s"]';
+				error_log(sprintf( $shortcode_string, $plugin_slug ));
+				return sprintf( $shortcode_string, $plugin_slug );
+			}
+		}
+
 	}
 
 	/**
@@ -237,5 +286,4 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		return $wp_contributions;
 	}
 	add_action( 'plugins_loaded', 'load_wp_contributions' );
-
 }
