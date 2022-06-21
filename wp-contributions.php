@@ -74,14 +74,13 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 
 			/* Hook scripts function into block editor */
-			add_action( 'init', array( $this, 'wp_contributions_block_scripts') );
+			add_action( 'init', array( $this, 'wp_contributions_block_scripts' ) );
 
 			/* Loads the plugin block */
-			add_action( 'plugins_loaded', array( $this, 'wp_contributions_initializer') );
+			add_action( 'init', array( $this, 'wp_contributions_initializer' ) );
 
 			/* Callback for rendering in the front */
-
-			add_shortcode( 'wp_contributions_my_plugin', array( $this, 'wp_contributions_shortcode_callback') );
+			add_shortcode( 'wp_contributions_my_plugin', array( $this, 'wp_contributions_shortcode_callback' ) );
 		}
 
 
@@ -90,17 +89,17 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 */
 		public function includes() {
 
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-plugins.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-themes.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-core.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-codex.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-plugin-widget.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-theme-widget.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-core-widget.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-codex-widget.php' );
-			require_once( $this-> directory_path . 'inc/helper-functions.php' );
-			require_once( $this-> directory_path . 'inc/shortcodes.php' );
-			//require_once( $this-> directory_path . 'inc/sidebar.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-plugins.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-themes.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-core.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-codex.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-plugin-widget.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-theme-widget.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-core-widget.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-codex-widget.php' );
+			require_once( $this->directory_path . 'inc/helper-functions.php' );
+			require_once( $this->directory_path . 'inc/shortcodes.php' );
+			/* require_once( $this->directory_path . 'inc/sidebar.php' ); */
 
 		}
 
@@ -149,7 +148,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 * @return string The HTML output for the card view.
 		 */
 		public function display_card( $args = array() ) {
-
+			write_log('display_card');
 			if ( ! isset( $args['slug'] ) ) {
 				return '<p>' . esc_html__( 'No Slug Entered', 'wp-contributions' );
 			}
@@ -193,7 +192,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		}
 
 		/**
-		 * Enqueue front end and editor JavaScript and CSS
+		 * Enqueue frontend and editor JavaScript and CSS
 		 */
 		public function wp_contributions_block_scripts() {
 			$block_path = '/assets/block/dist/block.js';
@@ -215,18 +214,24 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 		/**
 		 * Shortcode Initializer.
-		 * @param string
+		 *
+		 * @param string $attr
 		 */
 		public function wp_contributions_shortcode_callback( $attr ) {
-			error_log('abc');
+			write_log( 'wp_contributions_shortcode_callback' );
 			extract( $attr );
 			if ( isset( $plugin_slug ) ) {
-				$args = array(
+				write_log( $plugin_slug );
+				$data[] = array(
 					'slug' => $plugin_slug,
 					'type' => 'plugin',
 				);
-				$card = display_card($args);
-				error_log($card);
+				write_log( var_dump( $data ) );
+				if ( function_exists( 'display_card' ) ){
+					write_log(' function exists ');
+				}
+				$card = display_card( $data );
+				write_log( $card );
 				return $card;
 			}
 		}
@@ -236,12 +241,13 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 */
 		public function wp_contributions_initializer() {
 			if ( function_exists( 'register_block_type' ) ) {
-				error_log('enters here');
-				// Hook server side rendering into render callback
+
+				/* Hook server side rendering into render callback */
 				register_block_type(
 					'wp-contributions/my-plugin', array(
+						'editor_script'   => 'wp-contributions-block-js',
 						'render_callback' => 'wp_contributions_block_callback',
-						'attributes'	  => array(
+						'attributes'      => array(
 							'plugin_slug' => array(
 								'type' => 'string',
 							),
@@ -256,24 +262,27 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 						),
 					)
 				);
+				write_log( 'registers wp_contributions_block_callback' );
 			}
 		}
 
-		/**
-		 * Block Output.
-		 *
-		 * @param string
-		 * @return string
-		 */
-		public function wp_contributions_block_callback( $attr ) {
-			extract( $attr );
-			if ( isset( $plugin_slug ) ) {
-				$shortcode_string = '[wp_contributions_my_plugin slug="%s"]';
-				error_log(sprintf( $shortcode_string, $plugin_slug ));
-				return sprintf( $shortcode_string, $plugin_slug );
-			}
-		}
+	}
 
+	/**
+	 * Block Output.
+	 *
+	 * @param string
+	 * @return string
+	 */
+	function wp_contributions_block_callback( $attr ) {
+		write_log( 'wp_contributions_block_callback' );
+		extract( $attr );
+		if ( isset( $plugin_slug ) ) {
+			write_log( $plugin_slug );
+			$shortcode_string = '[wp_contributions_my_plugin slug="%s"]';
+			write_log( sprintf( $shortcode_string, $plugin_slug ) );
+			return sprintf( $shortcode_string, $plugin_slug );
+		}
 	}
 
 	/**
