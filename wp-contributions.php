@@ -68,6 +68,15 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 			// Enqueue necessary styles.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
+
+			// Hook scripts function into block editor hook
+			add_action( 'init', array( $this, 'wp_contributions_block_scripts') );
+
+			// Loads the plugin block
+			add_action( 'plugins_loaded', array( $this, 'wp_contributions_initializer') );
+
+			// Callback for rendering in the front
+			add_shortcode( 'wp_contributions_my_plugin', array( $this, 'wp_contributions_shortcode_callback') );
 		}
 
 
@@ -175,6 +184,45 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			$card = apply_filters( 'wp_contributions_display_card', $card, $args );
 			return $card;
 
+		}
+
+		/**
+		 * Enqueue front end and editor JavaScript and CSS
+		 */
+		function wp_contributions_block_scripts() {
+			$blockPath = '/assets/block/dist/block.js';
+			$stylePath = '/assets/block/dist/block.css';
+
+			wp_enqueue_script(
+				'wp-contributions-block-js',
+				plugins_url( $blockPath, __FILE__ ),
+				[ 'wp-i18n', 'wp-blocks', 'wp-edit-post', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-plugins', 'wp-edit-post', 'wp-api' ],
+				filemtime( plugin_dir_path(__FILE__) . $blockPath )
+			);
+			wp_enqueue_style(
+				'wp-contributions-block-css',
+				plugins_url( $stylePath, __FILE__ ),
+				'',
+				filemtime( plugin_dir_path(__FILE__) . $stylePath )
+			);
+		}
+
+		/**
+		 * Shortcode Initializer.
+		 */
+		function wp_contributions_shortcode_callback( $attr ) {
+			error_log('abc');
+			extract( $attr );
+			if ( isset( $plugin_slug ) ) {
+				$output =
+					'<div class="' . ( ! empty( $theme ) ? $theme : 'click-to-send' ) . '">
+						<div class="text">' . $plugin_slug . '</div>
+						<p><a href="#user-custom-page" class="btn" target="_blank">' . $preferred_username . '</a></p>
+					</div>';
+				// Get and return card
+				error_log($output);
+				return $output;
+			}
 		}
 	}
 
