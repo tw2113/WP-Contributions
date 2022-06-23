@@ -8,6 +8,18 @@
 	padding: 15px 30px;
 	margin: 15px 0px;
 
+	.ctt-type {
+		width: 30%;
+		height: 70px;
+		color: #999999;
+	}
+
+	.ctt-textbox {
+		border-bottom: 1px solid #333;
+		padding-bottom: 10px;
+		margin-top: 30px;
+	}
+
 	.ctt-text {
 		margin: 0 0 10px 0;
 		padding: 0;
@@ -35,6 +47,11 @@
 			text-decoration: none;
 			text-transform: none;
 		}
+
+		select {
+			line-height: normal;
+		}
+
 	}
 
 	a.ctt-btn {
@@ -47,7 +64,7 @@
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		box-shadow: none;
 		font-size: 12px;
-		font-weight: bold;
+		font-weight: 100;
 		line-height: 100%;
 		color: #999999;
 		float: right;
@@ -72,7 +89,7 @@
 		position: relative;
 		word-wrap: break-word;
 		color: #FFF;
-		font-size: 24px;
+		font-size: 14px;
 		line-height: 140%;
 		box-shadow: none;
 		letter-spacing: 0.05em;
@@ -85,7 +102,7 @@
 			padding: 0;
 			position: relative;
 			color: #FFF;
-			font-size: 24px;
+			font-size: 14px;
 			line-height: 140%;
 			box-shadow: none;
 			letter-spacing: 0.05em;
@@ -105,7 +122,7 @@
 		padding-right: 0px;
 		position: relative;
 		display: block;
-		text-transform: uppercase;
+		text-transform:uppercase;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		box-shadow: none;
 		font-size: 12px;
@@ -120,4 +137,8 @@
 		}
 
 	}
+}
+
+.css-1opxiwx.css-1opxiwx.css-1opxiwx {
+	line-height: normal !important;
 }

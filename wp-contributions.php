@@ -79,8 +79,6 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			/* Loads the plugin block */
 			add_action( 'init', array( $this, 'wp_contributions_initializer' ) );
 
-			/* Callback for rendering in the front */
-			add_shortcode( 'wp_contributions_my_plugin', array( $this, 'wp_contributions_shortcode_callback' ) );
 		}
 
 
@@ -148,17 +146,16 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 * @return string The HTML output for the card view.
 		 */
 		public function display_card( $args = array() ) {
-			write_log('display_card');
+
 			if ( ! isset( $args['slug'] ) ) {
 				return '<p>' . esc_html__( 'No Slug Entered', 'wp-contributions' );
 			}
 
 			$args = apply_filters( 'wp_contributions_display_card_args', $args );
-
 			$card = '';
 
 			if ( 'plugin' === $args['type'] ) {
-				// Get the plugin using the WP.org API.
+				/* Get the plugin using the WP.org API. */
 				$plugin_api  = new WDS_WP_Contributions_Plugins();
 				$plugin_data = $plugin_api->get_plugin( $args['slug'] );
 
@@ -168,7 +165,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 					$card .= '<p>' . esc_html__( 'Plugin API failed. The plugin slug could be incorrect or there could be an error with the WP Plugin API.', 'wp-contributions' );
 				}
 			} elseif ( 'theme' === $args['type'] ) {
-				// Get the theme using the WP.org API.
+				/* Get the theme using the WP.org API. */
 				$theme_api  = new WDS_WP_Contributions_Themes();
 				$theme_data = $theme_api->get_theme( $args['slug'] );
 				if ( ! is_wp_error( $theme_data ) ) {
@@ -185,7 +182,6 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 				$codex = new WDS_WP_Contributions_Codex();
 				$codex->display( $args['slug'], $count );
 			}
-
 			$card = apply_filters( 'wp_contributions_display_card', $card, $args );
 			return $card;
 
@@ -213,30 +209,6 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		}
 
 		/**
-		 * Shortcode Initializer.
-		 *
-		 * @param string $attr
-		 */
-		public function wp_contributions_shortcode_callback( $attr ) {
-			write_log( 'wp_contributions_shortcode_callback' );
-			extract( $attr );
-			if ( isset( $plugin_slug ) ) {
-				write_log( $plugin_slug );
-				$data[] = array(
-					'slug' => $plugin_slug,
-					'type' => 'plugin',
-				);
-				write_log( var_dump( $data ) );
-				if ( function_exists( 'display_card' ) ){
-					write_log(' function exists ');
-				}
-				$card = display_card( $data );
-				write_log( $card );
-				return $card;
-			}
-		}
-
-		/**
 		 * Block Initializer.
 		 */
 		public function wp_contributions_initializer() {
@@ -244,25 +216,29 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 				/* Hook server side rendering into render callback */
 				register_block_type(
-					'wp-contributions/my-plugin', array(
+					'wp-contributions/my-plugin',
+					array(
 						'editor_script'   => 'wp-contributions-block-js',
 						'render_callback' => 'wp_contributions_block_callback',
 						'attributes'      => array(
-							'plugin_slug' => array(
+							'slug' => array(
 								'type' => 'string',
 							),
 							'preferred_username' => array(
-								'type'	  => 'string',
+								'type'    => 'string',
 								'default' => 'My Preferred_handle',
 							),
-							'theme'	 => array(
-								'type'	  => 'boolean',
+							'theme'  => array(
+								'type'    => 'boolean',
 								'default' => false,
+							),
+							'contribution_type' => array(
+								'type'    => 'string',
+								'default' => 'plugin',
 							),
 						),
 					)
 				);
-				write_log( 'registers wp_contributions_block_callback' );
 			}
 		}
 
@@ -271,17 +247,15 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 	/**
 	 * Block Output.
 	 *
-	 * @param string
-	 * @return string
+	 * @param string $attr Block attributes
+	 * @return string The HTML output for the card view.
 	 */
 	function wp_contributions_block_callback( $attr ) {
-		write_log( 'wp_contributions_block_callback' );
 		extract( $attr );
-		if ( isset( $plugin_slug ) ) {
-			write_log( $plugin_slug );
-			$shortcode_string = '[wp_contributions_my_plugin slug="%s"]';
-			write_log( sprintf( $shortcode_string, $plugin_slug ) );
-			return sprintf( $shortcode_string, $plugin_slug );
+		if ( isset( $slug ) && isset( $contribution_type ) ) {
+			ob_start();
+			WDS_WP_Contributions::display_card( array( 'type' => $contribution_type, 'slug' => $slug ) );
+			return ob_get_clean();
 		}
 	}
 
