@@ -74,10 +74,18 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 
 			/* Hook scripts function into block editor */
-			add_action( 'init', array( $this, 'wp_contributions_block_scripts' ) );
+			//add_action( 'init', array( $this, 'wp_contributions_block_scripts' ) );
 
 			/* Loads the plugin block */
-			add_action( 'init', array( $this, 'wp_contributions_initializer' ) );
+			//add_action( 'init', array( $this, 'wp_contributions_initializer' ) );
+
+			/* Hook scripts function into block editor */
+			//add_action( 'init', array( $this, 'wp_contributions_block_scripts2' ) );
+
+			/* Loads the plugin block */
+			//add_action( 'init', array( $this, 'wp_contributions_initializer2' ) );
+
+			add_action( 'init', array( $this, 'wp_contributions_block2_init' ) );
 
 		}
 
@@ -240,6 +248,103 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 					)
 				);
 			}
+		}
+
+		/**
+		 * Enqueue frontend and editor JavaScript and CSS
+		 */
+		public function wp_contributions_block_scripts2() {
+			$block_path = '/assets/block2/build/index.js';
+			$style_path = '/assets/block2/build/index.css';
+			$style2_path = '/assets/block2/build/style-index.css';
+
+			wp_enqueue_script(
+				'wp-contributions-block2-js',
+				plugins_url( $block_path, __FILE__ ),
+				array( 'wp-block-editor', 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-server-side-render' ),
+				filemtime( plugin_dir_path( __FILE__ ) . $block_path )
+			);
+			wp_enqueue_style(
+				'wp-contributions-block2-css',
+				plugins_url( $style_path, __FILE__ ),
+				'',
+				filemtime( plugin_dir_path( __FILE__ ) . $style_path )
+			);
+			wp_enqueue_style(
+				'wp-contributions-block2-css2',
+				plugins_url( $style2_path, __FILE__ ),
+				'',
+				filemtime( plugin_dir_path( __FILE__ ) . $style_path )
+			);
+		}
+
+		/**
+		 * Block Initializer.
+		 */
+		public function wp_contributions_initializer2() {
+			if ( function_exists( 'register_block_type' ) ) {
+
+				/* Hook server side rendering into render callback */
+				register_block_type(
+					'wp-contributions/block2',
+					array(
+						'editor_script'   => 'wp-contributions-block2-js',
+						'render_callback' => 'wp_contributions_block_callback',
+						'attributes'      => array(
+							'slug' => array(
+								'type' => 'string',
+							),
+							'preferred_username' => array(
+								'type'    => 'string',
+								'default' => 'My Preferred_handle',
+							),
+							'theme'  => array(
+								'type'    => 'boolean',
+								'default' => false,
+							),
+							'contribution_type' => array(
+								'type'    => 'string',
+								'default' => 'plugin',
+							),
+						),
+					)
+				);
+			}
+		}
+
+		public function wp_contributions_block2_init() {
+			// automatically load dependencies and version
+			$asset_file = include( plugin_dir_path( __FILE__ ) . 'assets/block2/build/index.asset.php' );
+
+			wp_register_script(
+				'wp-contributions-block2-scripts',
+				plugins_url( 'assets/block2/build/block.js', __FILE__ ),
+				$asset_file['dependencies'],
+				$asset_file['version']
+			);
+
+			register_block_type( 'wp-contributions/block2', array(
+				'api_version'     => 2,
+				'editor_script'   => 'wp-contributions-block2-scripts',
+				'render_callback' => 'wp_contributions_block_callback',
+				'attributes'      => array(
+					'slug' => array(
+						'type' => 'string',
+					),
+					'preferred_username' => array(
+						'type'    => 'string',
+						'default' => 'My Preferred_handle',
+					),
+					'theme'  => array(
+						'type'    => 'boolean',
+						'default' => false,
+					),
+					'contribution_type' => array(
+						'type'    => 'string',
+						'default' => 'plugin',
+					),
+				),
+			) );
 		}
 
 	}

@@ -1,23 +1,26 @@
 /**
- * Block dependencies
+ * Retrieves the translation of text.
+ *
+ * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
-
-import classnames from 'classnames';
+//import { __ } from '@wordpress/i18n';
 
 /**
- * Internal block libraries
+ * React hook that is used to mark the block wrapper element.
+ * It provides all the necessary props like the class name.
+ *
+ * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
-const { __ } = wp.i18n;
-
-const { registerBlockType } = wp.blocks;
-const { serverSideRender: ServerSideRender } = wp;
-const {
-	RichText,
+import { __ } from '@wordpress/i18n';
+import { ServerSideRender } from '@wordpress/server-side-render';
+// import { useState } from '@wordpress/element';
+import {
+    useBlockProps,
+    RichText,
+    BlockControls,
 	InspectorControls,
-	BlockControls
-} = wp.editor;
-
-const {
+} from '@wordpress/block-editor';
+import {
 	PanelBody,
 	TextControl,
 	Dashicon,
@@ -25,52 +28,40 @@ const {
 	Button,
 	Tooltip,
 	SelectControl
-} = wp.components;
+} from '@wordpress/element';
 
 /**
- * Register block wp-contributions/my-plugin
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * Those files can contain any CSS code that gets applied to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-export default registerBlockType( 'wp-contributions/my-plugin', {
-	title: __( 'WP Contributions' ),
-	description: __( 'Showcase your contributions to Wordpress.' ),
-	category: 'common',
-	icon: 'embed-photo',
-	keywords: [
-		__( 'Wordpress' ),
-		__( 'Plugins' ),
-		__( 'WP Contributions' ),
-	],
-	attributes: {
-		slug: {
-			type: 'string'
-		},
-		preferred_username: {
-			type: 'string',
-		},
-		theme: {
-			type: 'boolean',
-			default: false,
-		},
-		contribution_type: {
-			type: 'string',
-			default: 'plugin',
-		}
-	},
-	edit: props => {
-		const onChangePlugin = value => {
-			props.setAttributes( { slug: value } );
-		};
-		const onChangeUsername = value => {
-			props.setAttributes( { preferred_username: value } );
-		};
-		const onChangeType = value => {
-			props.setAttributes( { contribution_type: value } );
-		};
-		const toggletheme = value => {
-			props.setAttributes( { theme: !props.attributes.theme } );
-		};
-		return [
-			!! props.isSelected && (
+import './editor.scss';
+
+/**
+ * The edit function describes the structure of your block in the context of the
+ * editor. This represents what the editor will render when the block is used.
+ *
+ * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+ *
+ * @return {WPElement} Element to render.
+ */
+export default function Edit() {
+	const props = useBlockProps();
+	const onChangePlugin = value => {
+		props.setAttributes( { slug: value } );
+	};
+	const onChangeUsername = value => {
+		props.setAttributes( { preferred_username: value } );
+	};
+	const onChangeType = value => {
+		props.setAttributes( { contribution_type: value } );
+	};
+	const toggletheme = value => {
+		props.setAttributes( { theme: !props.attributes.theme } );
+	};
+	return (
+			 !! props.isSelected && (
 				<BlockControls key="custom-controls">
 					<Toolbar
 						className='components-toolbar'
@@ -117,10 +108,8 @@ export default registerBlockType( 'wp-contributions/my-plugin', {
 								] }
 								onChange={ onChangeType }
 							/>
-							<RichText
+							<TextControl
 								label="Slug"
-								format="string"
-								formattingControls={ [] }
 								placeholder={ __( 'Enter your contribution slug here.' ) }
 								onChange={ onChangePlugin }
 								value={ props.attributes.slug }
@@ -142,9 +131,5 @@ export default registerBlockType( 'wp-contributions/my-plugin', {
 					contribution_type: props.attributes.contribution_type
 				} }
 			/>
-		];
-	},
-	save() {
-		return null;
-	},
-});
+	);
+}
