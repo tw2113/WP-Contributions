@@ -1,0 +1,26 @@
+{
+	"name": "block",
+	"version": "0.1.0",
+	"description": "Example static block scaffolded with Create Block tool.",
+	"author": "The WordPress Contributors",
+	"license": "GPL-2.0-or-later",
+	"main": "/assets/block/build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^23.3.0"
+	},
+	"dependencies": {
+		"@wordpress/element": "^4.9.0",
+		"@wordpress/i18n": "^4.11.0",
+		"@wordpress/icons": "^9.2.0",
+		"classnames": "^2.3.1"
+	}
+}
