@@ -14,10 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="wp-contributions-plugin plugin-card card <?php echo esc_attr( $slug ); ?>">
 
-	<div class="card-header plugin-card-header">
+	<header class="card-header plugin-card-header">
 
 		<div class="card-image plugin-card-image">
-			<a href="<?php echo esc_url( $link ); ?>"><img src="<?php echo esc_url( $icon ); ?>" /></a>
+			<a href="<?php echo esc_url( $link ); ?>"><img class="contrib-display-card" src="<?php echo esc_url( $icon ); ?>" /></a>
 		</div>
 
 		<h5 class="card-name plugin-card-name"><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $name ); ?></a></h5>
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		</div><!-- .card-info .plugin-card-info -->
 
-	</div><!-- .card-header .plugin-card-header -->
+	</header><!-- .card-header .plugin-card-header -->
 
 	<?php if ( $description ) { ?>
 		<div class="card-description plugin-card-description">
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	<?php } ?>
 
-	<div class="card-footer plugin-card-footer">
+	<footer class="card-footer plugin-card-footer">
 
 		<div class="card-rating plugin-card-rating">
 			<?php echo wp_contributions_star_rating( array( 'rating' => intval( $rating ), 'type' => 'percent', 'number' => $num_ratings ) ); ?>
@@ -64,6 +64,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		</div><!-- .card-meta .plugin-card-meta -->
 
-	</div><!-- .card-footer .plugin-card-footer -->
+	</footer><!-- .card-footer .plugin-card-footer -->
 
 </div><!-- .wp-contributions-plugin .plugin-card .card -->

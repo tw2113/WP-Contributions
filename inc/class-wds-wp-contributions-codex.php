@@ -70,21 +70,21 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 				 **/
 
 				$formatted = array();
+				if ( is_array( $raw ) && array_key_exists( 'query', $raw ) ) {
+					foreach ( $raw['query']['usercontribs'] as $item ) {
+						$count       = 0;
+						$clean_title = preg_replace( '/^Function Reference\//', '', (string) $item['title'], 1, $count );
 
-				foreach ( $raw['query']['usercontribs'] as $item ) {
-					$count = 0;
-					$clean_title = preg_replace( '/^Function Reference\//', '', (string) $item['title'], 1, $count );
-
-					$new_item = array(
-						'title'        => $clean_title,
-						'description'  => (string) $item['comment'],
-						'revision'     => (int) $item['revid'],
-						'function_ref' => (bool) $count,
-					);
-					array_push( $formatted, $new_item );
+						$new_item = array(
+							'title'        => $clean_title,
+							'description'  => (string) $item['comment'],
+							'revision'     => (int) $item['revid'],
+							'function_ref' => (bool) $count,
+						);
+						array_push( $formatted, $new_item );
+					}
+					set_transient( 'wp-contributions-codex-' . $username, $formatted, 60 * 60 * 12 );
 				}
-
-				set_transient( 'wp-contributions-codex-' . $username, $formatted, 60 * 60 * 12 );
 			}
 
 			return $formatted;
@@ -102,25 +102,15 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 					'list'    => 'users',
 					'ususers' => $username,
 					'usprop'  => 'editcount',
-					'format'  => 'xml',
+					'format'  => 'json',
 				), 'http://codex.wordpress.org/api.php' );
 				$results = wp_remote_retrieve_body( wp_remote_get( $results_url, array( 'sslverify' => false ) ) );
 
-				/*
-				 * Expected XML format is as follows:
-				 * <?xml version="1.0"?>
-				 * <api>
-				 *   <query>
-				 *     <users>
-				 *       <user name="Ericmann" editcount="8" />
-				 *     </users>
-				 *   </query>
-				 * </api>
-				 **/
-
 				if ( ! empty( $results ) ) {
-					$raw = new SimpleXMLElement( $results );
-					$count = (int) $raw->query->users->user['editcount'];
+					$raw   = json_decode( $results, true );
+					$count = ( array_key_exists( 'query', $raw ) ) ?
+						(int) $raw['query']['users'][0]['editcount'] :
+						0;
 
 					set_transient( 'wp-contributions-codex-count-' . $username, $count, 60 * 60 * 12 );
 				}

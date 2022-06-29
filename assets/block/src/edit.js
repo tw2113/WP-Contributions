@@ -131,6 +131,10 @@ export default function Edit( props ) {
 	);
 }
 
+const checkCallback = value => {
+	alert(value);
+}
+
 const MyServerRender = (attr) => {
 		console.log( attr.myattr );
 		try {
@@ -141,6 +145,7 @@ const MyServerRender = (attr) => {
 						slug: attr.myattr.slug,
 						contribution_type: attr.myattr.contribution_type
 					} }
+					onChange={ checkCallback }
 				/>
 			);
 		} catch ( error ){

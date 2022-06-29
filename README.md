@@ -3,8 +3,8 @@
 - **Tags**: contributions, core, plugins, themes, codex, widget
 - **Donate link**: http://webdevstudios.com
 - **Requires at least**: 3.8.0
-- **Tested up to**: 4.5.3
-- **Stable tag**: 1.0.2
+- **Tested up to**: 4.7
+- **Stable tag**: 1.1.0
 - **License**: GPLv2 or later
 - **License URI**: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,9 @@ Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets
 
 WordPress wouldn't be as amazing as it is without all of the contributors to the project. The community is proud of each and every contributor. Display some of your contributions to the project using handy widgets or template tags in your custom theme.  Currently, you can display your contributions to WordPress core, the WordPress Codex, your WordPress Plugins, or your WordPress themes.
 
-There are four handy widgets available for you that are easily configured and added to your sidebar.  You just need to add your theme or plugin slug to display a theme or plugin or enter your WordPress.org username to display core or codex contributions.  You can also display these in a more custon fashion in your custom theme using template tags.  More info on template tags is available under the FAQ.
+There are four handy widgets available for you that are easily configured and added to your sidebar.  You just need to add your theme or plugin slug to display a theme or plugin or enter your WordPress.org username to display core or codex contributions.  
+
+There are two shortcodes available, and some handy template tags if you desire to add them in your custom theme.  More info on shortcodes and template tags are available under the [FAQ](#frequently-asked-questions).
 
 We want to give a big thanks to the great plugin, [Core Contributions Widget](https://wordpress.org/plugins/wp-core-contributions-widget/) by Eric Mann, Michael Fields, John P. Bloch, Mike Bijon, and Konstantin Obenland. We forked part of this plugin to include Core and Codex Contributions. If you would just like widgets to display Core and Codex Contributions, we recommend downloading their plugin.
 
@@ -28,9 +30,17 @@ We want to give a big thanks to the great plugin, [Core Contributions Widget](ht
 
 ## Frequently Asked Questions
 
-### How do I [shortcode](https://codex.wordpress.org/Shortcode)?
-* Show your plugin with: `[wp_contributions_plugin_card slug="your-plugin-slug"]`
-* Show your theme with: `[wp_contributions_theme_card slug="your-theme-slug"]`
+### Available shortcodes
+
+Show a Plugin Card:
+
+`[wp_contributions_plugin_card slug="your-plugin-slug"]`
+
+Show a Theme Card:
+
+`[wp_contributions_theme_card slug="your-theme-slug"]`
+
+Not sure what shortcodes are? [Learn more here](https://codex.wordpress.org/Shortcode).
 
 ### How do I add a widget?
 
@@ -73,12 +83,46 @@ Displays Core contributions for a WordPress.org user.  Just pass the WordPress.o
 
 Displays Codex contributions for a WordPress.org user.  Just pass the WordPress.org username as `$username` to display the contributions for that user. Optionally, you can also pass in `$count` to control the number of contributions to display. Default count is set at 5. This function will echo your results to your template.
 
+## Screenshots
+
+![screenshot of WP Contribution's Plugin Card View widget as output in Twenty Fourteen theme](/assets/screenshot-1.png?raw=true "Plugin Card view")
+
+Plugin Card View (Shown in Twenty Fourteen Theme)
+
+![screenshot of WP Contribution's Theme Card View widget as output in Twenty Fourteen theme](/assets/screenshot-2.png?raw=true "Theme Card view")
+
+Theme Card View (Shown in in Twenty Fourteen Theme)
+
+![screenshot of WP Contribution's Codex Contributions Card View widget as output in Twenty Fourteen theme](/assets/screenshot-3.png?raw=true "Codex Contributions Card view")
+
+Codex Contributions Card View (Shown in Twenty Fourteen Theme)
+
+![screenshot of WP Contribution's Core Contributions Card View widget as output in Twenty Fourteen theme](/assets/screenshot-4.png?raw=true "Core Contributions Card view")
+
+Core Contributions Card View (Shown in Twenty Fourteen Theme)
+
+![screenshot of WP Contributions' widgets settings](/assets/screenshot-5.png?raw=true "Widget settings")
+
+Widget Management
+
 ## Changelog
 
-1.0.1 - minor edits, updates to Grunt build, and some shortcodes
+### 1.1.0
+* Shortcodes for:
+ * Plugin Card `[wp_contributions_plugin_card slug="your-plugin-slug"]`, and
+ * Theme Card `[wp_contributions_theme_card slug="your-theme-slug"]`
+* Add descriptions to Core widget
 
-1.0.0 - Initial Release
+### 1.0.1
+* minor edits and updates to Grunt build
+
+### 1.0.0
+* Initial Release
 
 ## Upgrade Notice
 
-No upgrades yet.
+### 1.1.0
+* Shortcodes for:
+ * Plugin Card `[wp_contributions_plugin_card slug="your-plugin-slug"]`, and
+ * Theme Card `[wp_contributions_theme_card slug="your-theme-slug"]`
+* Add descriptions to Core widget

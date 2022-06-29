@@ -6,7 +6,7 @@
   "title": "WP Contributions Block",
   "category": "common",
   "icon": "embed-photo",
-  "description": "Wordpress Contributions made easy.",
+  "description": "Wordpress Contributions Showcase made easy.",
   "supports": {
     "html": true
   },

@@ -1,5 +1,5 @@
 === WP Contributions ===
-Contributors: webdevstudios, dustyf, colorful-tones
+Contributors: webdevstudios, dustyf, colorful-tones, pluginize
 Tags: contributions, core, plugins, themes, codex, widget
 Donate link: http://webdevstudios.com
 Requires at least: 3.8.0
@@ -30,13 +30,13 @@ We want to give a big thanks to the great plugin, [Core Contributions Widget](ht
 
 == Frequently Asked Questions ==
 
-= Available shortcodes =
+=== Available shortcodes ===
 
-Show a Plugin Card
+==== Show a Plugin Card ====
 
 `[wp_contributions_plugin_card slug="your-plugin-slug"]`
 
-Show a Theme Card
+==== Show a Theme Card ====
 
 `[wp_contributions_theme_card slug="your-theme-slug"]`
 
