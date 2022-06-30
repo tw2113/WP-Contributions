@@ -222,8 +222,9 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 		if ( isset( $attr['slug'] ) && isset( $attr['contribution_type'] ) ) {
 			try {
+				global $wp_contributions;
 				ob_start();
-				WDS_WP_Contributions::display_card( array( 'type' => $attr['contribution_type'], 'slug' => $attr['slug'] ) );
+				$wp_contributions->display_card( array( 'type' => $attr['contribution_type'], 'slug' => $attr['slug'] ) );
 				return ob_get_clean();
 			} catch ( Exception $e ) {
 				if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
