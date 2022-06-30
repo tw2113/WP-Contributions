@@ -140,6 +140,8 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 			if ( ! isset( $args['slug'] ) ) {
 				return '<p>' . esc_html__( 'No Slug Entered', 'wp-contributions' );
+			} else {
+				$args['slug'] = strtolower( $args['slug'] );
 			}
 
 			$args = apply_filters( 'wp_contributions_display_card_args', $args );
@@ -147,16 +149,13 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			$card = '';
 
 			if ( 'plugin' === $args['type'] ) {
-				error_log('display card - enters in plugin');
 				// Get the plugin using the WP.org API.
 				$plugin_api  = new WDS_WP_Contributions_Plugins();
 				$plugin_data = $plugin_api->get_plugin( $args['slug'] );
 
 				if ( ! is_wp_error( $plugin_data ) ) {
-					error_log('no error');
 					$card .= $plugin_api->display( $plugin_data );
 				} else {
-					error_log('error');
 					$card .= '<p>' . esc_html__( 'Plugin API failed. The plugin slug could be incorrect or there could be an error with the WP Plugin API.', 'wp-contributions' );
 				}
 			} elseif ( 'theme' === $args['type'] ) {
@@ -170,7 +169,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 				}
 			} elseif ( 'core' === $args['type'] ) {
 				$count = isset( $args['count'] ) ? $args['count'] : 5;
-				$core = new WDS_WP_Contributions_Core();
+				$core  = new WDS_WP_Contributions_Core();
 				$core->display( $args['slug'], $count );
 			} elseif ( 'codex' === $args['type'] ) {
 				$count = isset( $args['count'] ) ? $args['count'] : 5;
@@ -184,7 +183,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		}
 
 		/**
-		 * Block 2 Initializer.
+		 * Block Initializer.
 		 */
 		public function wp_contributions_block_init() {
 			register_block_type(
@@ -220,32 +219,23 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 	 * @return string The HTML output for the card view.
 	 */
 	function wp_contributions_block_callback( $attr ) {
-		error_log('what? block callback! ');
-		extract( $attr );
-		error_log(implode(' - ', $attr));
-		error_log('slug ' . $slug . ' contribution_type ' . $contribution_type);
-		if ( isset( $slug ) && isset( $contribution_type ) ) {
+
+		if ( isset( $attr['slug'] ) && isset( $attr['contribution_type'] ) ) {
 			try {
-
 				ob_start();
-				WDS_WP_Contributions::display_card( array( 'type' => $contribution_type, 'slug' => $slug ) );
+				WDS_WP_Contributions::display_card( array( 'type' => $attr['contribution_type'], 'slug' => $attr['slug'] ) );
 				return ob_get_clean();
-
-			} catch (Exception $e) {
-				error_log($e);
-
-				ob_start();
-				echo "<p>We are still missing parameters for render</p>";
-				return ob_get_clean();
-
+			} catch ( Exception $e ) {
+				if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
+					error_log( $e );
+				}
 			}
-
-		} else {
-			error_log('Houston! we got undefined');
-			ob_start();
-			echo "<p>We are still missing parameters for render</p>";
-			return ob_get_clean();
 		}
+
+		/* Default output */
+		ob_start();
+		echo '<p>' . esc_html__( 'Still missing must-have paramaters for the render.', 'wp-contributions' );
+		return ob_get_clean();
 	}
 
 	/**

@@ -1,66 +1,37 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
+
+import { useState, React } from 'react';
+
 import { __ } from '@wordpress/i18n';
 
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
- */
-import { ServerSideRender } from '@wordpress/server-side-render';
+import ServerSideRender from '@wordpress/server-side-render';
+
 import {
     useBlockProps,
-    RichText,
     BlockControls,
 	InspectorControls,
-	AlignmentToolbar
 } from '@wordpress/block-editor';
+
 import {
 	PanelBody,
 	TextControl,
-	Dashicon,
 	Toolbar,
 	ToolbarButton,
-	Button,
-	Tooltip,
 	SelectControl
 } from '@wordpress/components';
+
 import { tablet } from '@wordpress/icons';
 
-import classnames from 'classnames';
+import './editor.scss';
 
 /**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-import './editor.scss';
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+ * Block Editor side
  *
  * @return {WPElement} Element to render.
  */
 export default function Edit( props ) {
-	console.log('entered here ' + JSON.stringify(props.attributes));
-	console.log('isselected ' + props.isSelected);
 
 	const blockProps = useBlockProps();
-	/*const {
-		attributes: { slug, contribution_type, preferred_username, theme },
-		className,
-	} = props;
-
-	useEffect = () => {
-
-	};*/
+	const [identificator, setIdentificator] = useState('slug');
 
 	const onChangePlugin = value => {
 		props.setAttributes( { slug: value } );
@@ -70,8 +41,13 @@ export default function Edit( props ) {
 	};
 	const onChangeType = value => {
 		props.setAttributes( { contribution_type: value } );
+		if ( ['codex', 'core'].includes( value ) ) {
+			setIdentificator('user');
+		} else if ( identificator != 'slug' ) {
+			setIdentificator('slug');
+		}
 	};
-	const toggletheme = value => {
+	const toggletheme = () => {
 		props.setAttributes( { theme: !props.attributes.theme } );
 	};
 
@@ -100,11 +76,12 @@ export default function Edit( props ) {
 				</PanelBody>
 			</InspectorControls>
 			{ ! props.attributes.theme ?
-				<>
+				<div className='blocki'>
+					<h5 className='contrib-title'>WP Contributions - My Contributions</h5>
 					<SelectControl
 						key="select-contribution-type"
-						className="ctt-type"
-						label="Contribution Type"
+						className="contrib-item"
+						label="Type"
 						value={ props.attributes.contribution_type }
 						options={ [
 							{ label: 'Plugin', value: 'plugin' },
@@ -118,25 +95,21 @@ export default function Edit( props ) {
 						key="slug-text-control"
 						label="Slug"
 						format="string"
-						placeholder={ __( 'Enter your contribution slug here.' ) }
+						placeholder={ __( `Enter your contribution ${ identificator }.` ) }
 						onChange={ onChangePlugin }
 						value={ props.attributes.slug }
-						className="ctt-textbox"
+						className="contrib-item"
 					/>
-				</>
+					<p className="block-auth">@By { props.attributes.preferred_username }</p>
+				</div>
 			:
-			<MyServerRender myattr={ props.attributes } />
-		}
+				<MyServerRender myattr={ props.attributes } />
+			}
 		</div>
 	);
 }
 
-const checkCallback = value => {
-	alert(value);
-}
-
 const MyServerRender = (attr) => {
-		console.log( attr.myattr );
 		try {
 			return (
 				<ServerSideRender
@@ -145,7 +118,6 @@ const MyServerRender = (attr) => {
 						slug: attr.myattr.slug,
 						contribution_type: attr.myattr.contribution_type
 					} }
-					onChange={ checkCallback }
 				/>
 			);
 		} catch ( error ){
