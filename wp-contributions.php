@@ -219,6 +219,16 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 	 * @return string The HTML output for the card view.
 	 */
 	function wp_contributions_block_callback( $attr ) {
+		if ( isset( $attr['slug'] ) && isset( $attr['contribution_type'] ) ) {
+			try {
+				ob_start();
+				global $wp_contributions;
+				$wp_contributions->display_card( array( 'type' => $attr['contribution_type'], 'slug' => $attr['slug'] ) );
+				return ob_get_clean();
+			} catch ( Exception $e ) {
+				error_log( $e );
+			}
+		}
 
 		if ( isset( $attr['slug'] ) && isset( $attr['contribution_type'] ) ) {
 			try {
