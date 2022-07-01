@@ -1,8 +1,5 @@
-
 import { useState, React } from 'react';
-
 import { __ } from '@wordpress/i18n';
-
 import ServerSideRender from '@wordpress/server-side-render';
 
 import {
@@ -19,7 +16,7 @@ import {
 	SelectControl
 } from '@wordpress/components';
 
-import { tablet } from '@wordpress/icons';
+import { tablet, wordpress } from '@wordpress/icons';
 
 import './editor.scss';
 
@@ -31,7 +28,7 @@ import './editor.scss';
 export default function Edit( props ) {
 
 	const blockProps = useBlockProps();
-	const [identificator, setIdentificator] = useState('slug');
+	const [identificator, setIdentificator] = useState('Slug');
 
 	const onChangePlugin = value => {
 		props.setAttributes( { slug: value } );
@@ -42,9 +39,9 @@ export default function Edit( props ) {
 	const onChangeType = value => {
 		props.setAttributes( { contribution_type: value } );
 		if ( ['codex', 'core'].includes( value ) ) {
-			setIdentificator('user');
-		} else if ( identificator != 'slug' ) {
-			setIdentificator('slug');
+			setIdentificator('User');
+		} else if ( identificator !== 'Slug' ) {
+			setIdentificator('Slug');
 		}
 	};
 	const toggletheme = () => {
@@ -55,52 +52,51 @@ export default function Edit( props ) {
 		<div { ...blockProps }>
 			{
 				<BlockControls key="custom-controls">
-					<Toolbar key="options-settings-toolbar" label={ __( 'Options' ) }>
+					<Toolbar key="options-settings-toolbar" label={ __( 'Options', 'wp-contributions' ) }>
 						<ToolbarButton
 							key="preview-toggle-btn"
 							icon={ tablet }
-							label={ __( 'Preview' )	}
+							label={ __( 'Preview', ' wp-contributions' ) }
 							onClick={ toggletheme }
 						/>
 					</Toolbar>
 				</BlockControls>
 			}
 			<InspectorControls key="inspector">
-				<PanelBody key="block-settings" title={ __( 'WP Contributions Settings' ) } >
+				<PanelBody key="block-settings" title={ __( 'WP Contributions Settings', 'wp-contributions' ) } >
 					<TextControl
 						key="author-user-input"
-						label={ __( 'Author User' ) }
+						label={ __( 'Author User', 'wp-contributions' ) }
 						value={ props.attributes.preferred_username }
 						onChange={ onChangeUsername }
 					/>
 				</PanelBody>
 			</InspectorControls>
 			{ ! props.attributes.theme ?
-				<div className='blocki'>
-					<h5 className='contrib-title'>WP Contributions - My Contributions</h5>
+				<div className='components-placeholder blocki is-large'>
+					<div className='contrib-title components-placeholder__label'><span className="block-editor-block-icon has-colors">{ wordpress }</span> { __( 'My WP Contributions', 'wp-contributions' ) }</div>
 					<SelectControl
 						key="select-contribution-type"
 						className="contrib-item"
-						label="Type"
+						label={ __( 'Type', 'wp-contributions' ) }
 						value={ props.attributes.contribution_type }
 						options={ [
-							{ label: 'Plugin', value: 'plugin' },
-							{ label: 'Theme', value: 'theme' },
-							{ label: 'Core', value: 'core' },
-							{ label: 'Codex', value: 'codex' },
+							{ label: __( 'Plugin', 'wp-contributions' ), value: 'plugin' },
+							{ label: __( 'Theme', 'wp-contributions' ), value: 'theme' },
+							{ label: __( 'Core', 'wp-contributions' ), value: 'core' },
+							{ label: __( 'Codex', 'wp-contributions' ), value: 'codex' },
 						] }
 						onChange={ onChangeType }
 					/>
 					<TextControl
 						key="slug-text-control"
-						label="Slug"
+						label={ identificator }
 						format="string"
-						placeholder={ __( `Enter your contribution ${ identificator }.` ) }
+						placeholder={ __( `Enter your contribution slug or username.`, 'wp-contributions' ) }
 						onChange={ onChangePlugin }
 						value={ props.attributes.slug }
 						className="contrib-item"
 					/>
-					<p className="block-auth">@By { props.attributes.preferred_username }</p>
 				</div>
 			:
 				<MyServerRender myattr={ props.attributes } />
@@ -122,6 +118,6 @@ const MyServerRender = (attr) => {
 			);
 		} catch ( error ){
 			console.log(error);
-			return ( <p> We've gotten a problem here! </p> );
+			return ( <p> { __( "We've gotten a problem here!", 'wp-contributions' ) } </p> );
 		}
 }
