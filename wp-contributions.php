@@ -5,7 +5,7 @@
  * Description: Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions with handy widgets and template tags.
  * Author: WebDevStudios
  * Author URI: http://webdevstudios.com
- * Version: 1.1.0
+ * Version: 1.2.0
  * License: GPLv2
  *
  * @package WP Contributions
@@ -68,6 +68,9 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 			// Enqueue necessary styles.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
+
+			// Block init
+			add_action( 'init', array( $this, 'wp_contributions_block_init' ) );
 		}
 
 
@@ -137,6 +140,8 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 			if ( ! isset( $args['slug'] ) ) {
 				return '<p>' . esc_html__( 'No Slug Entered', 'wp-contributions' );
+			} else {
+				$args['slug'] = strtolower( $args['slug'] );
 			}
 
 			$args = apply_filters( 'wp_contributions_display_card_args', $args );
@@ -164,7 +169,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 				}
 			} elseif ( 'core' === $args['type'] ) {
 				$count = isset( $args['count'] ) ? $args['count'] : 5;
-				$core = new WDS_WP_Contributions_Core();
+				$core  = new WDS_WP_Contributions_Core();
 				$core->display( $args['slug'], $count );
 			} elseif ( 'codex' === $args['type'] ) {
 				$count = isset( $args['count'] ) ? $args['count'] : 5;
@@ -176,6 +181,72 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			return $card;
 
 		}
+
+		/**
+		 * Block Initializer.
+		 */
+		public function wp_contributions_block_init() {
+			register_block_type(
+				plugin_dir_path( __FILE__ ) . 'assets/block/build',
+				array(
+					'render_callback' => 'wp_contributions_block_callback',
+					'attributes'      => array(
+						'slug' => array(
+							'type' => 'string',
+						),
+						'preferred_username' => array(
+							'type'    => 'string',
+							'default' => 'My Preferred_handle',
+						),
+						'theme'  => array(
+							'type'    => 'boolean',
+							'default' => false,
+						),
+						'contribution_type' => array(
+							'type'    => 'string',
+							'default' => 'plugin',
+						),
+					),
+				)
+			);
+		}
+	}
+
+	/**
+	 * Block Output.
+	 *
+	 * @param string $attr Block attributes
+	 * @return string The HTML output for the card view.
+	 */
+	function wp_contributions_block_callback( $attr ) {
+		if ( isset( $attr['slug'] ) && isset( $attr['contribution_type'] ) ) {
+			try {
+				ob_start();
+				global $wp_contributions;
+				$wp_contributions->display_card( array( 'type' => $attr['contribution_type'], 'slug' => $attr['slug'] ) );
+				return ob_get_clean();
+			} catch ( Exception $e ) {
+				error_log( $e );
+			}
+		}
+
+		if ( isset( $attr['slug'] ) && isset( $attr['contribution_type'] ) ) {
+			try {
+				global $wp_contributions;
+				ob_start();
+				$wp_contributions->display_card( array( 'type' => $attr['contribution_type'], 'slug' => $attr['slug'] ) );
+				return ob_get_clean();
+			} catch ( Exception $e ) {
+				if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
+					error_log( $e );
+				}
+			}
+		}
+
+		/* Default output */
+		ob_start();
+		echo '<p>' . esc_html__( 'Still missing must-have paramaters for the render.', 'wp-contributions' );
+		return ob_get_clean();
 	}
 
 	/**

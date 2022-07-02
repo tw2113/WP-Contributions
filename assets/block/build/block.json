@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "wp-contributions/block",
+  "version": "1.2.0",
+  "title": "WP Contributions Block",
+  "category": "common",
+  "icon": "embed-photo",
+  "description": "Wordpress Contributions Showcase made easy.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "wp-contributions-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

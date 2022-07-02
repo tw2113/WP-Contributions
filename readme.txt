@@ -3,8 +3,8 @@ Contributors: webdevstudios, dustyf, colorful-tones, pluginize
 Tags: contributions, core, plugins, themes, codex, widget
 Donate link: http://webdevstudios.com
 Requires at least: 3.8.0
-Tested up to: 4.7
-Stable tag: 1.1.0
+Tested up to: 6.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,12 @@ Copy either the individual template file: e.g. `/wp-content/wp-contributions-the
 
 == Changelog ==
 
+= 1.2.0 =
+* Added: WordPress Block for Themes, Plugins, Core, and Codex contributions.
+* Fixed: Minor CSS issues.
+* Fixed: Fatal errors when computer had no internet connectivity.
+* Fixed: Errors regarding parsing strings as XML.
+
 = 1.1.0 =
 * Shortcodes for:
  * Plugin Card `[wp_contributions_plugin_card slug="your-plugin-slug"]`, and
@@ -103,8 +109,8 @@ Copy either the individual template file: e.g. `/wp-content/wp-contributions-the
 
 == Upgrade Notice ==
 
-= 1.1.0 =
-* Shortcodes for:
- * Plugin Card `[wp_contributions_plugin_card slug="your-plugin-slug"]`, and
- * Theme Card `[wp_contributions_theme_card slug="your-theme-slug"]`
-* Add descriptions to Core widget
+= 1.2.0 =
+* Added: WordPress Block for Themes, Plugins, Core, and Codex contributions.
+* Fixed: Minor CSS issues.
+* Fixed: Fatal errors when computer had no internet connectivity.
+* Fixed: Errors regarding parsing strings as XML.
