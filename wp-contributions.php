@@ -5,7 +5,7 @@
  * Description: Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions with handy widgets and template tags.
  * Author: WebDevStudios
  * Author URI: http://webdevstudios.com
- * Version: 1.1.0
+ * Version: 1.2.0
  * License: GPLv2
  *
  * @package WP Contributions
