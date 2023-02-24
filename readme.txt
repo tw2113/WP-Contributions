@@ -1,10 +1,9 @@
 === WP Contributions ===
-Contributors: webdevstudios, dustyf, colorful-tones, pluginize
+Contributors: tw2113
 Tags: contributions, core, plugins, themes, codex, widget
-Donate link: http://webdevstudios.com
 Requires at least: 3.8.0
 Tested up to: 6.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +87,9 @@ Copy either the individual template file: e.g. `/wp-content/wp-contributions-the
 5. Widget Management
 
 == Changelog ==
+
+= 1.2.1 =
+* Ownership transition.
 
 = 1.2.0 =
 * Added: WordPress Block for Themes, Plugins, Core, and Codex contributions.

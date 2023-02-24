@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: WP Contributions
- * Plugin URI: http://webdevstudios.com
+ * Plugin URI: https://michaelbox.net
  * Description: Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions with handy widgets and template tags.
- * Author: WebDevStudios
- * Author URI: http://webdevstudios.com
- * Version: 1.2.0
+ * Author: Michael Beckwith
+ * Author URI: https://michaelbox.net
+ * Version: 1.2.1
  * License: GPLv2
  *
  * @package WP Contributions
