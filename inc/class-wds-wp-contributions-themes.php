@@ -156,6 +156,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 		 */
 		public function display( $theme_data ) {
 
+			ob_start();
 			global $wp_contributions;
 
 			$theme_data = apply_filters( 'wp_contributions_display_theme_data', $theme_data );
@@ -179,7 +180,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			$version     = ( isset( $theme_data->version ) ) ? $theme_data->version : '';
 			$rating      = ( isset( $theme_data->rating ) ) ? $theme_data->rating : '';
 			$num_ratings = ( isset( $theme_data->num_ratings ) ) ? $theme_data->num_ratings : '';
-			$downloaded  = ( isset( $theme_data->downloaded ) )  ? $theme_data->downloaded : '';
+			$downloaded  = ( isset( $theme_data->downloaded ) ) ? number_format( $theme_data->downloaded ) : '';
 			$author      = ( isset( $theme_data->author ) ) ? strip_tags( $theme_data->author ) : '';
 			$last_update = ( isset( $theme_data->last_updated ) ) ? date( 'M j, Y', strtotime( $theme_data->last_updated ) ) : '';
 
@@ -191,6 +192,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			}
 			include( $path );
 
+			return ob_get_clean();
 		}
 	}
 }
