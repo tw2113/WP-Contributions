@@ -93,13 +93,21 @@ if ( ! class_exists( 'WDS_WP_Contributions_Core_Widget' ) ) :
 			}
 			?>
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wp-contributions' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
+					<?php esc_html_e( 'Title:', 'wp-contributions' ); ?>
+				</label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-
-				<label for="<?php echo esc_attr( $this->get_field_id( 'trac-user' ) ); ?>"><?php esc_html_e( 'Trac Username:', 'wp-contributions' ); ?></label>
+			</p>
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'trac-user' ) ); ?>">
+					<?php esc_html_e( 'Trac Username:', 'wp-contributions' ); ?>
+				</label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'trac-user' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'trac-user' ) ); ?>" type="text" value="<?php echo esc_attr( $trac_user ); ?>" />
-
-				<label for="<?php echo esc_attr( $this->get_field_id( 'display-count' ) ); ?>"><?php esc_html_e( 'Display How Many Tickets?', 'wp-contributions' ); ?></label>
+			</p>
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'display-count' ) ); ?>">
+					<?php esc_html_e( 'Display How Many Tickets?', 'wp-contributions' ); ?>
+				</label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'display-count' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'display-count' ) ); ?>" type="text" value="<?php echo esc_attr( $trac_count ); ?>" />
 			</p>
 		<?php
