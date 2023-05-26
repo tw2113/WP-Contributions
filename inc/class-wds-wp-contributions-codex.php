@@ -136,7 +136,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 
 			// Include template - can be overriden by a theme!
 			$template_name = 'wp-contributions-codex-widget-template.php';
-			$path = locate_template( $template_name );
+			$path          = locate_template( $template_name );
 			if ( empty( $path ) ) {
 				$path = $wp_contributions->directory_path . 'templates/' . $template_name;
 			}
