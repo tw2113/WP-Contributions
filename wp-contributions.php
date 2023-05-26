@@ -50,7 +50,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 *
 		 * @return WDS_WP_Contributions A single instance of this class.
 		 */
-		public function init() {
+		public function init(): WDS_WP_Contributions {
 			static $instance = null;
 			if ( null === $instance ) {
 				$instance = new self();
@@ -161,7 +161,6 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			$card = '';
 
 			if ( 'plugin' === $args['type'] ) {
-				// Get the plugin using the WP.org API.
 				$plugin_api  = new WDS_WP_Contributions_Plugins();
 				$plugin_data = $plugin_api->get_plugin( $args['slug'] );
 
@@ -171,7 +170,6 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 					$card .= '<p>' . esc_html__( 'Plugin API failed. The plugin slug could be incorrect or there could be an error with the WP Plugin API.', 'wp-contributions' );
 				}
 			} elseif ( 'theme' === $args['type'] ) {
-				// Get the theme using the WP.org API.
 				$theme_api  = new WDS_WP_Contributions_Themes();
 				$theme_data = $theme_api->get_theme( $args['slug'] );
 				if ( ! is_wp_error( $theme_data ) ) {
