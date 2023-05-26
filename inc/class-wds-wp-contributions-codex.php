@@ -127,9 +127,10 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 		 */
 		public function display( $user, $count ) {
 
+			ob_start();
+
 			global $wp_contributions;
 
-			// Widget content.
 			$items = array_slice( WDS_WP_Contributions_Codex::get_codex_items( $user, $count ), 0, $count );
 			$total = WDS_WP_Contributions_Codex::get_codex_count( $user );
 
@@ -140,8 +141,9 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 				$path = $wp_contributions->directory_path . 'templates/' . $template_name;
 			}
 
-			include( $path ); // This include will generate the markup for the widget.
+			include( $path );
 
+			return ob_get_clean();
 		}
 	}
 }
