@@ -43,7 +43,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 					'uclimit' => $limit,
 					'ucdir'   => 'older',
 					'format'  => 'php',
-				], 'http://codex.wordpress.org/api.php' );
+				], 'https://codex.wordpress.org/api.php' );
 				$results = wp_remote_retrieve_body( wp_remote_get( $results_url, [ 'sslverify' => false ] ) );
 
 				$raw = maybe_unserialize( $results );
@@ -103,7 +103,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 					'ususers' => $username,
 					'usprop'  => 'editcount',
 					'format'  => 'json',
-				], 'http://codex.wordpress.org/api.php' );
+				], 'https://codex.wordpress.org/api.php' );
 				$results = wp_remote_retrieve_body( wp_remote_get( $results_url, [ 'sslverify' => false ] ) );
 
 				if ( ! empty( $results ) ) {
