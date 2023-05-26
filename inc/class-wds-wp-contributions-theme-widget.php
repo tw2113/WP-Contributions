@@ -124,14 +124,12 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 	 * @return array Settings to save or bool false to cancel saving.
 	 */
 	public function update( $new_instance, $old_instance ) {
-		// Previously saved values.
-		$instance = $old_instance;
-		// Sanitize title before saving to database.
-		$instance['title'] = sanitize_text_field( $new_instance['title'] );
-		// Sanitize theme slug before saving to database.
+		$instance               = $old_instance;
+		$instance['title']      = sanitize_text_field( $new_instance['title'] );
 		$instance['theme_slug'] = sanitize_text_field( $new_instance['theme_slug'] );
-		// Flush cache.
+
 		$this->flush_widget_cache();
+
 		return $instance;
 	}
 
@@ -142,7 +140,6 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 	 * @return void
 	 */
 	public function form( $instance ) {
-		// If there are no settings, set up defaults.
 		$instance = wp_parse_args( (array) $instance,
 			[
 				'title'      => $this->default_widget_title,
@@ -151,11 +148,19 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 		);
 		?>
 
-		<p><label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wp-contributions' ); ?></label>
-			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_html( $instance['title'] ); ?>" placeholder="optional" /></p>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
+				<?php esc_html_e( 'Title:', 'wp-contributions' ); ?>
+			</label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_html( $instance['title'] ); ?>" placeholder="optional" />
+		</p>
 
-		<p><label for="<?php echo esc_attr( $this->get_field_id( 'theme_slug' ) ); ?>"><?php esc_html_e( 'Theme Slug:', 'wp-contributions' ); ?></label>
-			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'theme_slug' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'theme_slug' ) ); ?>" type="text" value="<?php echo esc_html( $instance['theme_slug'] ); ?>" /></p>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'theme_slug' ) ); ?>">
+				<?php esc_html_e( 'Theme Slug:', 'wp-contributions' ); ?>
+			</label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'theme_slug' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'theme_slug' ) ); ?>" type="text" value="<?php echo esc_html( $instance['theme_slug'] ); ?>" />
+		</p>
 
 	<?php
 	}
