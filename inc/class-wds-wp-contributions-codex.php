@@ -31,7 +31,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 
 		public static function get_codex_items( $username, $limit = 10 ) {
 			if ( null === $username ) {
-				return array();
+				return [];
 			}
 
 			if ( true || false === ( $formatted = get_transient( 'wp-contributions-codex-' . $username ) ) ) {
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 				 *                         )
 				 **/
 
-				$formatted = array();
+				$formatted = [];
 				if ( is_array( $raw ) && array_key_exists( 'query', $raw ) ) {
 					foreach ( $raw['query']['usercontribs'] as $item ) {
 						$count       = 0;
