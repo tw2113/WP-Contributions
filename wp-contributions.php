@@ -21,15 +21,15 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 	class WDS_WP_Contributions {
 
-		private string $basename;
+		public string $basename;
 
-		private string $directory_path;
+		public string $directory_path;
 
-		private string $directory_url;
+		public string $directory_url;
 
-		private string $is_query;
+		public string $is_query;
 
-		private object $query;
+		public object $query;
 
 		/**
 		 * Construct function to get things started.
