@@ -169,7 +169,7 @@ function wp_contributions_codex_contributions_card( $username, $count = 5 ) {
 function wp_contributions_star_rating( $args = [] ) {
 	$defaults = [
 		'rating' => 0,
-		'type' => 'rating',
+		'type'   => 'rating',
 		'number' => 0,
 	];
 	$r = wp_parse_args( $args, $defaults );
@@ -183,17 +183,16 @@ function wp_contributions_star_rating( $args = [] ) {
 	}
 
 	// Calculate the number of each type of star needed.
-	$full_stars = floor( $rating );
-	$half_stars = ceil( $rating - $full_stars );
+	$full_stars  = floor( $rating );
+	$half_stars  = ceil( $rating - $full_stars );
 	$empty_stars = 5 - $full_stars - $half_stars;
+	/* translators: 1: The rating */
+	$title       = sprintf( __( '%s rating' ), number_format_i18n( $rating, 1 ) );
 
 	if ( $r['number'] ) {
 		/* translators: 1: The rating, 2: The number of ratings */
 		$format = _n( '%1$s rating based on %2$s rating', '%1$s rating based on %2$s ratings', $r['number'] );
 		$title = sprintf( $format, number_format_i18n( $rating, 1 ), number_format_i18n( $r['number'] ) );
-	} else {
-		/* translators: 1: The rating */
-		$title = sprintf( __( '%s rating' ), number_format_i18n( $rating, 1 ) );
 	}
 
 	$html = '<div class="star-rating" title="' . esc_attr( $title ) . '">';
