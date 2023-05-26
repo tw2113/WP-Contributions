@@ -45,19 +45,19 @@ class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 	 * Contruct widget.
 	 */
 	public function __construct() {
-		$this->widget_name          = __( 'WP Contributions Plugin Widget', 'wp-contributions' );
-		$this->default_widget_title = __( 'My Plugin Info', 'wp-contributions' );
+		$this->widget_name          = esc_html__( 'WP Contributions Plugin Widget', 'wp-contributions' );
+		$this->default_widget_title = esc_html__( 'My Plugin Info', 'wp-contributions' );
 		parent::__construct(
 			$this->widget_slug,
 			$this->widget_name,
-			array(
+			[
 				'classname'   => $this->widget_slug,
-				'description' => __( 'Display information about a plugin hosted on WordPress.org.', 'wp-contributions' ),
-			)
+				'description' => esc_html__( 'Display information about a plugin hosted on WordPress.org.', 'wp-contributions' ),
+			]
 		);
-		add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
-		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
-		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
+		add_action( 'save_post',    [ $this, 'flush_widget_cache' ] );
+		add_action( 'deleted_post', [ $this, 'flush_widget_cache' ] );
+		add_action( 'switch_theme', [ $this, 'flush_widget_cache' ] );
 	}
 
 	/**
@@ -77,14 +77,14 @@ class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 	 * @param array $instance The widget settings as set by user.
 	 */
 	public function widget( $args, $instance ) {
-		echo self::get_widget( array(
+		echo self::get_widget( [
 			'before_widget' => $args['before_widget'],
 			'after_widget'  => $args['after_widget'],
 			'before_title'  => $args['before_title'],
 			'after_title'   => $args['after_title'],
 			'title'         => isset( $instance['title'] ) ? $instance['title'] : '',
 			'plugin_slug'   => isset( $instance['plugin_slug'] ) ? $instance['plugin_slug'] : '',
-		) );
+		] );
 	}
 
 	/**
@@ -104,10 +104,10 @@ class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 
 		$plugin_slug = isset( $atts['plugin_slug'] ) ? $atts['plugin_slug'] : '';
 
-		$args = array(
+		$args = [
 			'slug' => $plugin_slug,
 			'type' => 'plugin',
-		);
+		];
 		$wp_contributions->display_card( $args );
 
 		// After widget hook.
@@ -124,14 +124,11 @@ class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 	 * @return array Settings to save or bool false to cancel saving.
 	 */
 	public function update( $new_instance, $old_instance ) {
-		// Previously saved values.
-		$instance = $old_instance;
-		// Sanitize title before saving to database.
-		$instance['title'] = sanitize_text_field( $new_instance['title'] );
-		// Sanitize plugin slug before saving to database.
+		$instance                = $old_instance;
+		$instance['title']       = sanitize_text_field( $new_instance['title'] );
 		$instance['plugin_slug'] = sanitize_text_field( $new_instance['plugin_slug'] );
-		// Flush cache.
 		$this->flush_widget_cache();
+
 		return $instance;
 	}
 
@@ -144,10 +141,10 @@ class WDS_WP_Contributions_Plugin_Widget extends WP_Widget {
 	public function form( $instance ) {
 		// If there are no settings, set up defaults.
 		$instance = wp_parse_args( (array) $instance,
-			array(
-				'title' => $this->default_widget_title,
-				'plugin_slug'  => '',
-			)
+			[
+				'title'       => $this->default_widget_title,
+				'plugin_slug' => '',
+			]
 		);
 		?>
 

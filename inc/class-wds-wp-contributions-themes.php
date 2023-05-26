@@ -59,16 +59,16 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			}
 
 			$url = $http_url = 'http://api.wordpress.org/themes/info/1.0/';
-			if ( $ssl = wp_http_supports( array( 'ssl' ) ) ) {
+			if ( $ssl = wp_http_supports( [ 'ssl' ] ) ) {
 				$url = set_url_scheme( $url, 'https' );
 			}
 
-			$args = array(
-				'body' => array(
+			$args = [
+				'body' => [
 					'action' => $action,
 					'request' => serialize( $args ),
-				),
-			);
+				],
+			];
 			$request = wp_remote_post( $url, $args );
 
 			if ( $ssl && is_wp_error( $request ) ) {
@@ -101,15 +101,15 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			$wp_contributions->query->theme_slug = esc_attr( $theme_slug );
 
 			if ( false === ( $theme = get_transient( 'wp_contributions_theme_' . $theme_slug ) ) ) {
-				$args   = array(
+				$args   = [
 					'slug'   => esc_attr( $theme_slug ),
-					'fields' => array(
+					'fields' => [
 						'sections'    => false,
 						'tags'        => false,
 						'description' => true,
-					),
+					],
 					'is_ssl' => is_ssl(),
-				);
+				];
 				$theme = $this->themes_api( 'theme_information', $args );
 				set_transient( 'wp_contributions_theme_' . $theme_slug, $theme, 24 * HOUR_IN_SECONDS );
 			}
@@ -132,9 +132,9 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			$wp_contributions->query->author = $author_name;
 
 			if ( false === ( $author = get_transient( 'wp_contributions_theme_author_' . $author_name ) ) ) {
-				$args   = array(
+				$args   = [
 					'author' => esc_attr( $author_name ),
-				);
+				];
 				$author = $this->themes_api( 'query_themes', $args );
 				set_transient( 'wp_contributions_themes_' . $author_name, $author, 24 * HOUR_IN_SECONDS );
 			}
@@ -180,7 +180,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 
 			// Include template - can be overriden by a theme!
 			$template_name = 'wp-contributions-theme-card-template.php';
-			$path = locate_template( array( $template_name, 'wp-contributions/' . $template_name ) );
+			$path = locate_template( [ $template_name, 'wp-contributions/' . $template_name ] );
 			if ( empty( $path ) ) {
 				$path = $wp_contributions->directory_path . 'templates/' . $template_name;
 			}

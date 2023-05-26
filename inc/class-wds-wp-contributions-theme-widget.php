@@ -45,19 +45,19 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 	 * Contruct widget.
 	 */
 	public function __construct() {
-		$this->widget_name          = __( 'WP Contributions Theme Widget', 'wp-contributions' );
-		$this->default_widget_title = __( 'My Theme Info', 'wp-contributions' );
+		$this->widget_name          = esc_html__( 'WP Contributions Theme Widget', 'wp-contributions' );
+		$this->default_widget_title = esc_html__( 'My Theme Info', 'wp-contributions' );
 		parent::__construct(
 			$this->widget_slug,
 			$this->widget_name,
-			array(
+			[
 				'classname'   => $this->widget_slug,
-				'description' => __( 'Display information about a theme hosted on WordPress.org.', 'wp-contributions' ),
-			)
+				'description' => esc_html__( 'Display information about a theme hosted on WordPress.org.', 'wp-contributions' ),
+			]
 		);
-		add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
-		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
-		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
+		add_action( 'save_post',    [ $this, 'flush_widget_cache' ] );
+		add_action( 'deleted_post', [ $this, 'flush_widget_cache' ] );
+		add_action( 'switch_theme', [ $this, 'flush_widget_cache' ] );
 	}
 
 	/**
@@ -77,14 +77,14 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 	 * @param array $instance The widget settings as set by user.
 	 */
 	public function widget( $args, $instance ) {
-		echo self::get_widget( array(
+		echo self::get_widget( [
 			'before_widget' => $args['before_widget'],
 			'after_widget'  => $args['after_widget'],
 			'before_title'  => $args['before_title'],
 			'after_title'   => $args['after_title'],
 			'title'         => isset( $instance['title'] ) ? $instance['title'] : '',
 			'theme_slug'    => isset( $instance['theme_slug'] ) ? $instance['theme_slug'] : '',
-		) );
+		] );
 	}
 
 	/**
@@ -104,10 +104,10 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 
 		$theme_slug = isset( $atts['theme_slug'] ) ? $atts['theme_slug'] : '';
 
-		$args = array(
+		$args = [
 			'slug' => $theme_slug,
 			'type' => 'theme',
-		);
+		];
 		$wp_contributions->display_card( $args );
 
 		// After widget hook.
@@ -144,10 +144,10 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 	public function form( $instance ) {
 		// If there are no settings, set up defaults.
 		$instance = wp_parse_args( (array) $instance,
-			array(
-				'title' => $this->default_widget_title,
-				'theme_slug'  => '',
-			)
+			[
+				'title'      => $this->default_widget_title,
+				'theme_slug' => '',
+			]
 		);
 		?>
 
