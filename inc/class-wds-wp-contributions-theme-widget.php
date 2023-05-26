@@ -77,7 +77,7 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 	 * @param array $instance The widget settings as set by user.
 	 */
 	public function widget( $args, $instance ) {
-		echo self::get_widget( [
+		self::get_widget( [
 			'before_widget' => $args['before_widget'],
 			'after_widget'  => $args['after_widget'],
 			'before_title'  => $args['before_title'],
