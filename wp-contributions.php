@@ -91,16 +91,16 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 */
 		public function includes() {
 
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-plugins.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-themes.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-core.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-codex.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-plugin-widget.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-theme-widget.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-core-widget.php' );
-			require_once( $this-> directory_path . 'inc/class-wds-wp-contributions-codex-widget.php' );
-			require_once( $this-> directory_path . 'inc/helper-functions.php' );
-			require_once( $this-> directory_path . 'inc/shortcodes.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-plugins.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-themes.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-core.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-codex.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-plugin-widget.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-theme-widget.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-core-widget.php' );
+			require_once( $this->directory_path . 'inc/class-wds-wp-contributions-codex-widget.php' );
+			require_once( $this->directory_path . 'inc/helper-functions.php' );
+			require_once( $this->directory_path . 'inc/shortcodes.php' );
 
 		}
 
@@ -189,8 +189,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 				$codex->display( $args['slug'], $count );
 			}
 
-			$card = apply_filters( 'wp_contributions_display_card', $card, $args );
-			return $card;
+			return apply_filters( 'wp_contributions_display_card', $card, $args );
 
 		}
 
