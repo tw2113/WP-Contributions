@@ -7,6 +7,7 @@
  * Author URI: https://michaelbox.net
  * Version: 1.2.1
  * License: GPLv2
+ * Requires PHP: 7.4
  *
  * @package WP Contributions
  */
@@ -19,6 +20,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 
 	class WDS_WP_Contributions {
+
+		private string $basename;
+
+		private string $directory_path;
+
+		private string $directory_url;
+
+		private string $is_query;
+
+		private object $query;
 
 		/**
 		 * Construct function to get things started.
@@ -46,6 +57,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			}
 			$instance->includes();
 			$instance->hooks();
+
 			return $instance;
 		}
 
