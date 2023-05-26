@@ -140,11 +140,11 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex_Widget' ) ) :
 				echo $args['before_title'] . esc_html( $title ) . $args['after_title'];
 			}
 
-			$card_args = array(
+			$card_args = [
 				'slug'  => $user,
 				'type'  => 'codex',
 				'count' => isset( $instance['display-count'] ) ? $instance['display-count'] : 5,
-			);
+			];
 			$wp_contributions->display_card( $card_args );
 
 			echo $args['after_widget'];
