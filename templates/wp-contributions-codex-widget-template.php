@@ -25,7 +25,7 @@
 		<p>
 			<a href="<?php echo esc_url( 'http://codex.wordpress.org/Special:Contributions/' . ucfirst( $user ) ); ?>">
 				<?php
-				if ( 2 == $total ) {
+				if ( 2 === $total ) {
 					esc_html_e( 'View both changes in the Codex.', 'wp-contributions' );
 				} else {
 					printf( esc_html_e( 'View the change in the Codex.', 'View all %d changes in the Codex.', $total, 'wp-contributions' ), esc_html( $total ) );
