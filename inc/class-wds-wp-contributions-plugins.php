@@ -159,6 +159,8 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 		 */
 		public function display( $plugin_data ) {
 
+			ob_start();
+
 			global $wp_contributions;
 
 			$plugin_data = apply_filters( 'wp_contributions_display_plugin_data', $plugin_data );
@@ -183,10 +185,10 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 			$version      = $plugin_data->version;
 			$rating       = $plugin_data->rating;
 			$num_ratings  = $plugin_data->num_ratings;
-			$downloaded   = $plugin_data->downloaded;
+			$downloaded   = number_format( $plugin_data->downloaded );
 			$author       = strip_tags( $plugin_data->author );
 			$contributors = implode( ', ', array_keys( $plugin_data->contributors ) );
-			$last_update = date( 'M j, Y', strtotime( $plugin_data->last_updated ) );
+			$last_update  = date( 'M j, Y', strtotime( $plugin_data->last_updated ) );
 
 			// Include template - can be overriden by a theme!
 			$template_name = 'wp-contributions-plugin-card-template.php';
@@ -196,6 +198,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 			}
 			include( $path );
 
+			return ob_get_clean();
 		}
 	}
 }
