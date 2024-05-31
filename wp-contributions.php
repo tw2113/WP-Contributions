@@ -232,18 +232,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			try {
 				ob_start();
 				global $wp_contributions;
-				$wp_contributions->display_card( [ 'type' => $attr['contribution_type'], 'slug' => $attr['slug'] ] );
-				return ob_get_clean();
-			} catch ( Exception $e ) {
-				error_log( $e );
-			}
-		}
-
-		if ( isset( $attr['slug'] ) && isset( $attr['contribution_type'] ) ) {
-			try {
-				global $wp_contributions;
-				ob_start();
-				$wp_contributions->display_card( [ 'type' => $attr['contribution_type'], 'slug' => $attr['slug'] ] );
+				echo $wp_contributions->display_card( [ 'type' => $attr['contribution_type'], 'slug' => $attr['slug'] ] );
 				return ob_get_clean();
 			} catch ( Exception $e ) {
 				if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
