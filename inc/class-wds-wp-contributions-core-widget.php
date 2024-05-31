@@ -47,19 +47,19 @@ if ( ! class_exists( 'WDS_WP_Contributions_Core_Widget' ) ) :
 		 * Contruct widget.
 		 */
 		public function __construct() {
-			$this->widget_name          = __( 'WP Contributions Core Widget', 'wp-contributions' );
-			$this->default_widget_title = __( 'My Core Contributions', 'wp-contributions' );
+			$this->widget_name          = esc_html__( 'WP Contributions Core Widget', 'wp-contributions' );
+			$this->default_widget_title = esc_html__( 'My Core Contributions', 'wp-contributions' );
 			parent::__construct(
 				$this->widget_slug,
 				$this->widget_name,
-				array(
+				[
 					'classname'   => $this->widget_slug,
-					'description' => __( 'Add a list of your accepted contributions to WordPress Core as a sidebar widget.', 'wp-contributions' ),
-				)
+					'description' => esc_html__( 'Add a list of your accepted contributions to WordPress Core as a sidebar widget.', 'wp-contributions' ),
+				]
 			);
-			add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
-			add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
-			add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
+			add_action( 'save_post',    [ $this, 'flush_widget_cache' ] );
+			add_action( 'deleted_post', [ $this, 'flush_widget_cache' ] );
+			add_action( 'switch_theme', [ $this, 'flush_widget_cache' ] );
 		}
 
 		/**
@@ -93,13 +93,21 @@ if ( ! class_exists( 'WDS_WP_Contributions_Core_Widget' ) ) :
 			}
 			?>
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wp-contributions' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
+					<?php esc_html_e( 'Title:', 'wp-contributions' ); ?>
+				</label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-
-				<label for="<?php echo esc_attr( $this->get_field_id( 'trac-user' ) ); ?>"><?php esc_html_e( 'Trac Username:', 'wp-contributions' ); ?></label>
+			</p>
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'trac-user' ) ); ?>">
+					<?php esc_html_e( 'Trac Username:', 'wp-contributions' ); ?>
+				</label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'trac-user' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'trac-user' ) ); ?>" type="text" value="<?php echo esc_attr( $trac_user ); ?>" />
-
-				<label for="<?php echo esc_attr( $this->get_field_id( 'display-count' ) ); ?>"><?php esc_html_e( 'Display How Many Tickets?', 'wp-contributions' ); ?></label>
+			</p>
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'display-count' ) ); ?>">
+					<?php esc_html_e( 'Display How Many Tickets?', 'wp-contributions' ); ?>
+				</label>
 				<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'display-count' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'display-count' ) ); ?>" type="text" value="<?php echo esc_attr( $trac_count ); ?>" />
 			</p>
 		<?php
@@ -139,12 +147,12 @@ if ( ! class_exists( 'WDS_WP_Contributions_Core_Widget' ) ) :
 				echo $args['before_title'] . esc_html( $title ) . $args['after_title'];
 			}
 
-			$card_args = array(
+			$card_args = [
 				'slug'  => $user,
 				'type'  => 'core',
 				'count' => isset( $instance['display-count'] ) ? $instance['display-count'] : 5,
-			);
-			$wp_contributions->display_card( $card_args );
+			];
+			echo $wp_contributions->display_card( $card_args );
 
 			echo $args['after_widget'];
 		}

@@ -47,19 +47,19 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex_Widget' ) ) :
 		 * Contruct widget.
 		 */
 		public function __construct() {
-			$this->widget_name          = __( 'WP Contributions Codex Widget', 'wp-contributions' );
-			$this->default_widget_title = __( 'My Codex Contributions', 'wp-contributions' );
+			$this->widget_name          = esc_html__( 'WP Contributions Codex Widget', 'wp-contributions' );
+			$this->default_widget_title = esc_html__( 'My Codex Contributions', 'wp-contributions' );
 			parent::__construct(
 				$this->widget_slug,
 				$this->widget_name,
-				array(
+				[
 					'classname'   => $this->widget_slug,
-					'description' => __( 'Add a list of your contributions to the WordPress Codex as a sidebar widget.', 'wp-contributions' ),
-				)
+					'description' => esc_html__( 'Add a list of your contributions to the WordPress Codex as a sidebar widget.', 'wp-contributions' ),
+				]
 			);
-			add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
-			add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
-			add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
+			add_action( 'save_post',    [ $this, 'flush_widget_cache' ] );
+			add_action( 'deleted_post', [ $this, 'flush_widget_cache' ] );
+			add_action( 'switch_theme', [ $this, 'flush_widget_cache' ] );
 		}
 
 		/**
@@ -140,12 +140,12 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex_Widget' ) ) :
 				echo $args['before_title'] . esc_html( $title ) . $args['after_title'];
 			}
 
-			$card_args = array(
+			$card_args = [
 				'slug'  => $user,
 				'type'  => 'codex',
 				'count' => isset( $instance['display-count'] ) ? $instance['display-count'] : 5,
-			);
-			$wp_contributions->display_card( $card_args );
+			];
+			echo $wp_contributions->display_card( $card_args );
 
 			echo $args['after_widget'];
 		}

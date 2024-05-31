@@ -20,10 +20,10 @@ function wp_contributions_plugin_card( $plugin_slug ) {
 
 	global $wp_contributions;
 
-	$args = array(
+	$args = [
 		'slug' => $plugin_slug,
 		'type' => 'plugin',
-	);
+	];
 	$wp_contributions->display_card( $args );
 
 }
@@ -37,10 +37,10 @@ function wp_contributions_theme_card( $theme_slug ) {
 
 	global $wp_contributions;
 
-	$args = array(
+	$args = [
 		'slug' => $theme_slug,
 		'type' => 'theme',
-	);
+	];
 	$wp_contributions->display_card( $args );
 
 }
@@ -63,10 +63,10 @@ function wp_contributions_author_plugin_cards( $username ) {
 	$author = apply_filters( 'wp_contributions_author_plugins', $author, $username );
 
 	foreach ( $author->plugins as $plugin ) {
-		$args = array(
+		$args = [
 			'slug' => $plugin->slug,
 			'type' => 'plugin',
-		);
+		];
 		$wp_contributions->display_card( $args );
 	}
 
@@ -90,10 +90,10 @@ function wp_contributions_author_theme_cards( $username ) {
 	$author = apply_filters( 'wp_contributions_author_themes', $author, $username );
 
 	foreach ( $author->themes as $theme ) {
-		$args = array(
+		$args = [
 			'slug' => $theme->slug,
 			'type' => 'theme',
-		);
+		];
 		$wp_contributions->display_card( $args );
 	}
 
@@ -114,11 +114,11 @@ function wp_contributions_core_contributions_card( $username, $count = 5 ) {
 
 	global $wp_contributions;
 
-	$args = array(
+	$args = [
 		'slug'  => $username,
 		'type'  => 'core',
 		'count' => intval( $count ),
-	);
+	];
 	$wp_contributions->display_card( $args );
 
 }
@@ -138,11 +138,11 @@ function wp_contributions_codex_contributions_card( $username, $count = 5 ) {
 
 	global $wp_contributions;
 
-	$args = array(
+	$args = [
 		'slug'  => $username,
 		'type'  => 'codex',
 		'count' => intval( $count ),
-	);
+	];
 	$wp_contributions->display_card( $args );
 
 }
@@ -166,12 +166,12 @@ function wp_contributions_codex_contributions_card( $username, $count = 5 ) {
  * }
  * @return string   The formatted HTML of star ratings.
  */
-function wp_contributions_star_rating( $args = array() ) {
-	$defaults = array(
+function wp_contributions_star_rating( $args = [] ) {
+	$defaults = [
 		'rating' => 0,
-		'type' => 'rating',
+		'type'   => 'rating',
 		'number' => 0,
-	);
+	];
 	$r = wp_parse_args( $args, $defaults );
 
 	// Non-english decimal places when the $rating is coming from a string.
@@ -183,17 +183,16 @@ function wp_contributions_star_rating( $args = array() ) {
 	}
 
 	// Calculate the number of each type of star needed.
-	$full_stars = floor( $rating );
-	$half_stars = ceil( $rating - $full_stars );
+	$full_stars  = floor( $rating );
+	$half_stars  = ceil( $rating - $full_stars );
 	$empty_stars = 5 - $full_stars - $half_stars;
+	/* translators: 1: The rating */
+	$title       = sprintf( __( '%s rating' ), number_format_i18n( $rating, 1 ) );
 
 	if ( $r['number'] ) {
 		/* translators: 1: The rating, 2: The number of ratings */
 		$format = _n( '%1$s rating based on %2$s rating', '%1$s rating based on %2$s ratings', $r['number'] );
 		$title = sprintf( $format, number_format_i18n( $rating, 1 ), number_format_i18n( $r['number'] ) );
-	} else {
-		/* translators: 1: The rating */
-		$title = sprintf( __( '%s rating' ), number_format_i18n( $rating, 1 ) );
 	}
 
 	$html = '<div class="star-rating" title="' . esc_attr( $title ) . '">';

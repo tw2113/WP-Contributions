@@ -12,7 +12,7 @@
 	<div class="wp-contributions-codex codex-card card <?php echo esc_attr( $user ); ?>">
 		<ul>
 		<?php foreach ( (array) $items as $item ) :
-			$link = 'http://codex.wordpress.org/index.php?title=' . $item['title'] . '&oldid=' . $item['revision'];
+			$link = 'https://codex.wordpress.org/index.php?title=' . $item['title'] . '&oldid=' . $item['revision'];
 
 			if ( ( bool ) $item['function_ref'] ) {
 		?>
@@ -23,12 +23,12 @@
 		<?php endforeach; ?>
 		</ul>
 		<p>
-			<a href="<?php echo esc_url( 'http://codex.wordpress.org/Special:Contributions/' . ucfirst( $user ) ); ?>">
+			<a href="<?php echo esc_url( 'https://codex.wordpress.org/Special:Contributions/' . ucfirst( $user ) ); ?>">
 				<?php
-				if ( 2 == $total ) {
+				if ( 2 === $total ) {
 					esc_html_e( 'View both changes in the Codex.', 'wp-contributions' );
 				} else {
-					printf( esc_html_e( 'View the change in the Codex.', 'View all %d changes in the Codex.', $total, 'wp-contributions' ), esc_html( $total ) );
+					printf( _n( 'View the change in the Codex.', 'View all %d changes in the Codex.', $total, 'wp-contributions' ), esc_html( $total ) );
 				}
 				?>
 			</a>

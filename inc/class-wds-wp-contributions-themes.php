@@ -58,31 +58,37 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 				$args->locale = get_locale();
 			}
 
-			$url = $http_url = 'http://api.wordpress.org/themes/info/1.0/';
-			if ( $ssl = wp_http_supports( array( 'ssl' ) ) ) {
-				$url = set_url_scheme( $url, 'https' );
-			}
+			$url = 'https://api.wordpress.org/themes/info/1.0/';
 
-			$args = array(
-				'body' => array(
+			$args = [
+				'body' => [
 					'action' => $action,
 					'request' => serialize( $args ),
-				),
-			);
+				],
+			];
 			$request = wp_remote_post( $url, $args );
 
-			if ( $ssl && is_wp_error( $request ) ) {
-				trigger_error( __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ) . ' ' . __( '(WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.)' ), headers_sent() || WP_DEBUG ? E_USER_WARNING : E_USER_NOTICE );
-				$request = wp_remote_post( $http_url, $args );
+			if ( is_wp_error( $request ) ) {
+				return new WP_Error(
+					'themes_api_failed',
+					__(
+						'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.',
+					'wp-contributions'
+					),
+					$request->get_error_message()
+				);
 			}
 
-			if ( is_wp_error( $request ) ) {
-				$res = new WP_Error( 'themes_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), $request->get_error_message() );
-			} else {
-				$res = maybe_unserialize( wp_remote_retrieve_body( $request ) );
-				if ( ! is_object( $res ) && ! is_array( $res ) ) {
-					$res = new WP_Error( 'themes_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), wp_remote_retrieve_body( $request ) );
-				}
+			$res = maybe_unserialize( wp_remote_retrieve_body( $request ) );
+			if ( ! is_object( $res ) && ! is_array( $res ) ) {
+				return new WP_Error(
+					'themes_api_failed',
+					__(
+						'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.',
+						'wp-contributions'
+					),
+					wp_remote_retrieve_body( $request )
+				);
 			}
 
 			return $res;
@@ -101,22 +107,21 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			$wp_contributions->query->theme_slug = esc_attr( $theme_slug );
 
 			if ( false === ( $theme = get_transient( 'wp_contributions_theme_' . $theme_slug ) ) ) {
-				$args   = array(
+				$args   = [
 					'slug'   => esc_attr( $theme_slug ),
-					'fields' => array(
+					'fields' => [
 						'sections'    => false,
 						'tags'        => false,
 						'description' => true,
-					),
+					],
 					'is_ssl' => is_ssl(),
-				);
+				];
 				$theme = $this->themes_api( 'theme_information', $args );
 				set_transient( 'wp_contributions_theme_' . $theme_slug, $theme, 24 * HOUR_IN_SECONDS );
 			}
 
 			$wp_contributions->query->results = $theme;
 			return $theme;
-
 		}
 
 		/**
@@ -132,9 +137,9 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			$wp_contributions->query->author = $author_name;
 
 			if ( false === ( $author = get_transient( 'wp_contributions_theme_author_' . $author_name ) ) ) {
-				$args   = array(
+				$args   = [
 					'author' => esc_attr( $author_name ),
-				);
+				];
 				$author = $this->themes_api( 'query_themes', $args );
 				set_transient( 'wp_contributions_themes_' . $author_name, $author, 24 * HOUR_IN_SECONDS );
 			}
@@ -151,6 +156,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 		 */
 		public function display( $theme_data ) {
 
+			ob_start();
 			global $wp_contributions;
 
 			$theme_data = apply_filters( 'wp_contributions_display_theme_data', $theme_data );
@@ -174,18 +180,19 @@ if ( ! class_exists( 'WDS_WP_Contributions_Themes' ) ) {
 			$version     = ( isset( $theme_data->version ) ) ? $theme_data->version : '';
 			$rating      = ( isset( $theme_data->rating ) ) ? $theme_data->rating : '';
 			$num_ratings = ( isset( $theme_data->num_ratings ) ) ? $theme_data->num_ratings : '';
-			$downloaded  = ( isset( $theme_data->downloaded ) )  ? $theme_data->downloaded : '';
+			$downloaded  = ( isset( $theme_data->downloaded ) ) ? number_format( $theme_data->downloaded ) : '';
 			$author      = ( isset( $theme_data->author ) ) ? strip_tags( $theme_data->author ) : '';
 			$last_update = ( isset( $theme_data->last_updated ) ) ? date( 'M j, Y', strtotime( $theme_data->last_updated ) ) : '';
 
 			// Include template - can be overriden by a theme!
 			$template_name = 'wp-contributions-theme-card-template.php';
-			$path = locate_template( array( $template_name, 'wp-contributions/' . $template_name ) );
+			$path = locate_template( [ $template_name, 'wp-contributions/' . $template_name ] );
 			if ( empty( $path ) ) {
 				$path = $wp_contributions->directory_path . 'templates/' . $template_name;
 			}
 			include( $path );
 
+			return ob_get_clean();
 		}
 	}
 }

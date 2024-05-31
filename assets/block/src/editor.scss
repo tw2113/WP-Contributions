@@ -4,23 +4,26 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.contrib-item {
-	display: inline-flex;
-	max-width: 100%;
-	padding: 1%;
-}
-.css-1wzzj1a {
-	display: inline-flex !important;
-}
+$wpbg: #3858e9;
+$wplight: #f6f6f6;
+.wp-block-wp-contributions-block {
+	background-color: $wpbg;
+	color: $wplight;
+	padding: 10px;
+	border: 5px double $wplight;
+	width: 50%;
 
-.blocki {
-	padding: 10px 0 0 10px;
-	border: 1px solid #333;
-}
-.block-auth {
-	color: #333;
-	font-size: 12px;
-	text-align: right;
-	padding-right: 10px;
-	margin-bottom: 3px !important;
+	label {
+		color: $wplight;
+
+	}
+
+	.contrib-item {
+		max-width: 100%;
+		padding: 1%;
+	}
+
+	.contrib-title {
+		font-size: 1rem;
+	}
 }

@@ -24,7 +24,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 		function __construct() {
 
 			global $wp_contributions;
-			$wp_contributions->is_query = true;
+			$wp_contributions->is_query    = true;
 			$wp_contributions->query->type = 'plugin';
 
 		}
@@ -57,32 +57,38 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 				$args->locale = get_locale();
 			}
 
-			$url = $http_url = 'http://api.wordpress.org/plugins/info/1.0/';
-			if ( $ssl = wp_http_supports( array( 'ssl' ) ) ) {
-				$url = set_url_scheme( $url, 'https' );
-			}
+			$url = 'https://api.wordpress.org/plugins/info/1.0/';
 
-			$args = array(
+			$args = [
 				'timeout' => 15,
-				'body' => array(
+				'body' => [
 					'action'  => $action,
 					'request' => serialize( $args ),
-				),
-			);
+				],
+			];
 			$request = wp_remote_post( $url, $args );
 
-			if ( $ssl && is_wp_error( $request ) ) {
-				trigger_error( __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ) . ' ' . __( '(WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.)' ), headers_sent() || WP_DEBUG ? E_USER_WARNING : E_USER_NOTICE );
-				$request = wp_remote_post( $http_url, $args );
+			if ( is_wp_error( $request ) ) {
+				return new WP_Error(
+					'plugins_api_failed',
+					__(
+						'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.',
+						'wp-contributions'
+					),
+					$request->get_error_message()
+				);
 			}
 
-			if ( is_wp_error( $request ) ) {
-				$res = new WP_Error( 'plugins_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), $request->get_error_message() );
-			} else {
-				$res = maybe_unserialize( wp_remote_retrieve_body( $request ) );
-				if ( ! is_object( $res ) && ! is_array( $res ) ) {
-					$res = new WP_Error( 'plugins_api_failed', __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.' ), wp_remote_retrieve_body( $request ) );
-				}
+			$res = maybe_unserialize( wp_remote_retrieve_body( $request ) );
+			if ( ! is_object( $res ) && ! is_array( $res ) ) {
+				return new WP_Error(
+					'plugins_api_failed',
+					__(
+						'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/">support forums</a>.',
+						'wp-contributions'
+					),
+					wp_remote_retrieve_body( $request )
+				);
 			}
 
 			return $res;
@@ -101,17 +107,17 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 			$wp_contributions->query->plugin_slug = esc_attr( $plugin_slug );
 
 			if ( false === ( $plugin = get_transient( 'wp_contributions_plugin_' . $plugin_slug ) ) ) {
-				$args   = array(
+				$args   = [
 					'slug'   => esc_attr( $plugin_slug ),
-					'fields' => array(
+					'fields' => [
 						'sections'          => false,
 						'tags'              => false,
 						'icons'             => true,
 						'banners'           => true,
 						'short_description' => true,
-					),
+					],
 					'is_ssl' => is_ssl(),
-				);
+				];
 				$plugin = $this->plugins_api( 'plugin_information', $args );
 				set_transient( 'wp_contributions_plugin_' . $plugin_slug, $plugin, 24 * HOUR_IN_SECONDS );
 			}
@@ -134,9 +140,9 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 			$wp_contributions->query->author = $author_name;
 
 			if ( false === ( $author = get_transient( 'wp_contributions_plugin_author_' . $author_name ) ) ) {
-				$args   = array(
+				$args   = [
 					'author' => esc_attr( $author_name ),
-				);
+				];
 				$author = $this->plugins_api( 'query_plugins', $args );
 				set_transient( 'wp_contributions_plugin_' . $author_name, $author, 24 * HOUR_IN_SECONDS );
 			}
@@ -152,6 +158,8 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 		 * @param object $plugin_data The plugin data returned from the WP.org API.
 		 */
 		public function display( $plugin_data ) {
+
+			ob_start();
 
 			global $wp_contributions;
 
@@ -177,19 +185,20 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 			$version      = $plugin_data->version;
 			$rating       = $plugin_data->rating;
 			$num_ratings  = $plugin_data->num_ratings;
-			$downloaded   = $plugin_data->downloaded;
+			$downloaded   = number_format( $plugin_data->downloaded );
 			$author       = strip_tags( $plugin_data->author );
-			$contributors = implode( ', ', array_keys( $plugin_data->contributors ) );
-			$last_update = date( 'M j, Y', strtotime( $plugin_data->last_updated ) );
+			$contributors = is_array( $plugin_data->contributors ) ? implode( ', ', array_keys( $plugin_data->contributors ) ) : $author;
+			$last_update  = date( 'M j, Y', strtotime( $plugin_data->last_updated ) );
 
 			// Include template - can be overriden by a theme!
 			$template_name = 'wp-contributions-plugin-card-template.php';
-			$path = locate_template( array( $template_name, 'wp-contributions/' . $template_name ) );
+			$path = locate_template( [ $template_name, 'wp-contributions/' . $template_name ] );
 			if ( empty( $path ) ) {
 				$path = $wp_contributions->directory_path . 'templates/' . $template_name;
 			}
 			include( $path );
 
+			return ob_get_clean();
 		}
 	}
 }

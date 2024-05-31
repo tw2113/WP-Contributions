@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<footer class="card-footer plugin-card-footer">
 
 		<div class="card-rating plugin-card-rating">
-			<?php echo wp_contributions_star_rating( array( 'rating' => intval( $rating ), 'type' => 'percent', 'number' => $num_ratings ) ); ?>
+			<?php echo wp_contributions_star_rating( [ 'rating' => intval( $rating ), 'type' => 'percent', 'number' => $num_ratings ] ); ?>
 		</div>
 
 		<div class="card-meta plugin-card-meta">

@@ -31,20 +31,20 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 
 		public static function get_codex_items( $username, $limit = 10 ) {
 			if ( null === $username ) {
-				return array();
+				return [];
 			}
 
 			if ( true || false === ( $formatted = get_transient( 'wp-contributions-codex-' . $username ) ) ) {
 
-				$results_url = add_query_arg( array(
+				$results_url = add_query_arg( [
 					'action'  => 'query',
 					'list'    => 'usercontribs',
 					'ucuser'  => $username,
 					'uclimit' => $limit,
 					'ucdir'   => 'older',
 					'format'  => 'php',
-				), 'http://codex.wordpress.org/api.php' );
-				$results = wp_remote_retrieve_body( wp_remote_get( $results_url, array( 'sslverify' => false ) ) );
+				], 'https://codex.wordpress.org/api.php' );
+				$results = wp_remote_retrieve_body( wp_remote_get( $results_url, [ 'sslverify' => false ] ) );
 
 				$raw = maybe_unserialize( $results );
 
@@ -69,18 +69,18 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 				 *                         )
 				 **/
 
-				$formatted = array();
+				$formatted = [];
 				if ( is_array( $raw ) && array_key_exists( 'query', $raw ) ) {
 					foreach ( $raw['query']['usercontribs'] as $item ) {
 						$count       = 0;
 						$clean_title = preg_replace( '/^Function Reference\//', '', (string) $item['title'], 1, $count );
 
-						$new_item = array(
+						$new_item = [
 							'title'        => $clean_title,
 							'description'  => (string) $item['comment'],
 							'revision'     => (int) $item['revid'],
 							'function_ref' => (bool) $count,
-						);
+						];
 						array_push( $formatted, $new_item );
 					}
 					set_transient( 'wp-contributions-codex-' . $username, $formatted, 60 * 60 * 12 );
@@ -92,19 +92,19 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 
 		public static function get_codex_count( $username ) {
 			if ( null === $username ) {
-				return array();
+				return [];
 			}
 
 			if ( false === ( $count = get_transient( 'wp-contributions-codex-count-' . $username ) ) ) {
 
-				$results_url = add_query_arg( array(
+				$results_url = add_query_arg( [
 					'action'  => 'query',
 					'list'    => 'users',
 					'ususers' => $username,
 					'usprop'  => 'editcount',
 					'format'  => 'json',
-				), 'http://codex.wordpress.org/api.php' );
-				$results = wp_remote_retrieve_body( wp_remote_get( $results_url, array( 'sslverify' => false ) ) );
+				], 'https://codex.wordpress.org/api.php' );
+				$results = wp_remote_retrieve_body( wp_remote_get( $results_url, [ 'sslverify' => false ] ) );
 
 				if ( ! empty( $results ) ) {
 					$raw   = json_decode( $results, true );
@@ -127,21 +127,23 @@ if ( ! class_exists( 'WDS_WP_Contributions_Codex' ) ) {
 		 */
 		public function display( $user, $count ) {
 
+			ob_start();
+
 			global $wp_contributions;
 
-			// Widget content.
 			$items = array_slice( WDS_WP_Contributions_Codex::get_codex_items( $user, $count ), 0, $count );
 			$total = WDS_WP_Contributions_Codex::get_codex_count( $user );
 
 			// Include template - can be overriden by a theme!
 			$template_name = 'wp-contributions-codex-widget-template.php';
-			$path = locate_template( $template_name );
+			$path          = locate_template( $template_name );
 			if ( empty( $path ) ) {
 				$path = $wp_contributions->directory_path . 'templates/' . $template_name;
 			}
 
-			include( $path ); // This include will generate the markup for the widget.
+			include( $path );
 
+			return ob_get_clean();
 		}
 	}
 }

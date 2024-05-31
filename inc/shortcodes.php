@@ -23,13 +23,13 @@ function wp_contributions_plugin_card_shortcode( $atts ) {
 		return;
 	}
 
-	$args = shortcode_atts( array(
+	$args = shortcode_atts( [
 		'slug' => $atts,
 		'type' => 'plugin',
-	), $atts ); // $atts['slug'] aka [wp_contributions_plugin_card slug="your-plugin-slug"]
+	], $atts ); // $atts['slug'] aka [wp_contributions_plugin_card slug="your-plugin-slug"]
 
 	wp_contributions_plugin_card( $args['slug'] );
-	
+
 	return ob_get_clean();
 }
 add_shortcode( 'wp_contributions_plugin_card', 'wp_contributions_plugin_card_shortcode' );
@@ -46,13 +46,13 @@ function wp_contributions_theme_card_shortcode( $atts ) {
 		return;
 	}
 
-	$args = shortcode_atts( array(
+	$args = shortcode_atts( [
 		'slug' => $atts,
 		'type' => 'plugin',
-	), $atts ); // $atts['slug'] aka [wp_contributions_theme_card slug="your-theme-slug"]
+	], $atts ); // $atts['slug'] aka [wp_contributions_theme_card slug="your-theme-slug"]
 
 	wp_contributions_theme_card( $args['slug'] );
-	
+
 	return ob_get_clean();
 }
 add_shortcode( 'wp_contributions_theme_card', 'wp_contributions_theme_card_shortcode' );
