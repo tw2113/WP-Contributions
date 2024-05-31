@@ -108,7 +108,7 @@ class WDS_WP_Contributions_Theme_Widget extends WP_Widget {
 			'slug' => $theme_slug,
 			'type' => 'theme',
 		];
-		$wp_contributions->display_card( $args );
+		echo $wp_contributions->display_card( $args );
 
 		// After widget hook.
 		echo $atts['after_widget'];
