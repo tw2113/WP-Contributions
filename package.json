@@ -15,11 +15,12 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26"
+		"@wordpress/scripts": "^27"
 	},
 	"dependencies": {
 		"@wordpress/element": "^5",
 		"@wordpress/i18n": "^4",
-		"@wordpress/icons": "^9"
+		"@wordpress/icons": "^9",
+		"npm-check-updates": "^16.14.20"
 	}
 }
