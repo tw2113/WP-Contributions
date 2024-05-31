@@ -73,7 +73,7 @@ export default function Edit( props ) {
 				</PanelBody>
 			</InspectorControls>
 			{ ! props.attributes.theme ?
-				<div className='components-placeholder blocki is-large'>
+				<div>
 					<div className='contrib-title components-placeholder__label'><span className="block-editor-block-icon has-colors">{ wordpress }</span> { __( 'My WP Contributions', 'wp-contributions' ) }</div>
 					<SelectControl
 						key="select-contribution-type"
