@@ -12,7 +12,7 @@
 		"lint:js": "wp-scripts lint-js --webpack-src-dir=assets/block/src --output-path=assets/block/build",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start"
+		"start": "wp-scripts start --webpack-src-dir=assets/block/src --output-path=assets/block/build"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^27"
