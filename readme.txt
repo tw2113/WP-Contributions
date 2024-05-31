@@ -2,8 +2,8 @@
 Contributors: tw2113
 Tags: contributions, core, plugins, themes, codex, widget
 Requires at least: 3.8.0
-Tested up to: 6.0
-Stable tag: 1.2.1
+Tested up to: 6.5.3
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,11 @@ Copy either the individual template file: e.g. `/wp-content/wp-contributions-the
 5. Widget Management
 
 == Changelog ==
+
+= 1.3.0 =
+* Updated: Block styles in editor.
+* Updated: Improved coding standards and cleaned up PHP warnings/notices.
+* Updated: Internal build tools.
 
 = 1.2.1 =
 * Ownership transition.
