@@ -5,7 +5,7 @@
  * Description: Provides an easy way to display your WordPress.org Themes, Plugins, Core tickets, and Codex contributions with handy widgets and template tags.
  * Author: Michael Beckwith
  * Author URI: https://michaelbox.net
- * Version: 1.2.1
+ * Version: 1.3.0
  * License: GPLv2
  * Requires PHP: 7.4
  *
