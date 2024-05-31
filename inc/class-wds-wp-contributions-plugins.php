@@ -187,7 +187,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Plugins' ) ) {
 			$num_ratings  = $plugin_data->num_ratings;
 			$downloaded   = number_format( $plugin_data->downloaded );
 			$author       = strip_tags( $plugin_data->author );
-			$contributors = implode( ', ', array_keys( $plugin_data->contributors ) );
+			$contributors = is_array( $plugin_data->contributors ) ? implode( ', ', array_keys( $plugin_data->contributors ) ) : $author;
 			$last_update  = date( 'M j, Y', strtotime( $plugin_data->last_updated ) );
 
 			// Include template - can be overriden by a theme!
