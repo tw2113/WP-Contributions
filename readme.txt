@@ -1,6 +1,6 @@
 === WP Contributions ===
 Contributors: tw2113
-Tags: contributions, core, plugins, themes, codex, widget
+Tags: contributions, core, plugins, themes, codex
 Requires at least: 3.8.0
 Tested up to: 6.5.3
 Stable tag: 1.3.0
