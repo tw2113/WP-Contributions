@@ -1,1 +1,27 @@
-.contrib-item{display:inline-flex;max-width:100%;padding:1%}.css-1wzzj1a{display:inline-flex!important}.blocki{border:1px solid #333;padding:10px 0 0 10px}.block-auth{color:#333;font-size:12px;margin-bottom:3px!important;padding-right:10px;text-align:right}
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./assets/block/src/editor.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-wp-contributions-block {
+  background-color: #3858e9;
+  color: #f6f6f6;
+  padding: 10px;
+  border: 5px double #f6f6f6;
+  width: 50%;
+}
+.wp-block-wp-contributions-block label {
+  color: #f6f6f6;
+}
+.wp-block-wp-contributions-block .contrib-item {
+  max-width: 100%;
+  padding: 1%;
+}
+.wp-block-wp-contributions-block .contrib-title {
+  font-size: 1rem;
+}
+
+/*# sourceMappingURL=index.css.map*/
