@@ -180,11 +180,11 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			} elseif ( 'core' === $args['type'] ) {
 				$count = isset( $args['count'] ) ? $args['count'] : 5;
 				$core  = new WDS_WP_Contributions_Core();
-				$core->display( $args['slug'], $count );
+					$card .= $core->display( $args['slug'], $count );
 			} elseif ( 'codex' === $args['type'] ) {
 				$count = isset( $args['count'] ) ? $args['count'] : 5;
 				$codex = new WDS_WP_Contributions_Codex();
-				$codex->display( $args['slug'], $count );
+					$card .= $codex->display( $args['slug'], $count );
 			}
 
 			return apply_filters( 'wp_contributions_display_card', $card, $args );
