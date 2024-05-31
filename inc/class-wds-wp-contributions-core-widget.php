@@ -152,7 +152,7 @@ if ( ! class_exists( 'WDS_WP_Contributions_Core_Widget' ) ) :
 				'type'  => 'core',
 				'count' => isset( $instance['display-count'] ) ? $instance['display-count'] : 5,
 			];
-			$wp_contributions->display_card( $card_args );
+			echo $wp_contributions->display_card( $card_args );
 
 			echo $args['after_widget'];
 		}
