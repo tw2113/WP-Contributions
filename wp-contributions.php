@@ -140,7 +140,6 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 			$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 			wp_enqueue_style( 'wds-wp-contributions', $this-> directory_url . "/assets/css/style$min.css", [ 'dashicons' ], '150505' );
-			//wp_enqueue_script( 'wds-wp-contributions', $this-> directory_url . "/assets/js/scripts$min.js", [], '150505', true );
 		}
 
 		/**
