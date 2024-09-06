@@ -69,9 +69,6 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 		 */
 		public function hooks() {
 
-			// Load Textdomain.
-			load_plugin_textdomain( 'wp-contributions', false, dirname( $this->basename ) . '/languages' );
-
 			// Activation/Deactivation Hooks.
 			register_activation_hook( __FILE__, [ $this, 'activate' ] );
 			register_deactivation_hook( __FILE__, [ $this, 'deactivate' ] );
@@ -260,3 +257,7 @@ if ( ! class_exists( 'WDS_WP_Contributions' ) ) {
 	add_action( 'plugins_loaded', 'load_wp_contributions' );
 
 }
+
+add_action( 'init', function() {
+	load_plugin_textdomain( 'wp-contributions' );
+} );
