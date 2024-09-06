@@ -3,7 +3,7 @@ Contributors: tw2113
 Tags: contributions, core, plugins, themes, codex
 Requires at least: 3.8.0
 Tested up to: 6.5.3
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,9 @@ Copy either the individual template file: e.g. `/wp-content/wp-contributions-the
 
 == Changelog ==
 
+= 1.3.1 =
+* Updated: Confirmed compatibility with WP 6.6.1
+
 = 1.3.0 =
 * Updated: Block styles in editor.
 * Updated: Improved coding standards and cleaned up PHP warnings/notices.
@@ -113,11 +116,3 @@ Copy either the individual template file: e.g. `/wp-content/wp-contributions-the
 
 = 1.0.0 =
 * Initial Release
-
-== Upgrade Notice ==
-
-= 1.2.0 =
-* Added: WordPress Block for Themes, Plugins, Core, and Codex contributions.
-* Fixed: Minor CSS issues.
-* Fixed: Fatal errors when computer had no internet connectivity.
-* Fixed: Errors regarding parsing strings as XML.
