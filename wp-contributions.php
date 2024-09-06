@@ -8,6 +8,7 @@
  * Version: 1.3.0
  * License: GPLv2
  * Requires PHP: 7.4
+ * Text Domain: wp-contributions
  *
  * @package WP Contributions
  */
