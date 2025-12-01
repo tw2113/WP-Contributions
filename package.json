@@ -15,12 +15,12 @@
 		"start": "wp-scripts start --webpack-src-dir=assets/block/src --output-path=assets/block/build"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^28"
+		"@wordpress/scripts": "^31"
 	},
 	"dependencies": {
 		"@wordpress/element": "^6",
-		"@wordpress/i18n": "^5",
-		"@wordpress/icons": "^10",
-		"npm-check-updates": "^16.14.20"
+		"@wordpress/i18n": "^6",
+		"@wordpress/icons": "^11",
+		"npm-check-updates": "^19.1.2"
 	}
 }
